@@ -1,0 +1,35 @@
+
+.container-navbar {
+    
+    display: flex;
+    position: sticky;
+    width: 100%;
+    height: 50px;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(179,179,179,1) 100%);
+
+}
+
+.container-navbar img {
+    border-radius: 50%;
+}
+
+.position-button-nav {
+    display: flex;
+    margin-left: 90%;
+    align-items: center;
+    margin: 0 10px;
+}
+.title-nav{
+    display: flex;
+    padding: 25px;
+    align-items: center;
+    color: aliceblue;
+}
+
+.icon-cut-nav{
+    font-size: 2.5rem;
+    font-weight: 1000;
+}
+
+
