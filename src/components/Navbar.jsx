@@ -3,6 +3,7 @@ import "../styles/navbar.css"
 import { Boton } from './Boton'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CreateIcon from '@mui/icons-material/Create';
+import { NavLink } from 'react-router-dom'
 
 
 export const Navbar = () => {
@@ -12,10 +13,10 @@ export const Navbar = () => {
         <img src="../src/img/logo.jpg" alt="Logo" />
         <h2 className='title-nav'>Sys Turnos</h2>
         <div className='position-button-nav'>
-          <Boton><CreateIcon /><p>Crear Turno</p></Boton>
+          <NavLink to="/NuevoTurno"><Boton><CreateIcon /><p>Crear Turno</p></Boton></NavLink>
         </div>
         <div className='position-button-nav'>
-          <Boton><CalendarMonthIcon className='icon-nav' /><p>Mis Turnos</p></Boton>
+          <NavLink to="/"><Boton><CalendarMonthIcon className='icon-nav' /><p>Mis Turnos</p></Boton></NavLink>
         </div>
       </nav>
     </>
