@@ -8,7 +8,6 @@ export const App = () => {
   return (
     <>
       <Navbar></Navbar>
-
       <Routes>
         <Route path="/" element= { <MisTurnos></MisTurnos> }></Route>
         <Route path='/NuevoTurno' element= { <NuevoTurno></NuevoTurno> }></Route>

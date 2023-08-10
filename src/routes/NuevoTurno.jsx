@@ -2,14 +2,19 @@ import React from 'react'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
+import { useContext } from 'react'
+import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 
 export const NuevoTurno = () => {
 
   const { formState, onInputChange } = useForm();
 
+  const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
+
+ 
   const guardarTurno = (e) => {
     e.preventDefault();
-    console.log(formState);
+    handleSetListaTurnos(formState);
   }
 
   return (

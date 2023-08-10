@@ -1,11 +1,9 @@
 
 import { useState } from 'react';
 
-export const useForm = (initialForm = {}, check = false) => {
+export const useForm = (initialForm = []) => {
 
   const [formState, setFormState] = useState(initialForm);
-  const [checked, setChecked] = useState(check)
-
 
   const onInputChange = ({ target })=>{
 
