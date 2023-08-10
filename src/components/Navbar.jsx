@@ -15,7 +15,7 @@ export const Navbar = () => {
         <div className='position-button-nav'>
           <NavLink to="/NuevoTurno">
             <BotonNav>
-              <CreateIcon /><p>Crear Turno</p>
+              <CreateIcon /><p>Nuevo Turno</p>
             </BotonNav></NavLink>
         </div>
         <div className='position-button-nav'>

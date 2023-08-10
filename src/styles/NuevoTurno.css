@@ -1,0 +1,120 @@
+.container-nuevo-turno {
+    height: 90vh;
+    background: rgb(0,3,255);
+    background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+    border: none;
+    animation: aparecer .5s ease-in
+}
+
+.group-tittle-nuevoTurno {
+    margin-left: 1%;
+    color: whitesmoke;
+    text-decoration: underline;
+    font-size: 35px;
+    font-family: 'Lora', serif, 'Anton', sans-serif;
+    
+}
+.group-input {
+    color: whitesmoke;
+    padding: 15px 15px;
+    display: flex;
+    flex-wrap: nowrap;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+}
+
+.group-input h3 {
+    padding: 8px;
+    font-family: 'Lora', serif, 'Anton', sans-serif;
+}
+
+.group-input .group-checkbox {
+    padding: 2px;
+    color: black;
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+}
+
+.checkbox-tipo-trabajo {
+    transform: translateX(-7px);
+}
+.group-input input {
+    color: black;
+    font-size: 16px;
+    padding: 8px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.group-button-nuevo-turno {
+    padding: 20px;
+    margin-left: 10%;
+}
+
+.custom-btn-cargar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 50px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 800;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+
+.btn-14 {
+    background: transparent;
+    border: none;
+    z-index: 1;
+  }
+  .btn-14:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 5px;
+    background-color: #eaf818;
+    background-image: linear-gradient(315deg, #eaf818 0%, #f6fc9c 74%);
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5)
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    transition: all 0.3s ease;
+  }
+  .btn-14:hover {
+    color: #000;
+  }
+  .btn-14:hover:after {
+    top: auto;
+    bottom: 0;
+    height: 100%;
+  }
+  .btn-14:active {
+    top: 2px;
+  }
+
+@keyframes aparecer {
+    
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

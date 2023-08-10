@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 160px;
-    height: 51px;
+    height: 50px;
     color: #fff;
     border-radius: 5px;
     padding: 10px 25px;
@@ -26,6 +26,6 @@
     border: none;
   }
   .btn-1:hover {
-     background: rgb(0,3,255);
-  background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+    background: rgb(0,3,255);
+    background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
   }
