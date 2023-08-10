@@ -1,7 +1,7 @@
 import React from 'react'
-import "../styles/boton.css"
+import "../styles/botonNav.css"
 
-export const Boton = ({ children }) => {
+export const BotonNav = ({ children }) => {
   return (
     <button className="custom-btn btn-1">{children}</button>
   )
