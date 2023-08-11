@@ -54,6 +54,12 @@
     border-radius: 5px;
 }
 
+.timepicker {
+    height: 100%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
 .checkbox-tipo-trabajo {
     transform: translateX(-7px);
 }

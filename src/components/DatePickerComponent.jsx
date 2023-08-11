@@ -3,7 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { useDatePickerComponent } from '../hooks/useDatePickerComponent';
 
 
-export const DatePickerComponent = ({ value }) => {
+export const DatePickerComponent = ({ handleValue }) => {
 
   const { handleOnChange, valor} = useDatePickerComponent();
 
@@ -13,8 +13,8 @@ export const DatePickerComponent = ({ value }) => {
         <DatePicker          
           onChange={(newValue)=>{
             handleOnChange(newValue)
-            value(valor);
-          }}  
+            handleValue(valor);
+          }}
         />
       </LocalizationProvider>
     </>

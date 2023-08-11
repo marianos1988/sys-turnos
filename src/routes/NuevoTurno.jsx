@@ -5,10 +5,12 @@ import { useForm } from '../hooks/useForm'
 import { useContext } from 'react'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { DatePickerComponent } from '../components/DatePickerComponent'
+import { TimePickerComponent } from '../components/TimePickerComponent'
 
 export const NuevoTurno = () => {
 
-  const { formState, onInputChange, onDatePicker } = useForm();
+  const { formState, onInputChange, onDatePicker, onTimePicker } = useForm();
+  const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;
 
 
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
@@ -17,10 +19,11 @@ export const NuevoTurno = () => {
   const guardarTurno = (e) => {
     e.preventDefault();
     handleSetListaTurnos(formState);
-    console.log(formState)
+
   }
 
-  const value = (value)=> {onDatePicker(value)};
+  const handleValueDate = (value)=> {onDatePicker(value)};
+  const handleValueTime = (value)=> {onTimePicker(value)}
   
 
   return (
@@ -50,23 +53,18 @@ export const NuevoTurno = () => {
           <div className="datepicker">
             <DatePickerComponent
               name="fecha"
-              value={value}
-              // onChange={onInputChange}
+              handleValue={handleValueDate}
             />
           </div>          
-          {/* <input 
-            type="date"
-            name="fecha"
-            onChange={onInputChange}
-          /> */}
         </div>
         <div className='group-input'>
           <h3>Seleccionar Hora:</h3>
-          <input 
-            type="time"
-            name='hora'
-            onChange={onInputChange}
-          />
+          <div className='timepicker'>
+            <TimePickerComponent 
+              name="hora"
+              handleValue = {handleValueTime}
+            />
+          </div>
         </div>
         <div className='group-input'>
           <h3>Tipo de Trabajo</h3>
@@ -77,7 +75,6 @@ export const NuevoTurno = () => {
              className='checkbox-tipo-trabajo'
              name='corte'
              value="Corte"
-
              onChange={onInputChange}
             />
             <h4>Peinado: </h4>
@@ -86,7 +83,6 @@ export const NuevoTurno = () => {
               className='checkbox-tipo-trabajo'
               name='peinado'
               value="Peinado"
-
               onChange={onInputChange}
             />
             <h4>Alisado: </h4>
@@ -95,7 +91,6 @@ export const NuevoTurno = () => {
               className='checkbox-tipo-trabajo'
               name='alisado'
               value="Alisado"
-
               onChange={onInputChange}
             />
             <h4>Tintura: </h4>

@@ -5,6 +5,13 @@ export const useForm = (initialForm = {}) => {
 
   const [formState, setFormState] = useState(initialForm);
 
+  const onTimePicker = (hora) => {
+    setFormState({
+      ...formState,
+      hora:hora
+    });
+  }
+
   const onDatePicker = (fecha) => {
 
     setFormState({
@@ -27,7 +34,8 @@ export const useForm = (initialForm = {}) => {
   return {
     formState,
     onInputChange,
-    onDatePicker
+    onDatePicker,
+    onTimePicker
 
   }
 }
