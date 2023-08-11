@@ -4,10 +4,12 @@ import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { useContext } from 'react'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
+import { DatePickerComponent } from '../components/DatePickerComponent'
 
 export const NuevoTurno = () => {
 
-  const { formState, onInputChange } = useForm();
+  const { formState, onInputChange, onDatePicker } = useForm();
+
 
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
 
@@ -15,7 +17,11 @@ export const NuevoTurno = () => {
   const guardarTurno = (e) => {
     e.preventDefault();
     handleSetListaTurnos(formState);
+    console.log(formState)
   }
+
+  const value = (value)=> {onDatePicker(value)};
+  
 
   return (
     <div className='container-nuevo-turno'>
@@ -41,11 +47,18 @@ export const NuevoTurno = () => {
         </div>
         <div className='group-input'>
           <h3>Seleccionar Fecha</h3>
-          <input 
+          <div className="datepicker">
+            <DatePickerComponent
+              name="fecha"
+              value={value}
+              // onChange={onInputChange}
+            />
+          </div>          
+          {/* <input 
             type="date"
             name="fecha"
             onChange={onInputChange}
-          />
+          /> */}
         </div>
         <div className='group-input'>
           <h3>Seleccionar Hora:</h3>

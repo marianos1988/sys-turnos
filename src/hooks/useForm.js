@@ -1,9 +1,17 @@
 
 import { useState } from 'react';
 
-export const useForm = (initialForm = []) => {
+export const useForm = (initialForm = {}) => {
 
   const [formState, setFormState] = useState(initialForm);
+
+  const onDatePicker = (fecha) => {
+
+    setFormState({
+      ...formState,
+      fecha: fecha
+    });
+  }
 
   const onInputChange = ({ target })=>{
 
@@ -18,7 +26,8 @@ export const useForm = (initialForm = []) => {
   //Destructura el formState para exportar directacd femente
   return {
     formState,
-    onInputChange
+    onInputChange,
+    onDatePicker
 
   }
 }

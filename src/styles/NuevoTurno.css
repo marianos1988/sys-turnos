@@ -17,6 +17,7 @@
 .group-input {
     color: whitesmoke;
     padding: 15px 15px;
+
     display: flex;
     flex-wrap: nowrap;
     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
@@ -29,15 +30,28 @@
     font-family: 'Lora', serif, 'Anton', sans-serif;
 }
 
+.group-input input {
+    border-radius: 5px;
+    height: 1.4375em;
+}
+
 .group-input .group-checkbox {
     padding: 2px;
     color: black;
     display: flex;
     align-items: center;
     background-color: whitesmoke;
+    border-radius: 5px;
+    height: 2.5em;
     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
     7px 7px 20px 0px rgba(0,0,0,.1),
     4px 4px 5px 0px rgba(0,0,0,.1);
+}
+
+.datepicker {
+    height: 100%;
+    background-color: whitesmoke;
+    border-radius: 5px;
 }
 
 .checkbox-tipo-trabajo {
