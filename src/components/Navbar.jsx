@@ -16,7 +16,8 @@ export const Navbar = () => {
           <NavLink to="/NuevoTurno">
             <BotonNav>
               <CreateIcon /><p>Nuevo Turno</p>
-            </BotonNav></NavLink>
+            </BotonNav>
+          </NavLink>
         </div>
         <div className='position-button-nav'>
           <NavLink to="/">

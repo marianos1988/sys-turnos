@@ -7,9 +7,7 @@ export const useTimePickerComponent = () => {
 
   const handleOnChange = (newTime) => {
       const { $d } = newTime;
-      const hora = new Date($d);
-      const horaFinal = hora.toString()
-      setValor(horaFinal);  
+      setValor($d);
   }
   return {
     handleOnChange,

@@ -1,30 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useContext } from 'react'
+import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
-import { useContext } from 'react'
-import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 
 export const NuevoTurno = () => {
 
-  const { formState, onInputChange, onDatePicker, onTimePicker } = useForm();
-  const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;
-
-
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
 
- 
   const guardarTurno = (e) => {
     e.preventDefault();
     handleSetListaTurnos(formState);
 
   }
 
-  const handleValueDate = (value)=> {onDatePicker(value)};
-  const handleValueTime = (value)=> {onTimePicker(value)}
-  
+  const initialForm = {
+    nombreCliente: "",
+    telefono: "",
+    fecha: "",
+    hora: "",
+    corte: "",
+    peinado: "",
+    alisado: "",
+    tintura: "",
+    observacion: ""
+
+  }
+  const { formState, onInputChange, onDatePicker, onTimePicker } = useForm(initialForm);
+  const { nombreCliente, telefono, fecha, hora, observacion } = formState;
+
+
+
+  const handleValueDate = (value) => {onDatePicker(value)};
+  const handleValueTime = (value) => {onTimePicker(value)};
 
   return (
     <div className='container-nuevo-turno'>
@@ -36,15 +47,19 @@ export const NuevoTurno = () => {
           <h3>Nombre Cliente: </h3>
           <input 
             type="text"
+            placeholder='Ingrese Nombre'
             name='nombreCliente'
+            value= { nombreCliente }
             onChange={onInputChange}
           />
         </div>
         <div className='group-input'>
           <h3>Telefono: </h3>
           <input 
+            placeholder='Ingrese telefono'
             type="number"
             name='telefono'
+            value= { telefono }
             onChange={onInputChange}
           />
         </div>
@@ -54,6 +69,7 @@ export const NuevoTurno = () => {
             <DatePickerComponent
               name="fecha"
               handleValue={handleValueDate}
+              value= { fecha }
             />
           </div>          
         </div>
@@ -63,6 +79,7 @@ export const NuevoTurno = () => {
             <TimePickerComponent 
               name="hora"
               handleValue = {handleValueTime}
+              value= { hora }
             />
           </div>
         </div>
@@ -109,6 +126,7 @@ export const NuevoTurno = () => {
             type="text"
             name='observacion'
             onChange={onInputChange}
+            value= { observacion }
           />
         </div>
         <div className='group-button-nuevo-turno'>

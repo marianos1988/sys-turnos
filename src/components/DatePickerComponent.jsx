@@ -5,7 +5,7 @@ import { useDatePickerComponent } from '../hooks/useDatePickerComponent';
 
 export const DatePickerComponent = ({ handleValue }) => {
 
-  const { handleOnChange, valor} = useDatePickerComponent();
+  const { handleOnChange, valor } = useDatePickerComponent();
 
   return (
     <>
@@ -15,6 +15,7 @@ export const DatePickerComponent = ({ handleValue }) => {
             handleOnChange(newValue)
             handleValue(valor);
           }}
+          Value={valor}
         />
       </LocalizationProvider>
     </>

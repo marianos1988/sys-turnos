@@ -4,11 +4,13 @@ import { useState } from 'react';
 export const useForm = (initialForm = {}) => {
 
   const [formState, setFormState] = useState(initialForm);
+  
 
   const onTimePicker = (hora) => {
+
     setFormState({
       ...formState,
-      hora:hora
+      hora: hora
     });
   }
 
@@ -28,6 +30,7 @@ export const useForm = (initialForm = {}) => {
       ...formState,
       [name]: value 
     })
+    
   }
 
   //Destructura el formState para exportar directacd femente
