@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { Checkbox } from '@mui/material'
@@ -31,8 +30,6 @@ export const NuevoTurno = () => {
   }
   const { formState, onInputChange, onDatePicker, onTimePicker } = useForm(initialForm);
   const { nombreCliente, telefono, fecha, hora, observacion } = formState;
-
-
 
   const handleValueDate = (value) => {onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
@@ -122,7 +119,8 @@ export const NuevoTurno = () => {
         </div>
         <div className='group-input'>
           <h3>Observacion</h3>
-          <input 
+          <input
+            className='input-observacion' 
             type="text"
             name='observacion'
             onChange={onInputChange}

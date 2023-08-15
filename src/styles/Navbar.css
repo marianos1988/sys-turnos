@@ -1,8 +1,9 @@
 
 .container-navbar {
-    
+    margin-top: 0;
     display: flex;
-    position: sticky;
+    position: fixed;
+    z-index: 9999;
     width: 100%;
     height: 50px;
     background: rgb(0,0,0);

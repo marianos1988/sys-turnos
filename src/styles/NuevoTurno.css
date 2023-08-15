@@ -1,5 +1,7 @@
 .container-nuevo-turno {
-    height: 117vh;
+    min-width: 540px;
+    padding-top: 50px;
+    min-height: 93vh;
     background: rgb(0,3,255);
     background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
     border: none;
@@ -17,7 +19,6 @@
 .group-input {
     color: whitesmoke;
     padding: 15px 15px;
-
     display: flex;
     flex-wrap: nowrap;
     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
@@ -33,6 +34,11 @@
 .group-input input {
     border-radius: 5px;
     height: 1.4375em;
+}
+
+.input-observacion {
+    max-width: 550px;
+    min-width: 300px;
 }
 
 .group-input .group-checkbox {
@@ -62,6 +68,7 @@
 
 .checkbox-tipo-trabajo {
     transform: translateX(-7px);
+    min-width: 40px;
 }
 .group-input input {
     color: black;

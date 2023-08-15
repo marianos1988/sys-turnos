@@ -1,0 +1,55 @@
+.container-mis-turnos {
+    min-width: 540px;
+    padding-top: 50px;
+    min-height: 93vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    animation: aparecer .5s ease-in;
+    background: rgb(0,3,255);
+    background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}
+
+.titulo-lista-turnos {
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    color: whitesmoke;
+    font-size: 35px;
+}
+
+.container-input-date {
+    
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0 20px 0;
+    color: whitesmoke;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+
+}
+
+.container-input-date h2 {
+
+    margin-right: 20px;
+}
+
+.container-cards-turnos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+@keyframes aparecer {
+    
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
