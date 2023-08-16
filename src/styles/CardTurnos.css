@@ -58,6 +58,12 @@
   z-index: 2;
   position: relative;
 }
+
+.checkbox-mis-turnos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
 .ag-courses-item_date {
   font-weight: bold;
   color: #f9b234;
@@ -69,6 +75,7 @@
 
 .observacion-box {
   color: #f9b234;
+  padding: 10px 0 10px 0;
   font-size: 15px;
   position: relative;
   z-index: 2;

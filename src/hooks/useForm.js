@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 
-export const useForm = (initialForm = {}) => {
+export const useForm = ( initialForm ) => {
 
   const [formState, setFormState] = useState(initialForm);
   
@@ -15,7 +15,7 @@ export const useForm = (initialForm = {}) => {
   }
 
   const onDatePicker = (fecha) => {
-
+    
     setFormState({
       ...formState,
       fecha: fecha

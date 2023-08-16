@@ -8,17 +8,12 @@ export const TimePickerComponent = ({ handleValue }) => {
 
   const {valor, handleOnChange} = useTimePickerComponent()
 
-  const manejarOnChange = (hora) => {
-    handleOnChange(hora)
-
-  }
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <TimePicker
-          onChange={(newValue) => {
-            manejarOnChange(newValue)
-            handleValue(valor)
+          onChange={(newValue) => {    
+            handleValue(handleOnChange(newValue))
           }}
         />
       </LocalizationProvider>

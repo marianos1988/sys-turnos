@@ -3,12 +3,12 @@ import { NuevoTurnoContext } from './NuevoTurnoContext';
 
 export const NuevoTurnoProvider = ({ children }) => {
 
-  const [ listaTurnos, setListaaTurnos ] = useState([]);
+  const [ listaTurnos, setListaTurnos ] = useState([]);
 
   const handleSetListaTurnos = (nuevoTurno) => {
-
-    setListaaTurnos([nuevoTurno, ...listaTurnos])
-
+    
+    setListaTurnos([nuevoTurno, ...listaTurnos])
+    
   }
 
   return (

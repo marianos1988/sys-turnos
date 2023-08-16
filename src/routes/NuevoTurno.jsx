@@ -10,12 +10,6 @@ export const NuevoTurno = () => {
 
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
 
-  const guardarTurno = (e) => {
-    e.preventDefault();
-    handleSetListaTurnos(formState);
-
-  }
-
   const initialForm = {
     nombreCliente: "",
     telefono: "",
@@ -30,6 +24,12 @@ export const NuevoTurno = () => {
   }
   const { formState, onInputChange, onDatePicker, onTimePicker } = useForm(initialForm);
   const { nombreCliente, telefono, fecha, hora, observacion } = formState;
+
+  const guardarTurno = (e) => {
+    e.preventDefault();
+    console.log(formState);
+    handleSetListaTurnos(formState);
+  }
 
   const handleValueDate = (value) => {onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
@@ -66,7 +66,7 @@ export const NuevoTurno = () => {
             <DatePickerComponent
               name="fecha"
               handleValue={handleValueDate}
-              value= { fecha }
+              Value = {fecha}   
             />
           </div>          
         </div>
@@ -76,7 +76,7 @@ export const NuevoTurno = () => {
             <TimePickerComponent 
               name="hora"
               handleValue = {handleValueTime}
-              value= { hora }
+              Value= {hora}
             />
           </div>
         </div>

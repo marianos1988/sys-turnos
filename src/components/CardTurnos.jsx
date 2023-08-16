@@ -17,44 +17,51 @@ export const CardTurnos = () => {
           </div>
           <div className='observacion-box'>Aca va una pequeña observacion</div>
           <div className='group-checkbox-mis-turnos'>
-            <h4>Corte: </h4>
-            <Checkbox
-             color="primary"
-             className='checkbox-tipo-trabajo'
-             name='corte'
-             value="Corte"
-             checked={true}
-             disabled={false}
-            />
-            <h4>Peinado: </h4>
-            <Checkbox 
+            <div className='checkbox-mis-turnos'>
+              <h4>Corte: </h4>
+              <Checkbox
               color="primary"
               className='checkbox-tipo-trabajo'
-              name='peinado'
-              value="Peinado"
+              name='corte'
+              value="Corte"
               checked={true}
               disabled={false}
+              />
+            </div>
+            <div className='checkbox-mis-turnos'>
+              <h4>Peinado: </h4>
+              <Checkbox 
+                color="primary"
+                className='checkbox-tipo-trabajo'
+                name='peinado'
+                value="Peinado"
+                checked={true}
+                disabled={false}
 
-            />
-            <h4>Alisado: </h4>
-            <Checkbox 
-              color="primary"
-              className='checkbox-tipo-trabajo'
-              name='alisado'
-              value="Alisado"
-              checked={false}
-              disabled={true}
-
-            />
-            <h4>Tintura: </h4>
-            <Checkbox 
-              color="primary"
-              className='checkbox-tipo-trabajo'
-              name='tintura'
-              value="Tintura"
-              checked={false}
-              disabled={true}
-            />
+              />
+            </div>
+            <div className='checkbox-mis-turnos'>
+              <h4>Alisado: </h4>
+              <Checkbox 
+                color="primary"
+                className='checkbox-tipo-trabajo'
+                name='alisado'
+                value="Alisado"
+                checked={false}
+                disabled={true}
+              />
+            </div>
+            <div className='checkbox-mis-turnos'>
+              <h4>Tintura: </h4>
+              <Checkbox 
+                color="primary"
+                className='checkbox-tipo-trabajo'
+                name='tintura'
+                value="Tintura"
+                checked={false}
+                disabled={true}
+              />
+            </div>
           </div>
           <div className="ag-courses-item_date-box">
             <span className="ag-courses-item_date">

@@ -5,17 +5,15 @@ import { useDatePickerComponent } from '../hooks/useDatePickerComponent';
 
 export const DatePickerComponent = ({ handleValue }) => {
 
-  const { handleOnChange, valor } = useDatePickerComponent();
+  const { handleOnChange } = useDatePickerComponent();
 
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker          
           onChange={(newValue)=>{
-            handleOnChange(newValue)
-            handleValue(valor);
+            handleValue(handleOnChange(newValue));
           }}
-          Value={valor}
         />
       </LocalizationProvider>
     </>
