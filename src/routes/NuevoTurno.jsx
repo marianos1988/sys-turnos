@@ -22,7 +22,7 @@ export const NuevoTurno = () => {
     observacion: ""
 
   }
-  const { formState, onInputChange, onDatePicker, onTimePicker } = useForm(initialForm);
+  const { formState, onInputChange, onDatePicker, onTimePicker, onCheckboxChange } = useForm(initialForm);
   const { nombreCliente, telefono, fecha, hora, observacion } = formState;
 
   const guardarTurno = (e) => {
@@ -87,33 +87,30 @@ export const NuevoTurno = () => {
             <Checkbox
              color="success"
              className='checkbox-tipo-trabajo'
-             name='corte'
-             value="Corte"
-             onChange={onInputChange}
+             onChange={onCheckboxChange}
+             checked={false}
+
             />
             <h4>Peinado: </h4>
             <Checkbox 
               color="success"
               className='checkbox-tipo-trabajo'
-              name='peinado'
-              value="Peinado"
-              onChange={onInputChange}
+              onChange={onCheckboxChange}
+              checked={false}
             />
             <h4>Alisado: </h4>
             <Checkbox 
               color="success" 
               className='checkbox-tipo-trabajo'
-              name='alisado'
-              value="Alisado"
-              onChange={onInputChange}
+              onChange={onCheckboxChange}
+              checked={false}
             />
             <h4>Tintura: </h4>
             <Checkbox 
               color="success" 
               className='checkbox-tipo-trabajo'
-              name='tintura'
-              value="Alisado"
-              onChange={onInputChange}    
+              onChange={onCheckboxChange}
+              checked={false} 
             />
           </div>
         </div>

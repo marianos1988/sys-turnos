@@ -7,7 +7,7 @@ export const NuevoTurnoProvider = ({ children }) => {
 
   const handleSetListaTurnos = (nuevoTurno) => {
     
-    setListaTurnos([nuevoTurno, ...listaTurnos])
+    setListaTurnos([...listaTurnos, nuevoTurno])
     
   }
 

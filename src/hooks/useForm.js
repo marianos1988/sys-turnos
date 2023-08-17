@@ -5,6 +5,7 @@ export const useForm = ( initialForm ) => {
 
   const [formState, setFormState] = useState(initialForm);
   
+  
 
   const onTimePicker = (hora) => {
 
@@ -33,12 +34,17 @@ export const useForm = ( initialForm ) => {
     
   }
 
+  const onCheckboxChange = (checked) => {
+    
+  }
+
   //Destructura el formState para exportar directacd femente
   return {
     formState,
     onInputChange,
     onDatePicker,
-    onTimePicker
+    onTimePicker,
+    onCheckboxChange
 
   }
 }

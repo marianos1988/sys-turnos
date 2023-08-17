@@ -3,13 +3,15 @@ import { useState } from 'react';
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { DatePickerComponent } from '../components/DatePickerComponent';
 import { CardTurnos } from '../components/CardTurnos';
+import {v4 as uuidv4} from "uuid";
 import "../styles/MisTurnos.css";
+import { useMisTurnos } from '../hooks/useMisTurnos';
 
 export const MisTurnos = () => {
 
   const { listaTurnos } = useContext( NuevoTurnoContext );
-  console.log(listaTurnos);
 
+  const { mostrarFecha, mostrarHora } = useMisTurnos()
   const [valorFecha, setValorFecha] = useState("");
 
   return (
@@ -23,9 +25,19 @@ export const MisTurnos = () => {
         </form>
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>
-          <CardTurnos />
-          <CardTurnos />
-          <CardTurnos />
+          {
+            listaTurnos.map(turno => (
+              <CardTurnos
+                key={uuidv4(1)}
+                nombreCliente={turno.nombreCliente}
+                telefono={turno.telefono}
+                fecha={mostrarFecha(turno.fecha)}
+                hora={mostrarHora(turno.hora)}
+                observacion={turno.observacion}
+
+              />
+            ))
+          }
         </div>
       </div>
     </>

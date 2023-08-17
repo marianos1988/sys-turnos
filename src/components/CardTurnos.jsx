@@ -1,21 +1,20 @@
-import { pink } from '@mui/material/colors';
 import React from 'react'
 import "../styles/CardTurnos.css";
 import { Checkbox } from '@mui/material'
 
-export const CardTurnos = () => {
+export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion }) => {
   return (
     <>
       <div className="ag-courses_item">
         <a href="#" className="ag-courses-item_link">
           <div className="ag-courses-item_bg">1</div>
           <div className="ag-courses-item_title">
-            Cliente: Mariano
+            Cliente: {nombreCliente}
           </div>
           <div className="ag-courses-item_title">
-            Tel: 1523678854
+            Tel: {telefono}
           </div>
-          <div className='observacion-box'>Aca va una pequeña observacion</div>
+          <div className='observacion-box'>{observacion}</div>
           <div className='group-checkbox-mis-turnos'>
             <div className='checkbox-mis-turnos'>
               <h4>Corte: </h4>
@@ -36,7 +35,7 @@ export const CardTurnos = () => {
                 name='peinado'
                 value="Peinado"
                 checked={true}
-                disabled={false}
+
 
               />
             </div>
@@ -48,7 +47,7 @@ export const CardTurnos = () => {
                 name='alisado'
                 value="Alisado"
                 checked={false}
-                disabled={true}
+
               />
             </div>
             <div className='checkbox-mis-turnos'>
@@ -59,16 +58,16 @@ export const CardTurnos = () => {
                 name='tintura'
                 value="Tintura"
                 checked={false}
-                disabled={true}
+
               />
             </div>
           </div>
           <div className="ag-courses-item_date-box">
             <span className="ag-courses-item_date">
-              Fecha: 04/11/2022
+              Fecha: {fecha}
             </span>
             <span className="ag-courses-item_date">
-              Hora: 12:15 PM
+              Hora: {hora}
             </span>
           </div>
         </a>
