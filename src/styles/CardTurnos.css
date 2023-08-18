@@ -1,20 +1,16 @@
 .ag-courses_item {
   -ms-flex-preferred-size: calc(33.33333% - 30px);
   flex-basis: calc(33.33333% - 30px);
-
   margin: 0 15px 30px;
-
   overflow: hidden;
-
-  border-radius: 28px;
+  border-radius: 30px;
+  
 }
 .ag-courses-item_link {
   display: block;
   padding: 30px 20px;
   background-color: #121212;
-
   overflow: hidden;
-
   position: relative;
 }
 .ag-courses-item_link:hover,
@@ -76,6 +72,7 @@
 .observacion-box {
   color: #f9b234;
   padding: 10px 0 10px 0;
+  min-height: 40px;
   font-size: 15px;
   position: relative;
   z-index: 2;

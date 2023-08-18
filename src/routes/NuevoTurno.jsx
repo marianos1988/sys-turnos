@@ -1,14 +1,19 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
+import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext'
 
 export const NuevoTurno = () => {
 
+  const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
+
+  
+
 
   const initialForm = {
     nombreCliente: "",
@@ -32,6 +37,7 @@ export const NuevoTurno = () => {
 
   const handleValueDate = (value) => {onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
+
 
   return (
     <div className='container-nuevo-turno'>
