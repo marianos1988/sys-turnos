@@ -7,19 +7,18 @@ export const CartelAdvertencia = () => {
 
   const { mostrarCartelAdvertencia, handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
 
-
   return (
     <>
       {
-        (mostrarCartelAdvertencia) 
+        (mostrarCartelAdvertencia.mostrar) 
         ? 
           (      
             <div className='container-cartel-advertencias'>
                 <div className='cartel-advertencia'>
-                  <h2 className='titulo-cartel-advertencia'>Este es un error</h2>
+                  <h2 className='titulo-cartel-advertencia'>{mostrarCartelAdvertencia.mensaje}</h2>
                   <BotonNav 
                     className= "boton-cartel-advertencia"
-                    handleOnClick= { handleMostrarCartelAdvertencia }
+                    handleOnClick= { ()=> handleMostrarCartelAdvertencia("") }
                   >Aceptar</BotonNav>
                 </div>
             </div>

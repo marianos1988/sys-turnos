@@ -1,8 +1,10 @@
-
+import { useContext } from 'react';
+import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
 
 export const useForm = ( initialForm ) => {
 
+  const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
   const [formState, setFormState] = useState(initialForm);
 
   const reducerCheckbox = (state, action) => {
@@ -82,9 +84,55 @@ export const useForm = ( initialForm ) => {
     })
     
   }
+
+  const validarDatos = (form) => {
+    console.log(typeof form.telefono)
+    if(form.nombreCliente.length > 25) {
+      handleMostrarCartelAdvertencia("Nombre demasiado largo");
+      return false;  
+    }
+    else if(form.nombreCliente.length < 4) {
+      handleMostrarCartelAdvertencia("Nombre demasiado corto");
+      return false; 
+    }
+    else if(validarSoloNumeros(form.telefono)) {
+      handleMostrarCartelAdvertencia("El telefono son solo numeros");
+      return false;
+    }
+    else if(form.fecha === "") {
+      handleMostrarCartelAdvertencia("Ingrese una fecha");
+      return false;
+    }
+    else if(form.hora === "") {
+      handleMostrarCartelAdvertencia("Ingrese una hora");
+      return false;
+    }
+    else if(!(form.corte === true) && !(form.peinado === true) && !(form.alisado === true) && !(form.tintura === true)) {
+      handleMostrarCartelAdvertencia("Debes elegir un tipo de trabajo");
+      return false;
+    }
+    else {
+      handleMostrarCartelAdvertencia("Turno registrado");
+      return true;
+    }
+
+
+  }
+
+  function validarSoloNumeros(numero) {
+    // Valida si se cargo un numero True = No son numeros, False = Son numeros
+    let verificaNumero = numero;
+    let validar = false;
+    for(let digito in verificaNumero){
+        if(!(verificaNumero[digito] >= 0) && !(verificaNumero[digito] <= 9)) {
+            validar = true;
+            return validar;
+        } 
+    }
+    return validar;
+    
+}
  
-
-
   //Destructura el formState para exportar directacd femente
   return {
     formState,
@@ -94,7 +142,8 @@ export const useForm = ( initialForm ) => {
     agregarAlisado,
     agregarCorte,
     agregarPeinado,
-    agregarTintura
+    agregarTintura,
+    validarDatos
     
 
   }
