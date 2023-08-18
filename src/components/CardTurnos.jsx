@@ -23,8 +23,7 @@ export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisad
               className='checkbox-tipo-trabajo'
               name='corte'
               value="Corte"
-              checked={true}
-              disabled={false}
+              checked={corte}
               />
             </div>
             <div className='checkbox-mis-turnos'>
@@ -34,9 +33,7 @@ export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisad
                 className='checkbox-tipo-trabajo'
                 name='peinado'
                 value="Peinado"
-                checked={true}
-
-
+                checked={peinado}
               />
             </div>
             <div className='checkbox-mis-turnos'>
@@ -46,8 +43,7 @@ export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisad
                 className='checkbox-tipo-trabajo'
                 name='alisado'
                 value="Alisado"
-                checked={false}
-
+                checked={alisado}
               />
             </div>
             <div className='checkbox-mis-turnos'>
@@ -57,8 +53,7 @@ export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisad
                 className='checkbox-tipo-trabajo'
                 name='tintura'
                 value="Tintura"
-                checked={false}
-
+                checked={tintura}
               />
             </div>
           </div>

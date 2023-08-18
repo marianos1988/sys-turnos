@@ -15,19 +15,18 @@ export const NuevoTurno = () => {
     telefono: "",
     fecha: "",
     hora: "",
-    corte: "",
-    peinado: "",
-    alisado: "",
-    tintura: "",
+    corte: false,
+    peinado: false,
+    alisado: false,
+    tintura: false,
     observacion: ""
 
   }
-  const { formState, onInputChange, onDatePicker, onTimePicker, onCheckboxChange } = useForm(initialForm);
+  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura } = useForm(initialForm);
   const { nombreCliente, telefono, fecha, hora, observacion } = formState;
 
   const guardarTurno = (e) => {
     e.preventDefault();
-    console.log(formState);
     handleSetListaTurnos(formState);
   }
 
@@ -87,30 +86,28 @@ export const NuevoTurno = () => {
             <Checkbox
              color="success"
              className='checkbox-tipo-trabajo'
-             onChange={onCheckboxChange}
-             checked={false}
-
+             onChange={agregarCorte}
             />
             <h4>Peinado: </h4>
             <Checkbox 
               color="success"
               className='checkbox-tipo-trabajo'
-              onChange={onCheckboxChange}
-              checked={false}
+              onChange={agregarPeinado}
+
             />
             <h4>Alisado: </h4>
             <Checkbox 
               color="success" 
               className='checkbox-tipo-trabajo'
-              onChange={onCheckboxChange}
-              checked={false}
+              onChange={agregarAlisado}
+
             />
             <h4>Tintura: </h4>
             <Checkbox 
               color="success" 
               className='checkbox-tipo-trabajo'
-              onChange={onCheckboxChange}
-              checked={false} 
+              onChange={agregarTintura}
+
             />
           </div>
         </div>
