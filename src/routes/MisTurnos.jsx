@@ -14,7 +14,7 @@ export const MisTurnos = () => {
   const { mostrarFecha, mostrarHora } = useMisTurnos()
   const [valorFecha, setValorFecha] = useState("");
 
-  console.log(listaTurnos)
+  
   return (
     <>
       <div className='container-mis-turnos'>

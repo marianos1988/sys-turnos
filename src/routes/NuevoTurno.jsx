@@ -5,15 +5,12 @@ import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext'
+
 
 export const NuevoTurno = () => {
 
-  const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
-  const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
-
   
-
+  const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
 
   const initialForm = {
     nombreCliente: "",
@@ -27,12 +24,17 @@ export const NuevoTurno = () => {
     observacion: ""
 
   }
-  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura } = useForm(initialForm);
+  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos } = useForm(initialForm);
   const { nombreCliente, telefono, fecha, hora, observacion } = formState;
 
   const guardarTurno = (e) => {
     e.preventDefault();
-    handleSetListaTurnos(formState);
+    const datosValidados = validarDatos(formState);
+
+    if(datosValidados) {
+      handleSetListaTurnos(formState);
+    }
+
   }
 
   const handleValueDate = (value) => {onDatePicker(value)};
