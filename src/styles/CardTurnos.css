@@ -4,6 +4,7 @@
   margin: 0 15px 30px;
   overflow: hidden;
   border-radius: 30px;
+  animation: aparecer .5s ease-in;
   
 }
 .ag-courses-item_link {
@@ -148,5 +149,15 @@
   }
   .ag-courses-item_date-box {
     font-size: 16px;
+  }
+}
+
+@keyframes aparecer {
+    
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
   }
 }

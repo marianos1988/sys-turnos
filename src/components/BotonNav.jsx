@@ -1,10 +1,10 @@
 import React from 'react'
 import "../styles/botonNav.css"
 
-export const BotonNav = ({ children, handleOnClick }) => {
+export const BotonNav = ({ children, handleOnClick, newClass }) => {
   return (
     <button 
-      className="custom-btn btn-1"
+      className={`custom-btn btn-1 ${(newClass) ? newClass : ""}` }
       onClick={handleOnClick}
     >{children}</button>
   )
