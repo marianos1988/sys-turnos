@@ -86,7 +86,7 @@ export const useForm = ( initialForm ) => {
   }
 
   const validarDatos = (form) => {
-    console.log(typeof form.telefono)
+
     if(form.nombreCliente.length > 25) {
       handleMostrarCartelAdvertencia("Nombre demasiado largo");
       return false;  

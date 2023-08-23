@@ -18,6 +18,11 @@
      4px 4px 5px 0px rgba(0,0,0,.1);
     outline: none;
   }
+
+  .btn-search-mis-turnos {
+    margin: 0 5px 0 5px ;
+    width: auto;
+  }
   
   /* 1 */
   .btn-1 {
