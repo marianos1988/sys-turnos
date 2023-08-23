@@ -7,17 +7,16 @@ import { CardTurnos } from '../components/CardTurnos';
 import {v4 as uuidv4} from "uuid";
 import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
+import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 
 export const MisTurnos = () => {
 
   const { listaTurnos } = useContext( NuevoTurnoContext );
   const [ listaTurnosView, setListaTurnosView ]= useState(listaTurnos)
   const { mostrarFecha, mostrarHora, handleSelectDate,listaFiltrada } = useMisTurnos()
+  const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
 
-  const { mostrarFecha, mostrarHora } = useMisTurnos()
-  const [valorFecha, setValorFecha] = useState("");
-
-  console.log(listaTurnos)
+  
   return (
     <>
       <div className='container-mis-turnos'>
@@ -27,7 +26,6 @@ export const MisTurnos = () => {
             <DatePickerComponent 
               handleValue={(value)=>{
                 handleSelectDate(value)
-
               }}
             />
           </div>
@@ -35,6 +33,10 @@ export const MisTurnos = () => {
             handleOnClick={(e)=>{
               e.preventDefault();
               setListaTurnosView([])
+              if(listaFiltrada < 1) {
+                handleMostrarCartelAdvertencia("No existen turnos")
+              }
+
               setListaTurnosView(listaFiltrada)
             }}
             newClass={"btn-search-mis-turnos"}
@@ -42,21 +44,20 @@ export const MisTurnos = () => {
         </form>
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>
-          {
+          { 
             listaTurnosView.map(turno => (
-              <CardTurnos
-                key={uuidv4(1)}
-                nombreCliente={turno.nombreCliente}
-                telefono={turno.telefono}
-                fecha={mostrarFecha(turno.fecha)}
-                hora={mostrarHora(turno.hora)}
-                observacion={turno.observacion}
-                corte={turno.corte}
-                peinado={turno.peinado}
-                alisado={turno.alisado}
-                tintura={turno.tintura}
-
-              />
+            <CardTurnos
+              key={uuidv4(1)}
+              nombreCliente={turno.nombreCliente}
+              telefono={turno.telefono}
+              fecha={mostrarFecha(turno.fecha)}
+              hora={mostrarHora(turno.hora)}
+              observacion={turno.observacion}
+              corte={turno.corte}
+              peinado={turno.peinado}
+              alisado={turno.alisado}
+              tintura={turno.tintura}
+            />
             ))
           }
         </div>

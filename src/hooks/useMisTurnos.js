@@ -1,11 +1,14 @@
 import { useContext,useState } from "react";
-import { NuevoTurnoContext } from "../context/NuevoTurnoContext";
+import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
+
+
 
 
 export const useMisTurnos = () => {
 
   const { listaTurnos } = useContext(NuevoTurnoContext);
   const [listaFiltrada, setListaFiltrada] = useState([])
+
 
   const agregarCero = (num) => {
     if(num < 10) {
@@ -32,12 +35,14 @@ export const useMisTurnos = () => {
     const dia = fecha.$D;
     const mes = fecha.$M;
     const anio = fecha.$y;
-    
+    let lista = [];
     listaTurnos.forEach(turno => {
       if((dia == turno.fecha.$D) && (mes == turno.fecha.$M) && (anio == turno.fecha.$y)){
-        setListaFiltrada([...listaFiltrada,turno]);
+        lista.push(turno);
       }
     })
+    setListaFiltrada(lista);
+
   }
 
   return {
