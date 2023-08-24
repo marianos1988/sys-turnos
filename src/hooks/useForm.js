@@ -2,10 +2,13 @@ import { useContext } from 'react';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
 
+
 export const useForm = ( initialForm ) => {
 
   const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
   const [formState, setFormState] = useState(initialForm);
+  const [reloadForm, setReloadForm] = useState(true);
+
 
   const reducerCheckbox = (state, action) => {
 
@@ -59,7 +62,6 @@ export const useForm = ( initialForm ) => {
 
 
   const onTimePicker = (hora) => {
-
     setFormState({
       ...formState,
       hora: hora
@@ -129,12 +131,24 @@ export const useForm = ( initialForm ) => {
             return validar;
         } 
     }
-    return validar;
-    
+    return validar;   
 }
- 
-  //Destructura el formState para exportar directacd femente
-  return {
+
+const handleReloadForm = () => {
+
+  setReloadForm(false);
+  setFormState({
+    
+  })
+
+}
+
+const handleReloadForm2= () => {
+  setReloadForm(true);
+}
+
+
+return {
     formState,
     onInputChange,
     onDatePicker,
@@ -143,8 +157,10 @@ export const useForm = ( initialForm ) => {
     agregarCorte,
     agregarPeinado,
     agregarTintura,
-    validarDatos
-    
+    validarDatos,
+    handleReloadForm,
+    handleReloadForm2,
+    reloadForm
 
   }
 }

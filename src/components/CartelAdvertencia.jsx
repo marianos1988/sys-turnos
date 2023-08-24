@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import "../styles/CartelAdvertencia.css"
 import { BotonNav } from "./BotonNav"
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext'
+import { useForm } from '../hooks/useForm'
+
 
 export const CartelAdvertencia = () => {
 
   const { mostrarCartelAdvertencia, handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
-
   return (
     <>
       {
@@ -18,7 +19,9 @@ export const CartelAdvertencia = () => {
                   <h2 className='titulo-cartel-advertencia'>{mostrarCartelAdvertencia.mensaje}</h2>
                   <BotonNav 
                     className= "boton-cartel-advertencia"
-                    handleOnClick= { ()=> handleMostrarCartelAdvertencia("") }
+                    handleOnClick= { ()=>  {
+                      handleMostrarCartelAdvertencia("");
+                    }}
                   >Aceptar</BotonNav>
                 </div>
             </div>
