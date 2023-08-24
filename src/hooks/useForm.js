@@ -7,7 +7,7 @@ export const useForm = ( initialForm ) => {
 
   const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
   const [formState, setFormState] = useState(initialForm);
-  const [reloadForm, setReloadForm] = useState(true);
+
 
 
   const reducerCheckbox = (state, action) => {
@@ -136,15 +136,19 @@ export const useForm = ( initialForm ) => {
 
 const handleReloadForm = () => {
 
-  setReloadForm(false);
-  setFormState({
-    
-  })
-
-}
-
-const handleReloadForm2= () => {
-  setReloadForm(true);
+  setFormState(
+    {
+      nombreCliente: "",
+      telefono: "",
+      fecha: "",
+      hora: "",
+      corte: false,
+      peinado: false,
+      alisado: false,
+      tintura: false,
+      observacion: ""
+    }
+  )
 }
 
 
@@ -159,8 +163,6 @@ return {
     agregarTintura,
     validarDatos,
     handleReloadForm,
-    handleReloadForm2,
-    reloadForm
 
   }
 }

@@ -4,7 +4,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React from 'react'
 
 
-export const TimePickerComponent = ({ handleValue }) => {
+export const TimePickerComponent = ({ handleValue, value }) => {
 
   return (
     <>
@@ -13,6 +13,7 @@ export const TimePickerComponent = ({ handleValue }) => {
           onChange={(newValue) => {    
             handleValue(newValue)
           }}
+          value={value}
         />
       </LocalizationProvider>
     </>
