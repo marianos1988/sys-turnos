@@ -1,3 +1,4 @@
+import React from 'react'
 import { useContext } from 'react'
 import { BotonNav } from "../components/BotonNav"
 import { useState } from 'react';
@@ -8,6 +9,7 @@ import {v4 as uuidv4} from "uuid";
 import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
+import { NavLink } from 'react-router-dom';
 
 export const MisTurnos = () => {
 
@@ -46,18 +48,20 @@ export const MisTurnos = () => {
         <div className='container-cards-turnos'>
           { 
             listaTurnosView.map(turno => (
-            <CardTurnos
-              key={uuidv4(1)}
-              nombreCliente={turno.nombreCliente}
-              telefono={turno.telefono}
-              fecha={mostrarFecha(turno.fecha)}
-              hora={mostrarHora(turno.hora)}
-              observacion={turno.observacion}
-              corte={turno.corte}
-              peinado={turno.peinado}
-              alisado={turno.alisado}
-              tintura={turno.tintura}
-            />
+              <NavLink to="/EditarTurno" key={uuidv4(1)}>
+                <CardTurnos
+                  id={uuidv4(1)}
+                  nombreCliente={turno.nombreCliente}
+                  telefono={turno.telefono}
+                  fecha={mostrarFecha(turno.fecha)}
+                  hora={mostrarHora(turno.hora)}
+                  observacion={turno.observacion}
+                  corte={turno.corte}
+                  peinado={turno.peinado}
+                  alisado={turno.alisado}
+                  tintura={turno.tintura}
+                ></CardTurnos>
+              </NavLink>
             ))
           }
         </div>

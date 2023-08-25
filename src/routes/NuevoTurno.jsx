@@ -39,7 +39,8 @@ export const NuevoTurno = () => {
     }
   }
 
-  const handleValueDate = (value) => {onDatePicker(value)};
+  const handleValueDate = (value) => {console.log(value)
+    onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
 
 
@@ -77,6 +78,7 @@ export const NuevoTurno = () => {
                     name="fecha"
                     handleValue={handleValueDate}
                     value={fecha}
+                    disabled={false}
                   />
                 </div>
           </div>
@@ -87,6 +89,7 @@ export const NuevoTurno = () => {
                 name="hora"
                 handleValue = {handleValueTime}
                 value={hora}
+                disabled={false}
               />
             </div>
           </div>
@@ -142,7 +145,7 @@ export const NuevoTurno = () => {
             <button 
               className="custom-btn-cargar btn-14"
               type='submit'
-              onClick={guardarTurno}
+              onClick={ guardarTurno }
             >Crear Turno</button>
           </div>
         </form>
