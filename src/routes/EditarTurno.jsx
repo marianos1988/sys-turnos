@@ -1,17 +1,19 @@
-import React, { useContext } from 'react'
+import { useContext, useState } from 'react'
 import "../styles/EditarTurno.css"
 import { Checkbox } from '@mui/material'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import dayjs from 'dayjs';
 import { EditarTurnoContext } from '../context/EditarTurnoContext'
-import { useMisTurnos } from '../hooks/useMisTurnos'
-
+import { useEditarTurno } from '../hooks/useEditarTurno'
 
 
 export const EditarTurno = () => {
 
+
   const { turnoParaEditar } = useContext(EditarTurnoContext)
+  const  { editarContacto, datosAEditar } = useEditarTurno()
+
 
   return (
     <>
@@ -23,25 +25,33 @@ export const EditarTurno = () => {
           <div className='group-input-editar-turno'>
             <h3>Nombre Cliente: </h3>
             <input
-              className='input-editar-turno' 
+              className={
+                (datosAEditar.editando)
+                 ? "input-editar-turno editando" 
+                 : "input-editar-turno"
+              }
               type="text"
               placeholder='Ingrese Nombre'
               name='nombreCliente'
               value= { turnoParaEditar.nombreCliente }
               // onChange={"onInputChange"}
-              disabled={true}
+              disabled={datosAEditar.desactivarCampos}
             />
           </div>
           <div className='group-input-editar-turno'>
             <h3>Telefono: </h3>
             <input 
-              className='input-editar-turno'
+              className={
+                (datosAEditar.editando)
+                 ? "input-editar-turno editando" 
+                 : "input-editar-turno"
+              }
               placeholder='Ingrese telefono'
               type="number"
               name='telefono'
               value= { turnoParaEditar.telefono }
               // onChange={"onInputChange"}
-              disabled={true}
+              disabled={datosAEditar.desactivarCampos}
             />
           </div>
           <div className='group-input-editar-turno'>
@@ -51,7 +61,7 @@ export const EditarTurno = () => {
                 name="fecha"
                 // handleValue={""}
                 value={dayjs(turnoParaEditar.fecha)}
-                disabled={true}
+                disabled={datosAEditar.desactivarCampos}
               />
             </div>
           </div>
@@ -62,7 +72,7 @@ export const EditarTurno = () => {
                 name="hora"
                 // handleValue = {""}
                 value={dayjs(turnoParaEditar.hora)}
-                disabled={true}
+                disabled={datosAEditar.desactivarCampos}
               />
             </div>
           </div>
@@ -76,7 +86,7 @@ export const EditarTurno = () => {
               // onChange={""}
               value={turnoParaEditar.corte}
               checked={turnoParaEditar.corte}
-              disabled={true}
+              disabled={datosAEditar.desactivarCampos}
               />
               <h4>Peinado: </h4>
               <Checkbox 
@@ -85,7 +95,7 @@ export const EditarTurno = () => {
                 // onChange={"agregarPeinado"}
                 value={turnoParaEditar.peinado}
                 checked={turnoParaEditar.peinado}
-                disabled={true}
+                disabled={datosAEditar.desactivarCampos}
               />
               <h4>Alisado: </h4>
               <Checkbox 
@@ -94,7 +104,7 @@ export const EditarTurno = () => {
                 // onChange={"agregarAlisado"}
                 value={turnoParaEditar.alisado}
                 checked={turnoParaEditar.alisado}
-                disabled={true}
+                disabled={datosAEditar.desactivarCampos}
               />
               <h4>Tintura: </h4>
               <Checkbox 
@@ -103,28 +113,35 @@ export const EditarTurno = () => {
                 // onChange={"agregarTintura"}
                 value={turnoParaEditar.tintura}
                 checked={turnoParaEditar.tintura}
-                disabled={true}
+                disabled={datosAEditar.desactivarCampos}
               />
             </div>
           </div>
           <div className='group-input-editar-turno'>
             <h3>Observacion</h3>
             <input
-              className='input-editar-turno input-observacion-editar-turno' 
+              className={
+                (datosAEditar.editando)
+                 ? 'input-editar-turno input-observacion-editar-turno editando'  
+                 : 'input-editar-turno input-observacion-editar-turno' 
+              }
               type="text"
               name='observacion'
               placeholder='Ingrese una observacion'
               // onChange={"OnInputChange"}
               value= { turnoParaEditar.observacion }
-              disabled={true}
+              disabled={datosAEditar.desactivarCampos}
             />
           </div>
           <div className='group-button-editar-turno'>
             <button 
               className="custom-btn-cargar btn-14"
               type='submit'
-              // onClick={"guardarTurno"}
-            >Editar</button>
+              onClick={(e)=>{
+                e.preventDefault();
+                editarContacto();
+              }}
+            >{datosAEditar.boton}</button>
                         <button 
               className="custom-btn-cargar btn-14"
               type='submit'

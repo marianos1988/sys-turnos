@@ -93,6 +93,10 @@
     justify-content: space-around;
 }
 
+.editando {
+    color: #000;
+}
+
 .custom-btn-cargar {
     display: flex;
     align-items: center;
