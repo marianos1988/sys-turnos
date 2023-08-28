@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "../styles/EditarTurno.css"
 import { Checkbox } from '@mui/material'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import dayjs from 'dayjs';
+import { EditarTurnoContext } from '../context/EditarTurnoContext'
+import { useMisTurnos } from '../hooks/useMisTurnos'
+
 
 
 export const EditarTurno = () => {
+
+  const { turnoParaEditar } = useContext(EditarTurnoContext)
+
   return (
     <>
       <div className='container-editar-turno'>
@@ -21,7 +27,7 @@ export const EditarTurno = () => {
               type="text"
               placeholder='Ingrese Nombre'
               name='nombreCliente'
-              value= { "nombreCliente" }
+              value= { turnoParaEditar.nombreCliente }
               // onChange={"onInputChange"}
               disabled={true}
             />
@@ -33,7 +39,7 @@ export const EditarTurno = () => {
               placeholder='Ingrese telefono'
               type="number"
               name='telefono'
-              value= { "1234567" }
+              value= { turnoParaEditar.telefono }
               // onChange={"onInputChange"}
               disabled={true}
             />
@@ -44,7 +50,7 @@ export const EditarTurno = () => {
               <DatePickerComponent
                 name="fecha"
                 // handleValue={""}
-                value={dayjs('2022-04-17')}
+                value={dayjs(turnoParaEditar.fecha)}
                 disabled={true}
               />
             </div>
@@ -55,7 +61,7 @@ export const EditarTurno = () => {
               <TimePickerComponent 
                 name="hora"
                 // handleValue = {""}
-                value={dayjs('2022-04-17T15:30')}
+                value={dayjs(turnoParaEditar.hora)}
                 disabled={true}
               />
             </div>
@@ -68,8 +74,8 @@ export const EditarTurno = () => {
               color="success"
               className='checkbox-tipo-trabajo'
               // onChange={""}
-              value={true}
-              checked={true}
+              value={turnoParaEditar.corte}
+              checked={turnoParaEditar.corte}
               disabled={true}
               />
               <h4>Peinado: </h4>
@@ -77,8 +83,8 @@ export const EditarTurno = () => {
                 color="success"
                 className='checkbox-tipo-trabajo'
                 // onChange={"agregarPeinado"}
-                value={true}
-                checked={true}
+                value={turnoParaEditar.peinado}
+                checked={turnoParaEditar.peinado}
                 disabled={true}
               />
               <h4>Alisado: </h4>
@@ -86,8 +92,8 @@ export const EditarTurno = () => {
                 color="success" 
                 className='checkbox-tipo-trabajo'
                 // onChange={"agregarAlisado"}
-                value={false}
-                checked={false}
+                value={turnoParaEditar.alisado}
+                checked={turnoParaEditar.alisado}
                 disabled={true}
               />
               <h4>Tintura: </h4>
@@ -95,8 +101,8 @@ export const EditarTurno = () => {
                 color="success" 
                 className='checkbox-tipo-trabajo'
                 // onChange={"agregarTintura"}
-                value={false}
-                checked={false}
+                value={turnoParaEditar.tintura}
+                checked={turnoParaEditar.tintura}
                 disabled={true}
               />
             </div>
@@ -109,7 +115,7 @@ export const EditarTurno = () => {
               name='observacion'
               placeholder='Ingrese una observacion'
               // onChange={"OnInputChange"}
-              value= { "observacion" }
+              value= { turnoParaEditar.observacion }
               disabled={true}
             />
           </div>

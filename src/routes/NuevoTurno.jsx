@@ -5,6 +5,7 @@ import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
+import {v4 as uuidv4} from "uuid";
 
 
 export const NuevoTurno = () => {
@@ -13,6 +14,7 @@ export const NuevoTurno = () => {
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
 
   const initialForm = {
+    id: uuidv4(1),
     nombreCliente: "",
     telefono: "",
     fecha: "",
@@ -39,8 +41,7 @@ export const NuevoTurno = () => {
     }
   }
 
-  const handleValueDate = (value) => {console.log(value)
-    onDatePicker(value)};
+  const handleValueDate = (value) => {onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
 
 

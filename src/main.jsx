@@ -4,13 +4,16 @@ import { App } from './App'
 import "./styles/index.css"
 import { BrowserRouter } from "react-router-dom"
 import { NuevoTurnoProvider } from './context/NuevoTurnoProvider'
+import { EditarTurnoProvider } from './context/EditarTurnoProvider'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <React.StrictMode>
       <NuevoTurnoProvider>
-        <App />
+        <EditarTurnoProvider>
+          <App />
+        </EditarTurnoProvider>
       </NuevoTurnoProvider>
     </React.StrictMode>
   </BrowserRouter>,

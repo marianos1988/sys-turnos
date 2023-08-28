@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CartelAdvertenciaContext } from './CartelAdvertenciaContext';
 
 export const CartelAdvertenciaProvider = ({ children }) => {
@@ -14,6 +14,8 @@ export const CartelAdvertenciaProvider = ({ children }) => {
     });
 
   }
+
+
   return (
     <CartelAdvertenciaContext.Provider value={{ mostrarCartelAdvertencia, handleMostrarCartelAdvertencia}}>
       { children }

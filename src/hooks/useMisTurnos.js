@@ -1,13 +1,10 @@
 import { useContext,useState } from "react";
 import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
 
-
-
-
 export const useMisTurnos = () => {
 
   const { listaTurnos } = useContext(NuevoTurnoContext);
-  const [listaFiltrada, setListaFiltrada] = useState([])
+  const [listaFiltrada, setListaFiltrada] = useState([]);
 
 
   const agregarCero = (num) => {
@@ -42,13 +39,13 @@ export const useMisTurnos = () => {
       }
     })
     setListaFiltrada(lista);
-
   }
 
   return {
     mostrarFecha,
     mostrarHora,
     handleSelectDate,
-    listaFiltrada
+    listaFiltrada,
+
   }
 }

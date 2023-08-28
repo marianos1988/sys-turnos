@@ -10,7 +10,7 @@ export const NuevoTurnoProvider = ({ children }) => {
     setListaTurnos([...listaTurnos, nuevoTurno])
     
   }
-
+ 
   return (
     <NuevoTurnoContext.Provider value= {{ listaTurnos, handleSetListaTurnos }}>
         { children }

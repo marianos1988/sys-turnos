@@ -1,14 +1,26 @@
-import React from 'react'
+
+import { useContext, useEffect } from "react";
 import "../styles/CardTurnos.css";
 import { Checkbox } from '@mui/material'
+import { EditarTurnoContext } from "../context/EditarTurnoContext";
 
 
-export const CardTurnos = ({ id, nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion }) => {
+
+export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion, turnoCompleto }) => {
+
+const { handleSetTurnoParaEditar } = useContext( EditarTurnoContext )
+
+
+  const handleOnClick =  (turno) => {
+    const turnoAMod = turno;
+     handleSetTurnoParaEditar(turnoAMod)
+  }
+
+
   return (
     <>
-
-        <div className="ag-courses_item">
-            <div href="#" className="ag-courses-item_link">
+        <div className="ag-courses_item" onClick={()=>handleOnClick(turnoCompleto)}>
+            <div className="ag-courses-item_link">
               <div className="ag-courses-item_bg">1</div>
               <div className="ag-courses-item_title">
                 Cliente: {nombreCliente}
