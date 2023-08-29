@@ -6,14 +6,43 @@ import { TimePickerComponent } from '../components/TimePickerComponent'
 import dayjs from 'dayjs';
 import { EditarTurnoContext } from '../context/EditarTurnoContext'
 import { useEditarTurno } from '../hooks/useEditarTurno'
+import { useForm } from '../hooks/useForm'
+import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 
 
 export const EditarTurno = () => {
 
 
-  const { turnoParaEditar } = useContext(EditarTurnoContext)
-  const  { editarContacto, datosAEditar } = useEditarTurno()
+  const { turnoParaEditar } = useContext(EditarTurnoContext);
+  const  { editarContacto, datosAEditar } = useEditarTurno();
+  const {handleModificarTurno} = useContext(NuevoTurnoContext)
 
+
+  const initialForm = {
+    id: turnoParaEditar.id,
+    nombreCliente: turnoParaEditar.nombreCliente,
+    telefono: turnoParaEditar.telefono,
+    fecha: turnoParaEditar.fecha,
+    hora: turnoParaEditar.hora,
+    corte: turnoParaEditar.corte,
+    peinado: turnoParaEditar.peinado,
+    alisado: turnoParaEditar.alisado,
+    tintura: turnoParaEditar.tintura,
+    observacion: turnoParaEditar.observacion
+  }
+
+  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos } = useForm(initialForm);
+
+  const handleValueDate = (value) => {onDatePicker(value)};
+  const handleValueTime = (value) => {onTimePicker(value)};
+
+  const guardarTurnoEditado = () => {
+    const datosValidados = validarDatos(formState);
+    if(datosValidados) {
+
+      handleModificarTurno(formState)
+    }
+  }
 
   return (
     <>
@@ -33,8 +62,8 @@ export const EditarTurno = () => {
               type="text"
               placeholder='Ingrese Nombre'
               name='nombreCliente'
-              value= { turnoParaEditar.nombreCliente }
-              // onChange={"onInputChange"}
+              value= { formState.nombreCliente }
+              onChange={onInputChange}
               disabled={datosAEditar.desactivarCampos}
             />
           </div>
@@ -49,8 +78,8 @@ export const EditarTurno = () => {
               placeholder='Ingrese telefono'
               type="number"
               name='telefono'
-              value= { turnoParaEditar.telefono }
-              // onChange={"onInputChange"}
+              value= { formState.telefono }
+              onChange={onInputChange}
               disabled={datosAEditar.desactivarCampos}
             />
           </div>
@@ -59,8 +88,8 @@ export const EditarTurno = () => {
             <div className="datepicker">
               <DatePickerComponent
                 name="fecha"
-                // handleValue={""}
-                value={dayjs(turnoParaEditar.fecha)}
+                handleValue={handleValueDate}
+                value={dayjs(formState.fecha)}
                 disabled={datosAEditar.desactivarCampos}
               />
             </div>
@@ -70,8 +99,8 @@ export const EditarTurno = () => {
             <div className='timepicker'>
               <TimePickerComponent 
                 name="hora"
-                // handleValue = {""}
-                value={dayjs(turnoParaEditar.hora)}
+                handleValue = {handleValueTime}
+                value={dayjs(formState.hora)}
                 disabled={datosAEditar.desactivarCampos}
               />
             </div>
@@ -83,36 +112,36 @@ export const EditarTurno = () => {
               <Checkbox
               color="success"
               className='checkbox-tipo-trabajo'
-              // onChange={""}
-              value={turnoParaEditar.corte}
-              checked={turnoParaEditar.corte}
+              onChange={agregarCorte}
+              value={formState.corte}
+              checked={formState.corte}
               disabled={datosAEditar.desactivarCampos}
               />
               <h4>Peinado: </h4>
               <Checkbox 
                 color="success"
                 className='checkbox-tipo-trabajo'
-                // onChange={"agregarPeinado"}
-                value={turnoParaEditar.peinado}
-                checked={turnoParaEditar.peinado}
+                onChange={agregarPeinado}
+                value={formState.peinado}
+                checked={formState.peinado}
                 disabled={datosAEditar.desactivarCampos}
               />
               <h4>Alisado: </h4>
               <Checkbox 
                 color="success" 
                 className='checkbox-tipo-trabajo'
-                // onChange={"agregarAlisado"}
-                value={turnoParaEditar.alisado}
-                checked={turnoParaEditar.alisado}
+                onChange={agregarAlisado}
+                value={formState.alisado}
+                checked={formState.alisado}
                 disabled={datosAEditar.desactivarCampos}
               />
               <h4>Tintura: </h4>
               <Checkbox 
                 color="success" 
                 className='checkbox-tipo-trabajo'
-                // onChange={"agregarTintura"}
-                value={turnoParaEditar.tintura}
-                checked={turnoParaEditar.tintura}
+                onChange={agregarTintura}
+                value={formState.tintura}
+                checked={formState.tintura}
                 disabled={datosAEditar.desactivarCampos}
               />
             </div>
@@ -128,8 +157,8 @@ export const EditarTurno = () => {
               type="text"
               name='observacion'
               placeholder='Ingrese una observacion'
-              // onChange={"OnInputChange"}
-              value= { turnoParaEditar.observacion }
+              onChange={onInputChange}
+              value= { formState.observacion }
               disabled={datosAEditar.desactivarCampos}
             />
           </div>
@@ -140,12 +169,14 @@ export const EditarTurno = () => {
               onClick={(e)=>{
                 e.preventDefault();
                 editarContacto();
+                (datosAEditar.boton === "Guardar") ? guardarTurnoEditado() : ""
+
               }}
             >{datosAEditar.boton}</button>
-                        <button 
+            <button 
               className="custom-btn-cargar btn-14"
               type='submit'
-              // onClick={"guardarTurno"}
+              // onClick={""}
             >Eliminar</button>
           </div>
         </form>

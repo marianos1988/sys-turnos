@@ -9,7 +9,6 @@ export const useForm = ( initialForm ) => {
   const [formState, setFormState] = useState(initialForm);
 
 
-
   const reducerCheckbox = (state, action) => {
 
     switch(action.type) {

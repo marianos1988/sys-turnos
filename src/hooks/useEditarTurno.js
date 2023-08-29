@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 export const useEditarTurno = () => {
 
   const initialEdicion = {
@@ -8,10 +9,11 @@ export const useEditarTurno = () => {
   }
   const [datosAEditar, setDatosAEditar] = useState(initialEdicion)
 
+
   const editarContacto = () => {
 
     if(datosAEditar.boton === "Editar") {
-      console.log(datosAEditar.editando)
+
       setDatosAEditar({
         boton: "Guardar",
         desactivarCampos: false,
