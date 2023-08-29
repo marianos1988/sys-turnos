@@ -25,9 +25,12 @@ export const NuevoTurno = () => {
     tintura: false,
     observacion: ""
   }
+  const tipoForm = "crear";
+
+  
 
 
-  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useForm(initialForm);
+  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useForm(initialForm,tipoForm);
 
   const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;
 

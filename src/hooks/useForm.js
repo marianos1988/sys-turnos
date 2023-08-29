@@ -3,7 +3,7 @@ import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
 
 
-export const useForm = ( initialForm ) => {
+export const useForm = ( initialForm, tipoForm) => {
 
   const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
   const [formState, setFormState] = useState(initialForm);
@@ -113,7 +113,13 @@ export const useForm = ( initialForm ) => {
       return false;
     }
     else {
-      handleMostrarCartelAdvertencia("Turno registrado");
+      if(tipoForm === "crear") {
+        handleMostrarCartelAdvertencia("Turno registrado");
+      }
+      else if(tipoForm === "editar") {
+        handleMostrarCartelAdvertencia("Turno modificado");
+      }
+
       return true;
     }
 
@@ -131,6 +137,23 @@ export const useForm = ( initialForm ) => {
         } 
     }
     return validar;   
+}
+
+const handleCancelarEditarTurno = (turno) => {
+
+  setFormState(
+    {
+      nombreCliente: turno.nombreCliente,
+      telefono: turno.telefono,
+      fecha: turno.fecha,
+      hora: turno.hora,
+      corte: turno.corte,
+      peinado: turno.peinado,
+      alisado: turno.alisado,
+      tintura: turno.tintura,
+      observacion: turno.observacion
+    }
+  )
 }
 
 const handleReloadForm = () => {
@@ -162,6 +185,7 @@ return {
     agregarTintura,
     validarDatos,
     handleReloadForm,
+    handleCancelarEditarTurno
 
   }
 }

@@ -3,35 +3,42 @@ import { useState } from "react"
 export const useEditarTurno = () => {
 
   const initialEdicion = {
-    boton: "Editar",
+    boton1: "Editar",
+    boton2: "Eliminar",
     desactivarCampos: true,
     editando: false
   }
   const [datosAEditar, setDatosAEditar] = useState(initialEdicion)
 
 
-  const editarContacto = () => {
+  const iniciarEditarContacto = () => {
 
-    if(datosAEditar.boton === "Editar") {
+    if(datosAEditar.boton1 === "Editar") {
 
       setDatosAEditar({
-        boton: "Guardar",
+        boton1: "Guardar",
+        boton2: "Cancelar",
         desactivarCampos: false,
         editando: true
 
       })
     }
-    else if(datosAEditar.boton === "Guardar") {
+  }
+
+  const finalizarEditarContacto = () => {
+    if(datosAEditar.boton1 === "Guardar") {
+
       setDatosAEditar({
-        boton: "Editar",
+        boton1: "Editar",
+        boton2: "Eliminar",
         desactivarCampos: true,
         editando: false
       })
     }
-
   }
   return {
-    editarContacto,
+    iniciarEditarContacto,
+    finalizarEditarContacto,
     datosAEditar
   }
 }

@@ -14,7 +14,7 @@ export const EditarTurno = () => {
 
 
   const { turnoParaEditar } = useContext(EditarTurnoContext);
-  const  { editarContacto, datosAEditar } = useEditarTurno();
+  const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
   const {handleModificarTurno} = useContext(NuevoTurnoContext)
 
 
@@ -30,8 +30,9 @@ export const EditarTurno = () => {
     tintura: turnoParaEditar.tintura,
     observacion: turnoParaEditar.observacion
   }
+  const tipoForm = "editar"
 
-  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos } = useForm(initialForm);
+  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useForm(initialForm,tipoForm);
 
   const handleValueDate = (value) => {onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
@@ -39,9 +40,14 @@ export const EditarTurno = () => {
   const guardarTurnoEditado = () => {
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
-
+      finalizarEditarContacto();
       handleModificarTurno(formState)
     }
+  }
+
+  const cancelarTurnoEditado = () => {
+    handleCancelarEditarTurno(turnoParaEditar);
+    finalizarEditarContacto();
   }
 
   return (
@@ -163,21 +169,23 @@ export const EditarTurno = () => {
             />
           </div>
           <div className='group-button-editar-turno'>
+            <button
+              className="custom-btn-cargar btn-14"
+              type='submit'
+              onClick={(e)=>{
+                e.preventDefault();
+                iniciarEditarContacto();
+                (datosAEditar.boton1 === "Guardar") && guardarTurnoEditado()
+              }}
+            >{datosAEditar.boton1}</button>
             <button 
               className="custom-btn-cargar btn-14"
               type='submit'
               onClick={(e)=>{
                 e.preventDefault();
-                editarContacto();
-                (datosAEditar.boton === "Guardar") ? guardarTurnoEditado() : ""
-
+                (datosAEditar.boton2 === "Cancelar") && cancelarTurnoEditado()
               }}
-            >{datosAEditar.boton}</button>
-            <button 
-              className="custom-btn-cargar btn-14"
-              type='submit'
-              // onClick={""}
-            >Eliminar</button>
+            >{datosAEditar.boton2}</button>
           </div>
         </form>
       </div>
