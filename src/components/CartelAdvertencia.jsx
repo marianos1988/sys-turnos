@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import "../styles/CartelAdvertencia.css"
 import { BotonNav } from "./BotonNav"
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext'
-import { useForm } from '../hooks/useForm'
+
 
 
 export const CartelAdvertencia = () => {

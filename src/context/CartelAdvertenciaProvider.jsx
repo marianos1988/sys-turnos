@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { CartelAdvertenciaContext } from './CartelAdvertenciaContext';
 
 export const CartelAdvertenciaProvider = ({ children }) => {
   const [mostrarCartelAdvertencia, setMostrarCartelAdvertencia] = useState({
     mostrar: false,
-    mensaje: ""
+    mensaje: "",
+    confirmarBtn : ""
   });
 
   const handleMostrarCartelAdvertencia = (mensaje) => {
     setMostrarCartelAdvertencia({ 
       mostrar: !mostrarCartelAdvertencia.mostrar, 
-      mensaje: mensaje
+      mensaje: mensaje,
     });
-
   }
 
 

@@ -11,12 +11,14 @@ import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { NavLink } from 'react-router-dom';
 
 
+
 export const MisTurnos = () => {
 
   const { listaTurnos } = useContext( NuevoTurnoContext );
   const [ listaTurnosView, setListaTurnosView ]= useState(listaTurnos)
   const { mostrarFecha, mostrarHora, handleSelectDate,listaFiltrada} = useMisTurnos()
   const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
+
 
 
   return (

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import "../styles/EditarTurno.css"
 import { Checkbox } from '@mui/material'
 import { DatePickerComponent } from '../components/DatePickerComponent'
@@ -8,14 +8,15 @@ import { EditarTurnoContext } from '../context/EditarTurnoContext'
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useForm } from '../hooks/useForm'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
+import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 
 
 export const EditarTurno = () => {
 
-
+   const { handleMostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext)
   const { turnoParaEditar } = useContext(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
-  const {handleModificarTurno} = useContext(NuevoTurnoContext)
+  const {handleModificarTurno } = useContext(NuevoTurnoContext)
 
 
   const initialForm = {
@@ -48,6 +49,14 @@ export const EditarTurno = () => {
   const cancelarTurnoEditado = () => {
     handleCancelarEditarTurno(turnoParaEditar);
     finalizarEditarContacto();
+  }
+
+  const eliminarTurno = () => {
+    handleMostrarCartelConfirmar("¿Quieres eliminar el turno?")
+    if(aplicarCambios) {
+      
+    }
+    
   }
 
   return (
@@ -183,7 +192,9 @@ export const EditarTurno = () => {
               type='submit'
               onClick={(e)=>{
                 e.preventDefault();
-                (datosAEditar.boton2 === "Cancelar") && cancelarTurnoEditado()
+                (datosAEditar.boton2 === "Cancelar")
+                  ? cancelarTurnoEditado()
+                  : (datosAEditar.boton2 === "Eliminar") && eliminarTurno()
               }}
             >{datosAEditar.boton2}</button>
           </div>

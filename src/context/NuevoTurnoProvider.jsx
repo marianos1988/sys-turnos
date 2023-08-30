@@ -28,9 +28,14 @@ export const NuevoTurnoProvider = ({ children }) => {
     })
 
   }
+
+  const handleEliminarTurno = (eliminarTurno) => {
+    const nuevalistaTurnos = listaTurnos.filter(turno => turno.id !== eliminarTurno.id);
+    setListaTurnos(nuevalistaTurnos);
+  }
  
   return (
-    <NuevoTurnoContext.Provider value= {{ listaTurnos, handleSetListaTurnos,handleModificarTurno }}>
+    <NuevoTurnoContext.Provider value= {{ listaTurnos, handleSetListaTurnos,handleModificarTurno, handleEliminarTurno }}>
         { children }
     </NuevoTurnoContext.Provider>
   )

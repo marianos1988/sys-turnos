@@ -23,6 +23,10 @@
     margin: 0 5px 0 5px ;
     width: auto;
   }
+
+  .boton-cartel-confirmar {
+    margin: 15pxpx;
+  }
   
   /* 1 */
   .btn-1 {
