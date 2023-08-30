@@ -3,6 +3,7 @@ import "../styles/CartelConfirmar.css"
 import { BotonNav } from "./BotonNav"
 import { useContext } from 'react'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
+import { NavLink } from 'react-router-dom'
 
 export const CartelConfirmar = () => {
 
@@ -18,13 +19,15 @@ export const CartelConfirmar = () => {
               <div className='cartel-confirmar'>
                 <h2 className='titulo-cartel-confirmar'>{mostrarCartelConfirmar.mensaje}</h2>
                 <div className='group-botones-confirmar'>
-                  <BotonNav 
-                    className= "boton-cartel-confirmar"
-                    handleOnClick= { ()=>  {
-                      handleConfirmarCartel(true)
-                    }}
+                  <NavLink to="/MisTurnos">
+                    <BotonNav 
+                      className= "boton-cartel-confirmar"
+                      handleOnClick= { ()=>  {
+                        handleConfirmarCartel(true)
+                      }}
 
-                  >Aceptar</BotonNav>
+                    >Aceptar</BotonNav>
+                  </NavLink>
                   <BotonNav 
                     className= "boton-cartel-confirmar"
                     handleOnClick= { ()=>  {
