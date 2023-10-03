@@ -3,7 +3,10 @@ import { CartelConfirmarContext } from './CartelConfirmarContext'
 import { EditarTurnoContext } from './EditarTurnoContext';
 import { NuevoTurnoContext } from './NuevoTurnoContext';
 
-export const CartelConfirmarProvider = ({ children }) => {
+type Props = {
+  children: JSX.Element | JSX.Element[],
+}
+export const CartelConfirmarProvider = ({ children }:Props) => {
 
 	const [mostrarCartelConfirmar, setMostrarCartelConfirmar] = useState({
 

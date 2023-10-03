@@ -5,8 +5,8 @@ import { useContext } from 'react'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import { NavLink } from 'react-router-dom'
 
-export const CartelConfirmar = () => {
 
+export const CartelConfirmar = () => {
 
   const { handleConfirmarCartel, mostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext) 
   return (

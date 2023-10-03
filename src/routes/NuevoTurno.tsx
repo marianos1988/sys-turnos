@@ -6,14 +6,15 @@ import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import {v4 as uuidv4} from "uuid";
+import { INuevoTurnoContext } from '../types/interface'
 
 
 export const NuevoTurno = () => {
 
   
-  const { handleSetListaTurnos } = useContext( NuevoTurnoContext );
+  const { handleSetListaTurnos } = useContext( NuevoTurnoContext);
 
-  const initialForm = {
+  const initialForm:INuevoTurnoContext["nuevoTurno"] = {
     id: uuidv4(1),
     nombreCliente: "",
     telefono: "",
@@ -25,11 +26,9 @@ export const NuevoTurno = () => {
     tintura: false,
     observacion: ""
   }
-  const tipoForm = "crear";
+  const tipoForm: string = "crear";
 
   
-
-
   const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useForm(initialForm,tipoForm);
 
   const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;

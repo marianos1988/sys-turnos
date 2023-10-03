@@ -1,15 +1,23 @@
 import { useState } from 'react'
 import { NuevoTurnoContext } from './NuevoTurnoContext';
+import React from "react"
+import { NuevoTurnoContext } from '../types/interface';
 
-export const NuevoTurnoProvider = ({ children }) => {
+type Props = {
+  children: JSX.Element | JSX.Element[],
+}
+
+
+export const NuevoTurnoProvider = ({ children }:Props) => {
 
   const [ listaTurnos, setListaTurnos ] = useState([]);
 
-  const handleSetListaTurnos = (nuevoTurno) => {
+  const handleSetListaTurnos = (nuevoTurno:NuevoTurnoContext["nuevoTurno"]) => {
     
     setListaTurnos([...listaTurnos, nuevoTurno])
     
   }
+
 
   const handleModificarTurno = (turnoModificado) => {
 

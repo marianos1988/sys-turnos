@@ -1,17 +1,39 @@
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "../styles/CardTurnos.css";
 import { Checkbox } from '@mui/material'
 import { EditarTurnoContext } from "../context/EditarTurnoContext";
+import React from "react";
 
+type Props = {
+  nombreCliente: string,
+  telefono: number,
+  fecha: string,
+  hora: string,
+  corte: boolean,
+  alisado: boolean,
+  peinado: boolean,
+  tintura: boolean
+  observacion: string,
+  turnoCompleto: {
+    nombreCliente: string,
+    telefono: number,
+    fecha: string,
+    hora: string,
+    corte: boolean,
+    alisado: boolean,
+    peinado: boolean,
+    tintura: boolean
+    observacion: string,
+  }
+} 
 
-
-export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion, turnoCompleto }) => {
+export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion, turnoCompleto }: Props) => {
 
 const { handleSetTurnoParaEditar } = useContext( EditarTurnoContext )
 
 
-  const handleOnClick =  (turno) => {
+  const handleOnClick =  (turno:Props["turnoCompleto"]) => {
     const turnoAMod = turno;
      handleSetTurnoParaEditar(turnoAMod)
   }
