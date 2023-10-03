@@ -15,9 +15,9 @@ export interface INuevoTurnoContext {
   nuevoTurnoArrays: {
     id: any,
     nombreCliente: string
-    telefono: number
-    fecha: Date,
-    hora: Date,
+    telefono: string,
+    fecha: string,
+    hora: string,
     corte: false,
     peinado: false,
     alisado: false,
@@ -25,4 +25,13 @@ export interface INuevoTurnoContext {
     observacion: string
   }[]
 
+}
+
+export interface ICartelAdvertenciaContext {
+  mostrarCartelAdvertencia: {
+    mostrar: boolean
+    mensaje?: string
+    confirmarBtn?:string
+  }
+  handleMostrarCartelAdvertencia(): (mensaje:string) => void
 }

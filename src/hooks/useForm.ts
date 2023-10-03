@@ -1,9 +1,13 @@
 import { useContext } from 'react';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
+import { INuevoTurnoContext } from '../types/interface';
 
-
-export const useForm = ( initialForm, tipoForm) => {
+type Props = {
+  initialForm: INuevoTurnoContext["nuevoTurno"]
+  tipoForm: string
+}
+export const useForm = ({ initialForm, tipoForm }:Props) => {
 
   const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
   const [formState, setFormState] = useState(initialForm);
@@ -14,8 +18,7 @@ export const useForm = ( initialForm, tipoForm) => {
     switch(action.type) {
       case "[Checkbox] corte" : setFormState(
         item => ({...item, corte: !item.corte })
-      )
-;
+      );
       break;
       case "[Checkbox] peinado" : setFormState(
         item => ({...item, peinado: !item.peinado })
