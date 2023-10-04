@@ -9,7 +9,7 @@ type Props = {
 
 interface ListaTurnos {
 
-listaTurnos: INuevoTurnoContext["nuevoTurnoArrays"]
+listaTurnos: INuevoTurnoContext["listaTurnos"]
 
 }
 
@@ -49,6 +49,6 @@ export const NuevoTurnoProvider = ({ children }:Props) => {
   return (
     <NuevoTurnoContext.Provider value= {{ listaTurnos, handleSetListaTurnos,handleModificarTurno, handleEliminarTurno }}>
         { children }
-    </NuevoTurnoContext.Provider>
+    </NuevoTurnoContext.Provider> 
   )
 } 

@@ -5,7 +5,14 @@ import React from 'react'
 import dayjs from 'dayjs';
 //value={dayjs('2022-04-17T15:30')}
 
-export const TimePickerComponent = ({ handleValue, value, disabled }) => {
+type Props = {
+  handleValue(newValue:string | null): void,
+  name: string,
+  value: string,
+  disabled: boolean
+  }
+
+export const TimePickerComponent = ({ handleValue, value, disabled }:Props) => {
 
   return (
     <>

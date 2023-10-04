@@ -6,6 +6,7 @@ import React from 'react';
 
 type Props = {
 handleValue(newValue:string | null): void,
+name: string,
 value: string,
 disabled: boolean
 }

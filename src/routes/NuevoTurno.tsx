@@ -1,12 +1,11 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import {v4 as uuidv4} from "uuid";
-import { INuevoTurnoContext } from '../types/interface'
+import {  InitialForm } from '../types/interface'
 
 
 export const NuevoTurno = () => {
@@ -14,8 +13,8 @@ export const NuevoTurno = () => {
   
   const { handleSetListaTurnos } = useContext( NuevoTurnoContext);
 
-  const initialForm:INuevoTurnoContext["nuevoTurno"] = {
-    id: uuidv4(1),
+  const initialForm: InitialForm["initialForm"]= {
+    id: 0,
     nombreCliente: "",
     telefono: "",
     fecha: "",
@@ -26,14 +25,14 @@ export const NuevoTurno = () => {
     tintura: false,
     observacion: ""
   }
-  const tipoForm: string = "crear";
+  const tipoForm: InitialForm["tipoForm"] = "crear";
 
-  
-  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useForm(initialForm,tipoForm);
+   
+  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useForm({initialForm,tipoForm});
 
   const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;
 
-  const guardarTurno = (e) => {
+  const guardarTurno = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     e.preventDefault();
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
@@ -43,8 +42,8 @@ export const NuevoTurno = () => {
     }
   }
 
-  const handleValueDate = (value) => {onDatePicker(value)};
-  const handleValueTime = (value) => {onTimePicker(value)};
+  const handleValueDate = (value: string) => {onDatePicker(value)};
+  const handleValueTime = (value: string) => {onTimePicker(value)};
 
 
   return (
@@ -148,7 +147,7 @@ export const NuevoTurno = () => {
             <button 
               className="custom-btn-cargar btn-14"
               type='submit'
-              onClick={ guardarTurno }
+              onClick={guardarTurno }
             >Crear Turno</button>
           </div>
         </form>

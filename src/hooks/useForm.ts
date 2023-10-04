@@ -1,19 +1,22 @@
 import { useContext } from 'react';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
-import { INuevoTurnoContext } from '../types/interface';
+import { CheckboxAction, ICartelAdvertenciaContext, InitialForm, OnInputChange } from '../types/interface';
+
 
 type Props = {
-  initialForm: INuevoTurnoContext["nuevoTurno"]
-  tipoForm: string
+  initialForm: InitialForm["initialForm"]
+  tipoForm: InitialForm["tipoForm"]
 }
 export const useForm = ({ initialForm, tipoForm }:Props) => {
 
-  const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
+  let id = 0;
+
+  const { handleMostrarCartelAdvertencia } = useContext<ICartelAdvertenciaContext>( CartelAdvertenciaContext)
   const [formState, setFormState] = useState(initialForm);
 
 
-  const reducerCheckbox = (state, action) => {
+  const reducerCheckbox = (state:InitialForm["initialForm"], action:CheckboxAction) => {
 
     switch(action.type) {
       case "[Checkbox] corte" : setFormState(
@@ -35,16 +38,16 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
     }
   }
 
-  const [listCheckbox, dispatch] = useReducer(reducerCheckbox, formState);
+  const [checkboxx, dispatch]:any = useReducer<any>(reducerCheckbox, formState);
 
-  const agregarCorte = () => {
-    const action = {
+  const agregarCorte = () =>{
+    const action= {
       type:"[Checkbox] corte"
     }
     dispatch(action);
   }
   const agregarPeinado = () => {
-    const action = {
+    const action:{type:string} = {
       type:"[Checkbox] peinado"
     }
     dispatch(action);
@@ -63,14 +66,14 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
   }
 
 
-  const onTimePicker = (hora) => {
+  const onTimePicker = (hora: string) => {
     setFormState({
       ...formState,
       hora: hora
     });
   }
 
-  const onDatePicker = (fecha) => {
+  const onDatePicker = (fecha: string) => {
     
     setFormState({
       ...formState,
@@ -78,7 +81,7 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
     });
   }
 
-  const onInputChange = ({ target })=>{
+  const onInputChange = ({ target }:OnInputChange)=>{
 
     const {name,value} = target;
 
@@ -89,7 +92,7 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
     
   }
 
-  const validarDatos = (form) => {
+  const validarDatos = (form: InitialForm["initialForm"]) => {
 
     if(form.nombreCliente.length > 25) {
       handleMostrarCartelAdvertencia("Nombre demasiado largo");
@@ -129,7 +132,7 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
 
   }
 
-  function validarSoloNumeros(numero) {
+  function validarSoloNumeros(numero: any) {
     // Valida si se cargo un numero True = No son numeros, False = Son numeros
     let verificaNumero = numero;
     let validar = false;
@@ -142,10 +145,11 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
     return validar;   
 }
 
-const handleCancelarEditarTurno = (turno) => {
+const handleCancelarEditarTurno = (turno:InitialForm["initialForm"]) => {
 
   setFormState(
-    {
+    { 
+      id: id +1,
       nombreCliente: turno.nombreCliente,
       telefono: turno.telefono,
       fecha: turno.fecha,
@@ -162,7 +166,8 @@ const handleCancelarEditarTurno = (turno) => {
 const handleReloadForm = () => {
 
   setFormState(
-    {
+    { 
+      id: id,
       nombreCliente: "",
       telefono: "",
       fecha: "",
