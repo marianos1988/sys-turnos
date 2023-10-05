@@ -5,10 +5,10 @@ import React from 'react';
 // value={dayjs('2022-04-17')}
 
 type Props = {
-handleValue(newValue:string | null): void,
-name: string,
-value: string,
-disabled: boolean
+handleValue(newValue:any): void | undefined,
+name?: string,
+value?: string,
+disabled?: boolean
 }
 
 export const DatePickerComponent = ({ handleValue, value, disabled }:Props) => {

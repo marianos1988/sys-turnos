@@ -28,23 +28,21 @@ export const MisTurnos = () => {
           <h2>Elegir la fecha:</h2>
           <div className='datepicker'>
             <DatePickerComponent 
-              handleValue={(value)=>{
-                handleSelectDate(value)
-              }}
-            />
+              handleValue={(value) => {
+                handleSelectDate(value);
+              } }/>
           </div>
           <BotonNav
-            handleOnClick={(e)=>{
+            handleOnClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
-              setListaTurnosView([])
-              if(listaFiltrada < 1) {
-                handleMostrarCartelAdvertencia("No existen turnos")
+              setListaTurnosView([]);
+              if (listaFiltrada < 1) {
+                handleMostrarCartelAdvertencia("No existen turnos");
               }
 
-              setListaTurnosView(listaFiltrada)
-            }}
-            newClass={"btn-search-mis-turnos"}
-          >Buscar</BotonNav>        
+              setListaTurnosView(listaFiltrada);
+            } }
+            newClass={"btn-search-mis-turnos"}>Buscar</BotonNav>        
         </form>
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>

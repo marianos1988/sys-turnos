@@ -2,9 +2,9 @@ import React from 'react'
 import "../styles/botonNav.css"
 
 type Props = {
-  className: string,
-  children: string,
-  handleOnClick:()=> void,
+  className?: string | null,
+  children: string | null,
+  handleOnClick:(React.MouseEventHandler<HTMLButtonElement> | undefined)
   newClass?: string
 }
 
