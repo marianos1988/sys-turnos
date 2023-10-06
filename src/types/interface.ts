@@ -48,8 +48,8 @@ export interface INuevoTurnoContext {
     id: any,
     nombreCliente: string
     telefono?: string,
-    fecha: string,
-    hora: string,
+    fecha: string | { $D: number; $M: number; $y: number; }
+    hora: string | { $H: number; $m: number; }
     corte: boolean,
     peinado: boolean,
     alisado: boolean,

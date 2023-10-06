@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useContext } from 'react'
 import { BotonNav } from "../components/BotonNav"
 import { useState } from 'react';
@@ -15,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 export const MisTurnos = () => {
 
   const { listaTurnos } = useContext( NuevoTurnoContext );
-  const [ listaTurnosView, setListaTurnosView ]= useState(listaTurnos)
+  const [ listaTurnosView, setListaTurnosView ]= useState<any>(listaTurnos)
   const { mostrarFecha, mostrarHora, handleSelectDate,listaFiltrada} = useMisTurnos()
   const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
 
@@ -47,7 +47,24 @@ export const MisTurnos = () => {
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>
           { 
-            listaTurnosView.map(turno => (
+            listaTurnosView.map((turno: {
+              id: number; 
+              nombreCliente: string; 
+              telefono: number; 
+              fecha: { 
+                $D: number;
+                $M: number; 
+                $y: number; 
+              }; hora: { 
+                $H: number; 
+                $m: number; 
+              }; 
+              corte: boolean; 
+              alisado: boolean; 
+              peinado: boolean; 
+              tintura: boolean; 
+              observacion: string;
+            }) => (
               <NavLink to="/EditarTurno" key={turno.id}>
                 <CardTurnos
                   id={turno.id}

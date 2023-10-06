@@ -6,20 +6,22 @@ import { EditarTurnoContext } from "../context/EditarTurnoContext";
 import React from "react";
 
 type Props = {
+  id: number,
   nombreCliente: string,
   telefono: number,
-  fecha: string,
-  hora: string,
+  fecha: string | { $D: number; $M: number; $y: number; }
+  hora:  string | { $H: number; $m: number; }
   corte: boolean,
   alisado: boolean,
   peinado: boolean,
   tintura: boolean
   observacion: string,
-  turnoCompleto: {
+  turnoCompleto?: {
+    id: number,
     nombreCliente: string,
     telefono: number,
-    fecha: string,
-    hora: string,
+    fecha: string | { $D: number; $M: number; $y: number; }
+    hora: string | { $H: number; $m: number; }
     corte: boolean,
     alisado: boolean,
     peinado: boolean,

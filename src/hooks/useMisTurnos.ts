@@ -1,6 +1,6 @@
 import { useContext,useState } from "react";
 import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
-import { InitialForm } from "../types/interface";
+
 
 
 export const useMisTurnos = () => {
@@ -34,7 +34,7 @@ export const useMisTurnos = () => {
     const dia = fecha.$D;
     const mes = fecha.$M;
     const anio = fecha.$y;
-    let lista:any;
+    let lista:any[]=[];
     listaTurnos.forEach((turno: { fecha: { $D: string; $M: string; $y: string; }; }) => {
       if((dia == turno.fecha.$D) && (mes == turno.fecha.$M) && (anio == turno.fecha.$y)){
         lista.push(turno);
