@@ -2,10 +2,10 @@
 
 export interface InitialForm {
   initialForm: {
-    id: number,
+    id: any,
     telefono?: string,
     nombreCliente: string,
-    fecha: string
+    fecha: string,
     hora: string,
     corte: boolean,
     peinado: boolean,
@@ -33,8 +33,8 @@ export interface INuevoTurnoContext {
     id: any,
     nombreCliente: string
     telefono?: string,
-    fecha: string
-    hora: string,
+    fecha: string | { $D: number; $M: number; $y: number; }
+    hora: string | { $H: number; $m: number; }
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -43,6 +43,8 @@ export interface INuevoTurnoContext {
   },
   handleSetListaTurnos: (nuevoTurno:INuevoTurnoContext["nuevoTurno"]) =>void,
   handleModificarTurno: (turnoModificado:INuevoTurnoContext["nuevoTurno"]) =>void,
+  handleSetTurnoParaEditar: (turno:INuevoTurnoContext["nuevoTurno"]) => void,
+  handleOnClick:(turno: INuevoTurnoContext["nuevoTurno"])=>void
 
   listaTurnos: {
     id: any,
@@ -57,6 +59,27 @@ export interface INuevoTurnoContext {
     observacion?: string
   }[]
 
+}
+
+export interface IEditarTurno {
+editarTurno: {
+  id: number; 
+  nombreCliente: string; 
+  telefono: number; 
+  fecha: { 
+    $D: number;
+    $M: number; 
+    $y: number; 
+  }; hora: { 
+    $H: number; 
+    $m: number; 
+  }; 
+  corte: boolean; 
+  alisado: boolean; 
+  peinado: boolean; 
+  tintura: boolean; 
+  observacion: string;
+}
 }
 
 export interface ICartelAdvertenciaContext {

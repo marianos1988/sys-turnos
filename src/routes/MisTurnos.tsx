@@ -9,6 +9,7 @@ import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { NavLink } from 'react-router-dom';
+import { IEditarTurno } from '../types/interface';
 
 
 
@@ -47,24 +48,7 @@ export const MisTurnos = () => {
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>
           { 
-            listaTurnosView.map((turno: {
-              id: number; 
-              nombreCliente: string; 
-              telefono: number; 
-              fecha: { 
-                $D: number;
-                $M: number; 
-                $y: number; 
-              }; hora: { 
-                $H: number; 
-                $m: number; 
-              }; 
-              corte: boolean; 
-              alisado: boolean; 
-              peinado: boolean; 
-              tintura: boolean; 
-              observacion: string;
-            }) => (
+            listaTurnosView.map((turno:IEditarTurno["editarTurno"]) => (
               <NavLink to="/EditarTurno" key={turno.id}>
                 <CardTurnos
                   id={turno.id}

@@ -10,17 +10,18 @@ import { useForm } from '../hooks/useForm'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
+import { InitialForm } from '../types/interface'
 
 
 export const EditarTurno = () => {
 
-   const { handleMostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext)
+  const { handleMostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext)
   const { turnoParaEditar } = useContext(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
   const {handleModificarTurno } = useContext(NuevoTurnoContext)
+  const tipoForm:InitialForm["tipoForm"] = "editar";
 
-
-  const initialForm = {
+  const initialForm:InitialForm["initialForm"] = {
     id: turnoParaEditar.id,
     nombreCliente: turnoParaEditar.nombreCliente,
     telefono: turnoParaEditar.telefono,
@@ -32,9 +33,12 @@ export const EditarTurno = () => {
     tintura: turnoParaEditar.tintura,
     observacion: turnoParaEditar.observacion
   }
-  const tipoForm = "editar"
 
-  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useForm(initialForm,tipoForm);
+
+
+  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useForm({initialForm,tipoForm});
+
+  
 
   const handleValueDate = (value) => {onDatePicker(value)};
   const handleValueTime = (value) => {onTimePicker(value)};
@@ -60,6 +64,7 @@ export const EditarTurno = () => {
   }
 
   return (
+
     <>
       <div className='container-editar-turno'>
         <div className='group-tittle-editarTurno'>
