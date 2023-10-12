@@ -3,7 +3,7 @@ import "../styles/botonNav.css"
 
 type Props = {
   className?: string | null,
-  children: string | null,
+  children: any
   handleOnClick:(React.MouseEventHandler<HTMLButtonElement> | undefined)
   newClass?: string
 }

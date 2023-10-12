@@ -1,12 +1,12 @@
 import { useContext,useState } from "react";
 import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
-import { IPicketEdit } from "../types/interface";
+import { INuevoTurnoContext, IPicketEdit } from "../types/interface";
 
 
 
 export const useMisTurnos = () => {
 
-  const { listaTurnos } = useContext<any>(NuevoTurnoContext);
+  const { listaTurnos } = useContext<INuevoTurnoContext>(NuevoTurnoContext);
   const [listaFiltrada, setListaFiltrada] = useState<any>([]);
 
 
@@ -36,7 +36,7 @@ export const useMisTurnos = () => {
     const mes = fecha.$M;
     const anio = fecha.$y;
     let lista:any[]=[];
-    listaTurnos.forEach((turno: { fecha: { $D: number; $M: number; $y: number; }; }) => {
+    listaTurnos.forEach((turno: { fecha: any; }) => {
       if((dia == turno.fecha.$D) && (mes == turno.fecha.$M) && (anio == turno.fecha.$y)){
         lista.push(turno);
       }

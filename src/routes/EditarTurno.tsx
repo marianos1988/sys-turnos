@@ -10,13 +10,13 @@ import { useForm } from '../hooks/useForm'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
-import { IEditarTurno, InitialForm } from '../types/interface'
+import { IEditarTurno, InitialForm, ICartelConfirmarContext, IPicket, IEditarTurnoContext } from '../types/interface'
 
 
 export const EditarTurno = () => {
 
-  const { handleMostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext)
-  const { turnoParaEditar } = useContext<IEditarTurno>(EditarTurnoContext);
+  const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext); 
+  const { turnoParaEditar } = useContext<IEditarTurnoContext>(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
   const {handleModificarTurno } = useContext(NuevoTurnoContext)
   const tipoForm:InitialForm["tipoForm"] = "editar";
@@ -40,8 +40,8 @@ export const EditarTurno = () => {
 
   
 
-  const handleValueDate = (value) => {onDatePicker(value)};
-  const handleValueTime = (value) => {onTimePicker(value)};
+  const handleValueDate = (value:IPicket["$M2"]) => {onDatePicker(value)};
+  const handleValueTime = (value:IPicket["$M2"]) => {onTimePicker(value)};
 
   const guardarTurnoEditado = () => {
     const datosValidados = validarDatos(formState);

@@ -1,6 +1,6 @@
 import React,{ useState} from 'react'
 import { EditarTurnoContext } from './EditarTurnoContext'
-import { IEditarTurno } from '../types/interface'
+import { IEditarTurnoContext } from '../types/interface'
 
 type Props = {
   children: JSX.Element | JSX.Element[],
@@ -8,9 +8,9 @@ type Props = {
 
 export const EditarTurnoProvider = ({ children }:Props) => {
 
-  const [turnoParaEditar, setTurnoParaEditar] = useState<IEditarTurno["turnoParaEditar"]>({} as IEditarTurno["turnoParaEditar"])
+  const [turnoParaEditar, setTurnoParaEditar] = useState<IEditarTurnoContext["turnoParaEditar"]>({} as IEditarTurnoContext["turnoParaEditar"])
 
-  const handleSetTurnoParaEditar = (turno:IEditarTurno["turnoParaEditar"])=>{
+  const handleSetTurnoParaEditar = (turno:IEditarTurnoContext["turnoParaEditar"])=>{
     setTurnoParaEditar(turno)
   }
 

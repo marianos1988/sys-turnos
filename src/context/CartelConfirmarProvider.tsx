@@ -2,6 +2,8 @@ import { useContext, useState} from 'react'
 import { CartelConfirmarContext } from './CartelConfirmarContext'
 import { EditarTurnoContext } from './EditarTurnoContext';
 import { NuevoTurnoContext } from './NuevoTurnoContext';
+import React from "react";
+import { INuevoTurnoContext } from '../types/interface';
 
 type Props = {
   children: JSX.Element | JSX.Element[],
@@ -11,15 +13,15 @@ export const CartelConfirmarProvider = ({ children }:Props) => {
 	const [mostrarCartelConfirmar, setMostrarCartelConfirmar] = useState({
 
     mostrar: false,
-    mensaje: "",
+    mensaje: "", 
 
   });
-	const { handleEliminarTurno } = useContext(NuevoTurnoContext)
+	const { handleEliminarTurno } = useContext<INuevoTurnoContext>(NuevoTurnoContext)
 	const { turnoParaEditar } = useContext(EditarTurnoContext)
 
-	const [aplicarCambios, setAplicarCambios] = useState(false)
+	const [aplicarCambios, setAplicarCambios] = useState<boolean>(false)
 
-  const handleMostrarCartelConfirmar = (mensaje) => {
+  const handleMostrarCartelConfirmar = (mensaje:string) => {
     setMostrarCartelConfirmar({ 
       mostrar: !mostrarCartelConfirmar.mostrar, 
       mensaje: mensaje,
@@ -27,7 +29,7 @@ export const CartelConfirmarProvider = ({ children }:Props) => {
     });
   }
 
-	const handleConfirmarCartel = (valor) => {
+	const handleConfirmarCartel = (valor: boolean) => {
 
 		setMostrarCartelConfirmar({
 			mostrar: !mostrarCartelConfirmar.mostrar,

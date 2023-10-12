@@ -27,7 +27,7 @@ export type CheckboxAction = {
   type: "[Checkbox] tintura"
 }
 
-
+ 
 export interface INuevoTurnoContext {
   nuevoTurno: {
     id: any,
@@ -41,10 +41,23 @@ export interface INuevoTurnoContext {
     tintura: boolean,
     observacion?: string
   },
+  agregarTurno: {
+    id: number,
+    nombreCliente: string,
+    telefono: string,
+    fecha: IPicketEdit,
+    hora: IPicketEdit,
+    corte: boolean, 
+    alisado: boolean,
+    peinado: boolean,
+    tintura: boolean,
+    observacion: string,
+  },
   handleSetListaTurnos: (nuevoTurno:INuevoTurnoContext["nuevoTurno"]) =>void,
   handleModificarTurno: (turnoModificado:INuevoTurnoContext["nuevoTurno"]) =>void,
   handleSetTurnoParaEditar: (turno:INuevoTurnoContext["nuevoTurno"]) => void,
-  handleOnClick:(turno: INuevoTurnoContext["nuevoTurno"])=>void
+  handleOnClick:(turno: INuevoTurnoContext["nuevoTurno"])=>void,
+  handleEliminarTurno: (turno:IEliminarTurno)=>void,
 
   listaTurnos: {
     id: any,
@@ -59,6 +72,22 @@ export interface INuevoTurnoContext {
     observacion?: string
   }[]
 
+}
+
+export interface IEditarTurnoContext {
+  turnoParaEditar: {
+    id: number,
+    nombreCliente: string,
+    telefono: string,
+    fecha: IPicketEdit,
+    hora: IPicketEdit,
+    corte: boolean, 
+    alisado: boolean,
+    peinado: boolean,
+    tintura: boolean,
+    observacion: string,
+  },
+  handleSetTurnoParaEditar: (turno:IEditarTurnoContext["turnoParaEditar"])=>void,
 }
 
 export interface IEditarTurno {
@@ -86,7 +115,7 @@ turnoParaEditar: {
   tintura: boolean,
   observacion: string,
 },
-handleSetTurnoParaEditar: (turno: IEditarTurno["turnoParaEditar"])=>void,
+handleSetTurnoParaEditar: (turno: any)=>void,
 viewTurnos: {
     id: number,
     nombreCliente: string,
@@ -151,4 +180,28 @@ export interface IPicketEdit {
   $u: any,
   $x: any,
   $y:number
+}
+
+export interface IEliminarTurno {
+  id: number,
+  nombreCliente: string,
+  telefono: string,
+  fecha: IPicketEdit,
+  hora: IPicketEdit,
+  corte: boolean, 
+  alisado: boolean,
+  peinado: boolean,
+  tintura: boolean,
+  observacion: string,
+}
+
+export interface ICartelConfirmarContext {
+ aplicarCambios: boolean,
+ handleMostrarCartelConfirmar: (mensaje: string)=>void,
+ handleConfirmarCartel:(valor: boolean)=>void,
+ mostrarCartelConfirmar: {
+  mostrar: boolean;
+  mensaje: string;
+}
+
 }

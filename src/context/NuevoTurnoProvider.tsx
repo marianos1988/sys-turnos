@@ -1,21 +1,16 @@
 import { useState } from 'react'
 import { NuevoTurnoContext } from './NuevoTurnoContext';
 import React from "react"
-import { INuevoTurnoContext } from '../types/interface';
+import { IEliminarTurno, INuevoTurnoContext } from '../types/interface';
 
 type Props = {
   children: JSX.Element | JSX.Element[],
 }
 
-interface ListaTurnos {
-
-listaTurnos: INuevoTurnoContext["listaTurnos"]
-
-}
 
 export const NuevoTurnoProvider = ({ children }:Props) => {
 
-  const [ listaTurnos, setListaTurnos ] = useState<ListaTurnos["listaTurnos"]>([]);
+  const [ listaTurnos, setListaTurnos ] = useState<INuevoTurnoContext["listaTurnos"]>([]);
 
   const handleSetListaTurnos = (nuevoTurno:INuevoTurnoContext["nuevoTurno"]) => {
     
@@ -41,13 +36,13 @@ export const NuevoTurnoProvider = ({ children }:Props) => {
 
   }
 
-  const handleEliminarTurno = (eliminarTurno:INuevoTurnoContext["nuevoTurno"]) => {
+  const handleEliminarTurno = (eliminarTurno:IEliminarTurno) => {
     const nuevalistaTurnos = listaTurnos.filter(turno => turno.id !== eliminarTurno.id);
     setListaTurnos(nuevalistaTurnos);
   }
  
   return (
-    <NuevoTurnoContext.Provider value= {{ listaTurnos, handleSetListaTurnos,handleModificarTurno, handleEliminarTurno }}>
+    <NuevoTurnoContext.Provider value={{ listaTurnos, handleSetListaTurnos,handleModificarTurno, handleEliminarTurno }}>
         { children }
     </NuevoTurnoContext.Provider> 
   )

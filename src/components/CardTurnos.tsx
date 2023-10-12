@@ -4,7 +4,7 @@ import "../styles/CardTurnos.css";
 import { Checkbox } from '@mui/material'
 import { EditarTurnoContext } from "../context/EditarTurnoContext";
 import React from "react";
-import { IEditarTurno } from "../types/interface";
+import { IEditarTurno, IEliminarTurno } from "../types/interface";
 
 type Props = {
   id: number,
@@ -17,7 +17,7 @@ type Props = {
   peinado: boolean,
   tintura: boolean
   observacion: string,
-  turnoCompleto?:IEditarTurno["editarTurno"];
+  turnoCompleto:IEditarTurno["turnoParaEditar"];
 } 
 
 export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion, turnoCompleto }: Props) => {
@@ -25,8 +25,8 @@ export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisad
 const { handleSetTurnoParaEditar } = useContext( EditarTurnoContext )
 
 
-  const handleOnClick =  (turno:IEditarTurno["editarTurno"]) => {
-    const turnoAMod = turno;
+  const handleOnClick =  (turno:IEditarTurno["turnoParaEditar"]) => { 
+    const turnoAMod:any = turno;
     handleSetTurnoParaEditar(turnoAMod)
 
   }

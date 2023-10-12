@@ -17,5 +17,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </NuevoTurnoProvider>
     </React.StrictMode>
   </BrowserRouter>,
-
 )

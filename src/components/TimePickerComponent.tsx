@@ -7,9 +7,9 @@ import { IPicket } from '../types/interface';
 //value={dayjs('2022-04-17T15:30')}
 
 type Props = {
-  handleValue(newValue:IPicket["$M2"] | null): void,
+  handleValue(newValue:any | null): void,
   name: string,
-  value: IPicket["$M2"],
+  value: any,
   disabled: boolean
   }
 

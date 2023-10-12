@@ -2,7 +2,7 @@ import React from 'react'
 import "../styles/navbar.css"
 import { BotonNav } from './BotonNav'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import CreateIcon from '@mui/icons-material/Create';
+import  CreateIcon from '@mui/icons-material/Create';
 import { NavLink } from 'react-router-dom'
 
 
@@ -15,15 +15,16 @@ export const Navbar = () => {
         <h2 className='title-nav'>Sys Turnos</h2>
         <div className='position-button-nav'>
           <NavLink to="/NuevoTurno">
-            <BotonNav>
-              <CreateIcon /><p>Nuevo Turno</p>
+            <BotonNav handleOnClick={undefined}>
+              <CreateIcon /><p>Nuevo Turnmaro</p>
             </BotonNav>
           </NavLink>
         </div>
         <div className='position-button-nav'>
           <NavLink to="/">
-            <BotonNav>
-              <CalendarMonthIcon className='icon-nav' /><p>Mis Turnos</p>
+            <BotonNav handleOnClick={undefined}>
+              <CalendarMonthIcon className='icon-nav' />
+              <p>Mis Turnos</p>
             </BotonNav>
           </NavLink>
         </div>
