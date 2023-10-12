@@ -10,18 +10,18 @@ import { useForm } from '../hooks/useForm'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
-import { InitialForm } from '../types/interface'
+import { IEditarTurno, InitialForm } from '../types/interface'
 
 
 export const EditarTurno = () => {
 
   const { handleMostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext)
-  const { turnoParaEditar } = useContext(EditarTurnoContext);
+  const { turnoParaEditar } = useContext<IEditarTurno>(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
   const {handleModificarTurno } = useContext(NuevoTurnoContext)
   const tipoForm:InitialForm["tipoForm"] = "editar";
 
-  const initialForm:InitialForm["initialForm"] = {
+  const initialForm:IEditarTurno["editarTurno"]= {
     id: turnoParaEditar.id,
     nombreCliente: turnoParaEditar.nombreCliente,
     telefono: turnoParaEditar.telefono,

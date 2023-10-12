@@ -3,12 +3,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React from 'react'
 import dayjs from 'dayjs';
+import { IPicket } from '../types/interface';
 //value={dayjs('2022-04-17T15:30')}
 
 type Props = {
-  handleValue(newValue:string | null): void,
+  handleValue(newValue:IPicket["$M2"] | null): void,
   name: string,
-  value: string,
+  value: IPicket["$M2"],
   disabled: boolean
   }
 

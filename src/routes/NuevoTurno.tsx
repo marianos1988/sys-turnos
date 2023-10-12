@@ -5,7 +5,7 @@ import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import {  InitialForm } from '../types/interface'
+import {  IPicket, InitialForm } from '../types/interface'
 
 
 export const NuevoTurno = () => {
@@ -17,8 +17,8 @@ export const NuevoTurno = () => {
     id: 0,
     nombreCliente: "",
     telefono: "",
-    fecha: "",
-    hora: "",
+    fecha: null,
+    hora: null,
     corte: false,
     peinado: false,
     alisado: false,
@@ -42,8 +42,8 @@ export const NuevoTurno = () => {
     }
   }
 
-  const handleValueDate = (value: string) => {onDatePicker(value)};
-  const handleValueTime = (value: string) => {onTimePicker(value)};
+  const handleValueDate = (value: IPicket["$M2"]) => {onDatePicker(value)};
+  const handleValueTime = (value: IPicket["$M2"]) => {onTimePicker(value)};
 
 
   return (

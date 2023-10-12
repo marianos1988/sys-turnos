@@ -5,8 +5,8 @@ export interface InitialForm {
     id: any,
     telefono?: string,
     nombreCliente: string,
-    fecha: string,
-    hora: string,
+    fecha: IPicket["$M2"],
+    hora: IPicket["$M2"],
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -33,8 +33,8 @@ export interface INuevoTurnoContext {
     id: any,
     nombreCliente: string
     telefono?: string,
-    fecha: string | { $D: number; $M: number; $y: number; }
-    hora: string | { $H: number; $m: number; }
+    fecha: IPicket["$M2"],
+    hora: IPicket["$M2"],
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -50,8 +50,8 @@ export interface INuevoTurnoContext {
     id: any,
     nombreCliente: string
     telefono?: string,
-    fecha: string | { $D: number; $M: number; $y: number; }
-    hora: string | { $H: number; $m: number; }
+    fecha: IPicket["$M2"],
+    hora: IPicket["$M2"],
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -63,23 +63,43 @@ export interface INuevoTurnoContext {
 
 export interface IEditarTurno {
 editarTurno: {
-  id: number; 
-  nombreCliente: string; 
-  telefono: number; 
-  fecha: { 
-    $D: number;
-    $M: number; 
-    $y: number; 
-  }; hora: { 
-    $H: number; 
-    $m: number; 
-  }; 
+  id: number, 
+  nombreCliente: string,
+  telefono:string, 
+  fecha: IPicket["$M2"],
+  hora: IPicket["$M2"],
   corte: boolean; 
   alisado: boolean; 
   peinado: boolean; 
   tintura: boolean; 
   observacion: string;
+},
+turnoParaEditar: {
+  id: number,
+  nombreCliente: string,
+  telefono: string; 
+  fecha: IPicket["$M2"],
+  hora: IPicket["$M2"],
+  corte: boolean, 
+  alisado: boolean,
+  peinado: boolean,
+  tintura: boolean,
+  observacion: string,
+},
+handleSetTurnoParaEditar: (turno: IEditarTurno["turnoParaEditar"])=>void,
+viewTurnos: {
+    id: number,
+    nombreCliente: string,
+    telefono: string,
+    fecha: IPicketEdit,
+    hora: IPicketEdit,
+    corte: boolean, 
+    alisado: boolean,
+    peinado: boolean,
+    tintura: boolean,
+    observacion: string,
 }
+
 }
 
 export interface ICartelAdvertenciaContext {
@@ -97,4 +117,38 @@ export interface OnInputChange {
     value: string | number | boolean | undefined
   }
 
+}
+
+export type IPicket = {
+  $M2: {
+    $D: number,
+    $H: number,
+    $L: string,
+    $M: number,
+    $W: number,
+    $d: string,
+    $m: number,
+    $ms: number,
+    $s: number,
+    $u: any,
+    $x: any,
+    $y:number
+  }
+} | { 
+  $M2: null | string
+}
+
+export interface IPicketEdit {
+  $D: number,
+  $H: number,
+  $L: string,
+  $M: number,
+  $W: number,
+  $d: string,
+  $m: number,
+  $ms: number,
+  $s: number,
+  $u: any,
+  $x: any,
+  $y:number
 }
