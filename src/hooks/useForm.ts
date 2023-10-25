@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
-import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicket, IPicketDate, IPicketDateSinNull, IPicketHour, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
+import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
 
 
 type Props = {
@@ -159,7 +159,7 @@ const handleCancelarEditarTurno = (turno:InitialForm["initialForm"]) => {
 
   setFormState(
     { 
-      id: id +1,
+      id: id,
       nombreCliente: turno.nombreCliente,
       telefono: turno.telefono,
       fecha: turno.fecha,
@@ -180,8 +180,8 @@ const handleReloadForm = () => {
       id: id,
       nombreCliente: "",
       telefono: "",
-      fecha: "",
-      hora: "",
+      fecha: null,
+      hora: null,
       corte: false,
       peinado: false,
       alisado: false,

@@ -5,33 +5,35 @@ import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import dayjs from 'dayjs';
 import { EditarTurnoContext } from '../context/EditarTurnoContext'
+import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useForm } from '../hooks/useForm'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
-import { IEditarTurno, InitialForm, ICartelConfirmarContext, IPicket, IEditarTurnoContext } from '../types/interface'
-
+import { IEditarTurno, InitialForm, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull } from '../types/interface'
+import { cleanEditarTurno, setEditarTurno } from "../reducer/TurnosSlice"
 
 export const EditarTurno = () => {
 
-  const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext); 
-  const { turnoParaEditar } = useContext<IEditarTurnoContext>(EditarTurnoContext);
+  const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext);
+  const { editarTurno } = useSelector((state:IEditarTurno) => state.turnos);
+  // const { turnoParaEditar } = useContext<IEditarTurnoContext>(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
-  const {handleModificarTurno } = useContext(NuevoTurnoContext)
+  // const {handleModificarTurno } = useContext(NuevoTurnoContext)
   const tipoForm:InitialForm["tipoForm"] = "editar";
 
-  const initialForm:IEditarTurno["editarTurno"]= {
-    id: turnoParaEditar.id,
-    nombreCliente: turnoParaEditar.nombreCliente,
-    telefono: turnoParaEditar.telefono,
-    fecha: turnoParaEditar.fecha,
-    hora: turnoParaEditar.hora,
-    corte: turnoParaEditar.corte,
-    peinado: turnoParaEditar.peinado,
-    alisado: turnoParaEditar.alisado,
-    tintura: turnoParaEditar.tintura,
-    observacion: turnoParaEditar.observacion
+  const initialForm = {
+    id: editarTurno.id,
+    nombreCliente: editarTurno.nombreCliente,
+    telefono: editarTurno.telefono,
+    fecha: editarTurno.fecha,
+    hora: editarTurno.hora,
+    corte: editarTurno.corte,
+    peinado: editarTurno.peinado,
+    alisado: editarTurno.alisado,
+    tintura: editarTurno.tintura,
+    observacion: editarTurno.observacion
   }
 
 
@@ -40,19 +42,21 @@ export const EditarTurno = () => {
 
   
 
-  const handleValueDate = (value:IPicket["$M2"]) => {onDatePicker(value)};
-  const handleValueTime = (value:IPicket["$M2"]) => {onTimePicker(value)};
+  const handleValueDate = (value:IPicketDateSinNull) => {onDatePicker(value)};
+  const handleValueTime = (value:IPicketHourSinNull) => {onTimePicker(value)};
 
   const guardarTurnoEditado = () => {
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
       finalizarEditarContacto();
-      handleModificarTurno(formState)
+      // handleModificarTurno(formState)
+
+
     }
   }
 
   const cancelarTurnoEditado = () => {
-    handleCancelarEditarTurno(turnoParaEditar);
+    handleCancelarEditarTurno(editarTurno);
     finalizarEditarContacto();
   }
 
@@ -109,7 +113,7 @@ export const EditarTurno = () => {
               <DatePickerComponent
                 name="fecha"
                 handleValue={handleValueDate}
-                value={dayjs(formState.fecha)}
+                value={dayjs(`${formState.fecha.$y}-${formState.fecha.$M}-${formState.fecha.$D}`)}
                 disabled={datosAEditar.desactivarCampos}
               />
             </div>
@@ -120,7 +124,7 @@ export const EditarTurno = () => {
               <TimePickerComponent 
                 name="hora"
                 handleValue = {handleValueTime}
-                value={dayjs(formState.hora)}
+                value={dayjs(`0000-01-01T${formState.hora.$H}:${formState.hora.$m}`)}
                 disabled={datosAEditar.desactivarCampos}
               />
             </div>

@@ -41,9 +41,8 @@ export const NuevoTurno = () => {
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
       // handleSetListaTurnos(formState); // Enviar al backend
-      handleReloadForm();
-
       dispatch(setNuevoTurno(formState));
+      handleReloadForm();
 
     }
   }

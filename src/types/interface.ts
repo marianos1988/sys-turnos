@@ -91,17 +91,19 @@ export interface IEditarTurnoContext {
 }
 
 export interface IEditarTurno {
-editarTurno: {
-  id: number, 
-  nombreCliente: string,
-  telefono:string, 
-  fecha: IPicketDate,
-  hora: IPicketHour,
-  corte: boolean; 
-  alisado: boolean; 
-  peinado: boolean; 
-  tintura: boolean; 
-  observacion: string;
+  turnos: {
+    editarTurno: {
+      id: number, 
+      nombreCliente: string,
+      telefono:string, 
+      fecha: IPicketDate,
+      hora: IPicketHour,
+      corte: boolean; 
+      alisado: boolean; 
+      peinado: boolean; 
+      tintura: boolean; 
+      observacion: string;
+  }
 },
 turnoParaEditar: {
   id: number,
@@ -167,6 +169,22 @@ export type IPicket = {
   $M2: null | string
 }
 
+export interface IListaTurnos {
+  turnos:{
+    listaTurnos:      {
+      id: any,
+      nombreCliente: string
+      telefono?: string,
+      fecha: IPicketDateSinNull,
+      hora: IPicketHourSinNull,
+      corte: boolean,
+      peinado: boolean,
+      alisado: boolean,
+      tintura: boolean,
+      observacion?: string
+    }[]
+  }
+}
 export type IPicketDate = {
   $D?: number,
   $M?: number,

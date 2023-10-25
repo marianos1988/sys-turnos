@@ -3,8 +3,10 @@ import { useContext } from "react";
 import "../styles/CardTurnos.css";
 import { Checkbox } from '@mui/material'
 import { EditarTurnoContext } from "../context/EditarTurnoContext";
+import { setEditarTurno } from "../reducer/TurnosSlice"
+import { useDispatch } from "react-redux";
 import React from "react";
-import { IEditarTurno, IEliminarTurno } from "../types/interface";
+import { IEditarTurno } from "../types/interface";
 
 type Props = {
   id: number,
@@ -22,12 +24,14 @@ type Props = {
 
 export const CardTurnos = ({ nombreCliente, telefono, fecha, hora, corte, alisado, peinado, tintura, observacion, turnoCompleto }: Props) => {
 
-const { handleSetTurnoParaEditar } = useContext( EditarTurnoContext )
+// const { handleSetTurnoParaEditar } = useContext( EditarTurnoContext )
+const dispatch = useDispatch();
 
 
   const handleOnClick =  (turno:IEditarTurno["turnoParaEditar"]) => { 
     const turnoAMod:any = turno;
-    handleSetTurnoParaEditar(turnoAMod)
+    dispatch(setEditarTurno(turnoAMod))
+    // handleSetTurnoParaEditar(turnoAMod)
 
   }
 
