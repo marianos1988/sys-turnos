@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
-import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicket, InitialForm, OnInputChange } from '../types/interface';
+import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicket, IPicketDate, IPicketDateSinNull, IPicketHour, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
 
 
 type Props = {
@@ -66,18 +66,28 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
   }
 
 
-  const onTimePicker = (hora:IPicket["$M2"]) => {
+  const onTimePicker = (hora:IPicketHourSinNull) => {
+
+    const newHora = {
+      $H: hora.$H,
+      $m: hora.$m
+    }
     setFormState({
       ...formState,
-      hora: hora
+      hora: newHora
     });
   }
 
-  const onDatePicker = (fecha:IPicket["$M2"]) => {
-    
+  const onDatePicker = (fecha:IPicketDateSinNull) => {
+
+    const newFecha = {
+      $D: fecha.$D,
+      $M:fecha.$M,
+      $y:fecha.$y
+    }
     setFormState({
       ...formState,
-      fecha: fecha
+      fecha: newFecha
     });
   }
 

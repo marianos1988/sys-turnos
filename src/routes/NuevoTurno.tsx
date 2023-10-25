@@ -5,13 +5,17 @@ import "../styles/NuevoTurno.css"
 import { useForm } from '../hooks/useForm'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import {  IPicket, InitialForm } from '../types/interface'
+import { IPicketDate, IPicketDateSinNull, IPicketHour, IPicketHourSinNull, InitialForm } from '../types/interface'
+import { useDispatch } from "react-redux";
+import { setNuevoTurno } from "../reducer/TurnosSlice"
+
 
 
 export const NuevoTurno = () => {
 
-  
-  const { handleSetListaTurnos } = useContext( NuevoTurnoContext);
+
+  const dispatch = useDispatch();
+  // const { handleSetListaTurnos } = useContext( NuevoTurnoContext);
 
   const initialForm: InitialForm["initialForm"]= {
     id: 0,
@@ -36,14 +40,16 @@ export const NuevoTurno = () => {
     e.preventDefault();
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
-      handleSetListaTurnos(formState); // Enviar al backend
+      // handleSetListaTurnos(formState); // Enviar al backend
       handleReloadForm();
+
+      dispatch(setNuevoTurno(formState));
 
     }
   }
 
-  const handleValueDate = (value: IPicket["$M2"]) => {onDatePicker(value)};
-  const handleValueTime = (value: IPicket["$M2"]) => {onTimePicker(value)};
+  const handleValueDate = (value: IPicketDateSinNull) => {onDatePicker(value)};
+  const handleValueTime = (value: IPicketHourSinNull) => {onTimePicker(value)};
 
 
   return (

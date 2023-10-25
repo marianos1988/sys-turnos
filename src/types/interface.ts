@@ -5,8 +5,8 @@ export interface InitialForm {
     id: any,
     telefono?: string,
     nombreCliente: string,
-    fecha: IPicket["$M2"],
-    hora: IPicket["$M2"],
+    fecha?: IPicketDate,
+    hora?: IPicketHour,
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -33,8 +33,8 @@ export interface INuevoTurnoContext {
     id: any,
     nombreCliente: string
     telefono?: string,
-    fecha: IPicket["$M2"],
-    hora: IPicket["$M2"],
+    fecha: IPicketDate,
+    hora: IPicketHour,
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -63,8 +63,8 @@ export interface INuevoTurnoContext {
     id: any,
     nombreCliente: string
     telefono?: string,
-    fecha: IPicket["$M2"],
-    hora: IPicket["$M2"],
+    fecha: IPicketDate,
+    hora: IPicketHour,
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -95,8 +95,8 @@ editarTurno: {
   id: number, 
   nombreCliente: string,
   telefono:string, 
-  fecha: IPicket["$M2"],
-  hora: IPicket["$M2"],
+  fecha: IPicketDate,
+  hora: IPicketHour,
   corte: boolean; 
   alisado: boolean; 
   peinado: boolean; 
@@ -107,8 +107,8 @@ turnoParaEditar: {
   id: number,
   nombreCliente: string,
   telefono: string; 
-  fecha: IPicket["$M2"],
-  hora: IPicket["$M2"],
+  fecha: IPicketDate,
+  hora: IPicketHour,
   corte: boolean, 
   alisado: boolean,
   peinado: boolean,
@@ -167,6 +167,27 @@ export type IPicket = {
   $M2: null | string
 }
 
+export type IPicketDate = {
+  $D?: number,
+  $M?: number,
+  $y?: number
+} | null | ""
+
+export type IPicketDateSinNull = {
+  $D?: number,
+  $M?: number,
+  $y?: number
+}
+
+export type IPicketHour = {
+  $H: number | null,
+  $m: number | null
+} | null | ""
+
+export type IPicketHourSinNull = {
+  $m: number,
+  $H: number
+}
 export interface IPicketEdit {
   $D: number,
   $H: number,
