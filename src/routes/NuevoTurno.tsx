@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
-import { useForm } from '../hooks/useForm'
+import { useFormNew } from '../hooks/useFormNew'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import { IPicketDate, IPicketDateSinNull, IPicketHour, IPicketHourSinNull, InitialForm } from '../types/interface'
@@ -32,7 +32,7 @@ export const NuevoTurno = () => {
   const tipoForm: InitialForm["tipoForm"] = "crear";
 
    
-  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useForm({initialForm,tipoForm});
+  const { formState, onInputChange, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleReloadForm} = useFormNew({initialForm,tipoForm});
 
   const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;
 

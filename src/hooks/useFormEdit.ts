@@ -1,16 +1,14 @@
 import { useContext } from 'react';
 import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
-import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
+import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, InitialFormEdit, OnInputChange } from '../types/interface';
 
 
 type Props = {
-  initialForm: InitialForm["initialForm"] | IEditarTurno["editarTurno"]
+  initialForm:IEditarTurno["editarTurno"]
   tipoForm: InitialForm["tipoForm"]
 }
-export const useForm = ({ initialForm, tipoForm }:Props) => {
-
-  let id = 0;
+export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
 
   const { handleMostrarCartelAdvertencia } = useContext<ICartelAdvertenciaContext>( CartelAdvertenciaContext)
   const [formState, setFormState] = useState(initialForm);
@@ -155,11 +153,11 @@ export const useForm = ({ initialForm, tipoForm }:Props) => {
     return validar;   
 }
 
-const handleCancelarEditarTurno = (turno:InitialForm["initialForm"]) => {
+const handleCancelarEditarTurno = (turno:IEditarTurno["editarTurno"]) => {
 
   setFormState(
     { 
-      id: id,
+      id: turno.id,
       nombreCliente: turno.nombreCliente,
       telefono: turno.telefono,
       fecha: turno.fecha,
@@ -169,24 +167,6 @@ const handleCancelarEditarTurno = (turno:InitialForm["initialForm"]) => {
       alisado: turno.alisado,
       tintura: turno.tintura,
       observacion: turno.observacion
-    }
-  )
-}
-
-const handleReloadForm = () => {
-
-  setFormState(
-    { 
-      id: id,
-      nombreCliente: "",
-      telefono: "",
-      fecha: null,
-      hora: null,
-      corte: false,
-      peinado: false,
-      alisado: false,
-      tintura: false,
-      observacion: ""
     }
   )
 }
@@ -202,7 +182,6 @@ return {
     agregarPeinado,
     agregarTintura,
     validarDatos,
-    handleReloadForm,
     handleCancelarEditarTurno
 
   }

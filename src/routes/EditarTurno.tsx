@@ -7,24 +7,24 @@ import dayjs from 'dayjs';
 import { EditarTurnoContext } from '../context/EditarTurnoContext'
 import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
-import { useForm } from '../hooks/useForm'
+import { useFormEdit } from '../hooks/useFormEdit'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
-import { IEditarTurno, InitialForm, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull } from '../types/interface'
-import { cleanEditarTurno, setEditarTurno } from "../reducer/TurnosSlice"
+import { IEditarTurno, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
+import { cleanEditarTurno, saveEditarTurno, setEditarTurno } from "../reducer/TurnosSlice"
 
 export const EditarTurno = () => {
-
+  const dispatch = useDispatch();
   const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext);
   const { editarTurno } = useSelector((state:IEditarTurno) => state.turnos);
   // const { turnoParaEditar } = useContext<IEditarTurnoContext>(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
   // const {handleModificarTurno } = useContext(NuevoTurnoContext)
-  const tipoForm:InitialForm["tipoForm"] = "editar";
+  const tipoForm:InitialFormEdit["tipoForm"] = "editar";
 
   const initialForm = {
-    id: editarTurno.id,
+
     nombreCliente: editarTurno.nombreCliente,
     telefono: editarTurno.telefono,
     fecha: editarTurno.fecha,
@@ -38,7 +38,7 @@ export const EditarTurno = () => {
 
 
 
-  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useForm({initialForm,tipoForm});
+  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useFormEdit({initialForm,tipoForm});
 
   
 
@@ -50,6 +50,9 @@ export const EditarTurno = () => {
     if(datosValidados) {
       finalizarEditarContacto();
       // handleModificarTurno(formState)
+      dispatch(saveEditarTurno(formState));
+      dispatch(cleanEditarTurno());
+
 
 
     }

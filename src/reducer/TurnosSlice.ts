@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { IPicket, InitialForm } from "../types/interface";
+import { IPicketDate, IPicketHour} from "../types/interface";
 
 interface InitialState {
   listaTurnos: InitialState["editarTurno"][],
@@ -7,8 +7,8 @@ interface InitialState {
     id: any,
     telefono?: string,
     nombreCliente: string,
-    fecha: IPicket["$M2"],
-    hora: IPicket["$M2"],
+    fecha: IPicketDate,
+    hora: IPicketHour,
     corte: boolean,
     peinado: boolean,
     alisado: boolean,
@@ -56,6 +56,7 @@ export const TurnosSlice = createSlice({
       }]
 		},
     setEditarTurno: (state, action) => {
+
       state.editarTurno = {
           id: action.payload.id,
           nombreCliente: action.payload.nombreCliente,
@@ -84,24 +85,29 @@ export const TurnosSlice = createSlice({
       }
     },
     saveEditarTurno: (state,action) => {
-      state.listaTurnos.map(turno => {
-        if(turno.id === action.payload.id) {
-          turno.nombreCliente = action.payload.nombreCliente
-          turno.telefono = action.payload.telefono
-          turno.fecha = action.payload.fecha
-          turno.hora = action.payload.hora
-          turno.corte = action.payload.corte
-          turno.peinado = action.payload.peinado
-          turno.alisado = action.payload.alisado
-          turno.tintura = action.payload.tintura
-          turno.observacion = action.payload.observacion
+      let nuevalista = state.listaTurnos;
+
+      console.log(action.payload)
+      nuevalista.map(turno => {
+        if(turno.id === state.editarTurno.id) {
+          turno.nombreCliente = action.payload.nombreCliente;
+          turno.telefono = action.payload.telefono;
+          turno.fecha = action.payload.fecha;
+          turno.hora = action.payload.hora;
+          turno.corte = action.payload.corte;
+          turno.peinado = action.payload.peinado;
+          turno.alisado = action.payload.alisado;
+          turno.tintura = action.payload.tintura;
+          turno.observacion = action.payload.observacion;
         }
       })
+
+      state.listaTurnos = nuevalista;
     }
 
 	}
 });
   
-  export const { setNuevoTurno, setEditarTurno, cleanEditarTurno } = TurnosSlice.actions;
+  export const { setNuevoTurno, saveEditarTurno, setEditarTurno, cleanEditarTurno } = TurnosSlice.actions;
   
   export default TurnosSlice.reducer;

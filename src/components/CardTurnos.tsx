@@ -29,8 +29,8 @@ const dispatch = useDispatch();
 
 
   const handleOnClick =  (turno:IEditarTurno["turnoParaEditar"]) => { 
-    const turnoAMod:any = turno;
-    dispatch(setEditarTurno(turnoAMod))
+ 
+    dispatch(setEditarTurno(turno))
     // handleSetTurnoParaEditar(turnoAMod)
 
   }
