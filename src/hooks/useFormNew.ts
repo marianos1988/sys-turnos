@@ -188,6 +188,23 @@ const handleReloadForm = () => {
       observacion: ""
     }
   )
+
+  setTimeout(()=>{
+    setFormState(
+      { 
+        id:"",
+        nombreCliente: "",
+        telefono: "",
+        fecha: "",
+        hora: "",
+        corte: false,
+        peinado: false,
+        alisado: false,
+        tintura: false,
+        observacion: ""
+      }
+    )
+  },500)
 }
 
 
