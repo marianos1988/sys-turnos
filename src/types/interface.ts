@@ -275,9 +275,12 @@ export interface ICartelConfirmarContext {
 export interface ICarteles {
   carteles: {
     cartelAdvertencia: {
-      mostrar: string,
+      mostrar: boolean,
       mensaje: string,
-      confirmarBtn:string
+    },cartelConfirmar: {
+      mostrar: boolean,
+      mensaje: string,
+      aplicarCambios: boolean
     }
   }
 }

@@ -22,7 +22,7 @@ export const CartelAdvertenciaProvider = ({ children }:Props) => {
     setMostrarCartelAdvertencia({ 
       mostrar: !mostrarCartelAdvertencia.mostrar, 
       mensaje: mensaje,
-    });
+    }); 
   }
 
 

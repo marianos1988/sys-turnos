@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
+import React from 'react'
 import "../styles/EditarTurno.css"
 import { Checkbox } from '@mui/material'
 import { DatePickerComponent } from '../components/DatePickerComponent'
@@ -9,15 +10,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useFormEdit } from '../hooks/useFormEdit'
 import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
-import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
-import React from 'react'
+// import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import { IEditarTurno, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
 import { cleanEditarTurno, saveEditarTurno } from "../reducer/TurnosSlice"
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
+import { mostrarCartelConfirmar } from '../reducer/CartelesSlice'
 
 export const EditarTurno = () => {
   const dispatch = useDispatch();
-  const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext);
+  // const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext);
   const { editarTurno } = useSelector((state:IEditarTurno) => state.turnos);
   // const { turnoParaEditar } = useContext<IEditarTurnoContext>(EditarTurnoContext);
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
@@ -53,7 +54,7 @@ export const EditarTurno = () => {
       // handleModificarTurno(formState)
       dispatch(saveEditarTurno(formState));
       dispatch(cleanEditarTurno());
-      dispatch(mostrarCartelAdvertencia("El turno fue modificado"))
+      dispatch(mostrarCartelAdvertencia("Turno modificado"));
 
     }
   }
@@ -64,10 +65,9 @@ export const EditarTurno = () => {
   }
 
   const eliminarTurno = () => {
-    handleMostrarCartelConfirmar("¿Quieres eliminar el turno?")
-    if(aplicarCambios) {
-      
-    }
+
+    dispatch(mostrarCartelConfirmar("¿Quieres eliminar el turno?"));
+
   }
 
   return (

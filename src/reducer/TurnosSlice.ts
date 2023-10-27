@@ -111,7 +111,6 @@ export const TurnosSlice = createSlice({
     deleteEditarTurno: (state) => {
       let nuevalista = state.listaTurnos;
       let nuevalistaFiltrada = nuevalista.filter(turno => turno.id !== state.editarTurno.id);
-
       state.listaTurnos = nuevalistaFiltrada;
 
     }

@@ -19,7 +19,7 @@ export const CartelConfirmarProvider = ({ children }:Props) => {
 
     mostrar: false,
     mensaje: "", 
-
+ 
   });
 	// const { handleEliminarTurno } = useContext<INuevoTurnoContext>(NuevoTurnoContext)
 	const { turnoParaEditar } = useContext(EditarTurnoContext)

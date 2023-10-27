@@ -1,37 +1,45 @@
 import React from 'react'
 import "../styles/CartelConfirmar.css"
 import { BotonNav } from "./BotonNav"
-import { useContext } from 'react'
-import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
-import { NavLink } from 'react-router-dom'
+import { cerrarCartelConfirmar } from '../reducer/CartelesSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteEditarTurno, cleanEditarTurno } from "../reducer/TurnosSlice"
+// import { useContext } from 'react'
+// import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { ICartelAdvertenciaContext, ICarteles } from '../types/interface'
 
 
 export const CartelConfirmar = () => {
-
-  const { handleConfirmarCartel, mostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext) 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { cartelConfirmar } = useSelector((state:ICarteles) => state.carteles);
+  // const { handleConfirmarCartel, mostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext) 
   return (
     <>
     {
-      (mostrarCartelConfirmar.mostrar) 
-      ? 
+      (cartelConfirmar.mostrar) 
+      ?  
         (      
           <div className='container-cartel-confirmar'>
               <div className='cartel-confirmar'>
-                <h2 className='titulo-cartel-confirmar'>{mostrarCartelConfirmar.mensaje}</h2>
+                <h2 className='titulo-cartel-confirmar'>{cartelConfirmar.mensaje}</h2>
                 <div className='group-botones-confirmar'>
                   <NavLink to="/MisTurnos">
                     <BotonNav 
                       className= "boton-cartel-confirmar"
                       handleOnClick= { ()=>  {
-                        handleConfirmarCartel(true)
+                        dispatch(cerrarCartelConfirmar());
+                        dispatch(deleteEditarTurno());
+                        dispatch(cleanEditarTurno());
+                        // navigate("/");
                       }}
-
                     >Aceptar</BotonNav>
                   </NavLink>
                   <BotonNav 
                     className= "boton-cartel-confirmar"
                     handleOnClick= { ()=>  {
-                      handleConfirmarCartel(false)
+                      dispatch(cerrarCartelConfirmar());
                     }}
 
                   >Cancelar</BotonNav>

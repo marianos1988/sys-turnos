@@ -1,18 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+
 type DatosCartel = {
   cartelAdvertencia: {
-    mostrar: boolean
+    mostrar: boolean,
     mensaje?: string
-    confirmarBtn?:string
+  }
+  cartelConfirmar: {
+    mostrar: boolean,
+    mensaje?: string
   }
 }
 
 const initialState:DatosCartel = {
   cartelAdvertencia: {
     mostrar: false,
+    mensaje: ""
+  },
+  cartelConfirmar: {
+    mostrar: false,
     mensaje: "",
-    confirmarBtn : ""
   }
 }
 
@@ -21,19 +28,26 @@ export const CartelAdvertenciaSlice = createSlice({
   initialState: initialState,
   reducers: {
     mostrarCartelAdvertencia: (state,action) => {
-      state.cartelAdvertencia.mostrar= !state.cartelAdvertencia.mostrar;
+      state.cartelAdvertencia.mostrar= true;
       state.cartelAdvertencia.mensaje= action.payload;
     },
     cerrarCartelAdvertencia: (state) => {
       state.cartelAdvertencia = {
           mostrar: false,
           mensaje: "",
-          confirmarBtn : ""
       }
+    },
+    mostrarCartelConfirmar: (state, action) => {
+      state.cartelConfirmar.mostrar = true;
+      state.cartelConfirmar.mensaje = action.payload;
+    },
+    cerrarCartelConfirmar: (state) => {
+      state.cartelConfirmar.mostrar = false,
+      state.cartelConfirmar.mensaje = ""
     }
   }
 })
 
-export const { mostrarCartelAdvertencia,cerrarCartelAdvertencia } = CartelAdvertenciaSlice.actions;
+export const { mostrarCartelAdvertencia,cerrarCartelAdvertencia, mostrarCartelConfirmar, cerrarCartelConfirmar } = CartelAdvertenciaSlice.actions;
   
 export default CartelAdvertenciaSlice.reducer;
