@@ -1,8 +1,9 @@
-import { useContext } from 'react';
-import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
+// import { useContext } from 'react';
+// import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
 import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDate, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
-
+import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
+import { useDispatch } from 'react-redux';
 
 type Props = {
   initialForm: InitialForm["initialForm"] | IEditarTurno["editarTurno"]
@@ -10,8 +11,8 @@ type Props = {
 }
 export const useFormNew = ({ initialForm, tipoForm }:Props) => {
 
-
-  const { handleMostrarCartelAdvertencia } = useContext<ICartelAdvertenciaContext>( CartelAdvertenciaContext)
+  const dispatchh = useDispatch();
+  // const { handleMostrarCartelAdvertencia } = useContext<ICartelAdvertenciaContext>( CartelAdvertenciaContext)
   const [formState, setFormState] = useState(initialForm);
 
 
@@ -104,35 +105,35 @@ export const useFormNew = ({ initialForm, tipoForm }:Props) => {
   const validarDatos = (form: InitialForm["initialForm"]) => {
 
     if(form.nombreCliente.length > 25) {
-      handleMostrarCartelAdvertencia("Nombre demasiado largo");
+      dispatchh(mostrarCartelAdvertencia("Nombre demasiado largo"));
       return false;  
     }
     else if(form.nombreCliente.length < 4) {
-      handleMostrarCartelAdvertencia("Nombre demasiado corto");
+      dispatchh(mostrarCartelAdvertencia("Nombre demasiado corto"));
       return false; 
     }
     else if(validarSoloNumeros(form.telefono)) {
-      handleMostrarCartelAdvertencia("El telefono son solo numeros");
+      dispatchh(mostrarCartelAdvertencia("El telefono son solo numeros"));
       return false;
     }
     else if(form.fecha === "") {
-      handleMostrarCartelAdvertencia("Ingrese una fecha");
+      dispatchh(mostrarCartelAdvertencia("Ingrese una fecha"));
       return false;
     }
     else if(form.hora === "") {
-      handleMostrarCartelAdvertencia("Ingrese una hora");
+      dispatchh(mostrarCartelAdvertencia("Ingrese una hora"));
       return false;
     }
     else if(!(form.corte === true) && !(form.peinado === true) && !(form.alisado === true) && !(form.tintura === true)) {
-      handleMostrarCartelAdvertencia("Debes elegir un tipo de trabajo");
+      dispatchh(mostrarCartelAdvertencia("Debes elegir un tipo de trabajo"));
       return false;
     }
     else {
       if(tipoForm === "crear") {
-        handleMostrarCartelAdvertencia("Turno registrado");
+        dispatchh(mostrarCartelAdvertencia("Turno registrado"));
       }
       else if(tipoForm === "editar") {
-        handleMostrarCartelAdvertencia("Turno modificado");
+        dispatchh(mostrarCartelAdvertencia("Turno modificado"));
       }
 
       return true;

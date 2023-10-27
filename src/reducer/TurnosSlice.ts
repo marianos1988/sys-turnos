@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { IPicketDate, IPicketHour} from "../types/interface";
 
+
 interface InitialState {
   listaTurnos: InitialState["editarTurno"][],
   editarTurno: {
@@ -35,7 +36,9 @@ const initialState:InitialState = {
   idTurnos: 0
 }
 
+
 export const TurnosSlice = createSlice({
+
 
 	name: "turnos",
 	initialState: initialState,
@@ -87,6 +90,7 @@ export const TurnosSlice = createSlice({
     saveEditarTurno: (state,action) => {
       let nuevalista = state.listaTurnos;
 
+
       nuevalista.map(turno => {
         if(turno.id === state.editarTurno.id) {
           turno.nombreCliente = action.payload.nombreCliente;
@@ -102,6 +106,7 @@ export const TurnosSlice = createSlice({
       })
 
       state.listaTurnos = nuevalista;
+
     },
     deleteEditarTurno: (state) => {
       let nuevalista = state.listaTurnos;

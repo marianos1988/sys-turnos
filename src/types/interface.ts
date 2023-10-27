@@ -266,9 +266,18 @@ export interface ICartelConfirmarContext {
  aplicarCambios: boolean,
  handleMostrarCartelConfirmar: (mensaje: string)=>void,
  handleConfirmarCartel:(valor: boolean)=>void,
- mostrarCartelConfirmar: {
-  mostrar: boolean;
-  mensaje: string;
+  mostrarCartelConfirmar: {
+    mostrar: boolean;
+    mensaje: string;
+  }
 }
 
+export interface ICarteles {
+  carteles: {
+    cartelAdvertencia: {
+      mostrar: string,
+      mensaje: string,
+      confirmarBtn:string
+    }
+  }
 }

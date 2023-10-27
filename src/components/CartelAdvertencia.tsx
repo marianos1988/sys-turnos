@@ -1,26 +1,31 @@
-import React, { useContext } from 'react'
+// import React, { useContext } from 'react'
+import React from "react"
 import "../styles/CartelAdvertencia.css"
 import { BotonNav } from "./BotonNav"
-import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext'
+// import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext'
+import { useSelector, useDispatch } from "react-redux"
+import { cerrarCartelAdvertencia } from "../reducer/CartelesSlice"
+import { ICarteles } from "../types/interface"
 
 
 
 export const CartelAdvertencia = () => {
-
-  const { mostrarCartelAdvertencia, handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
-  return (
+  const dispatch = useDispatch();
+  const { cartelAdvertencia } = useSelector((state:ICarteles) => state.carteles);
+  // const { mostrarCartelAdvertencia, handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
+  return (  
     <>
       {
-        (mostrarCartelAdvertencia.mostrar) 
+        (cartelAdvertencia.mostrar) 
         ? 
           (      
             <div className='container-cartel-advertencias'>
                 <div className='cartel-advertencia'>
-                  <h2 className='titulo-cartel-advertencia'>{mostrarCartelAdvertencia.mensaje}</h2>
+                  <h2 className='titulo-cartel-advertencia'>{cartelAdvertencia.mensaje}</h2>
                   <BotonNav 
                     className= "boton-cartel-advertencia"
                     handleOnClick= { ()=>  {
-                      handleMostrarCartelAdvertencia("");
+                      dispatch(cerrarCartelAdvertencia());
                     }}
                   >Aceptar</BotonNav>
                 </div>

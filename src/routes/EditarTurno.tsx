@@ -13,6 +13,7 @@ import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
 import { IEditarTurno, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
 import { cleanEditarTurno, saveEditarTurno } from "../reducer/TurnosSlice"
+import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 
 export const EditarTurno = () => {
   const dispatch = useDispatch();
@@ -52,8 +53,7 @@ export const EditarTurno = () => {
       // handleModificarTurno(formState)
       dispatch(saveEditarTurno(formState));
       dispatch(cleanEditarTurno());
-
-
+      dispatch(mostrarCartelAdvertencia("El turno fue modificado"))
 
     }
   }
