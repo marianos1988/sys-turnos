@@ -32,7 +32,7 @@ export const CartelConfirmar = () => {
                         dispatch(cerrarCartelConfirmar());
                         dispatch(deleteEditarTurno());
                         dispatch(cleanEditarTurno());
-                        // navigate("/");
+                        navigate("/");
                       }}
                     >Aceptar</BotonNav>
                   </NavLink>

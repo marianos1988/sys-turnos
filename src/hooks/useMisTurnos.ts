@@ -1,12 +1,30 @@
-import { useContext,useState } from "react";
-import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
-import { INuevoTurnoContext, IPicketEdit } from "../types/interface";
+import { useState } from "react";
+// import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
+import { INuevoTurnoContext, IPicketEdit, IPicketDate,IPicketHour } from "../types/interface";
+import { useSelector } from "react-redux";
 
+interface ListaTurnos {
+  turnos: {
+    listaTurnos: {
+      id: any,
+      telefono?: string,
+      nombreCliente: string,
+      fecha: IPicketDate,
+      hora: IPicketHour,
+      corte: boolean,
+      peinado: boolean,
+      alisado: boolean,
+      tintura: boolean,
+      observacion?: string
+    }[]
+  }
 
+}
 
 export const useMisTurnos = () => {
 
-  const { listaTurnos } = useContext<INuevoTurnoContext>(NuevoTurnoContext);
+  const { listaTurnos } = useSelector((state:ListaTurnos) => state.turnos)
+  // const { listaTurnos } = useContext<INuevoTurnoContext>();
   const [listaFiltrada, setListaFiltrada] = useState<any>([]);
 
 
