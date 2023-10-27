@@ -12,7 +12,7 @@ import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import React from 'react'
 import { IEditarTurno, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
-import { cleanEditarTurno, saveEditarTurno, setEditarTurno } from "../reducer/TurnosSlice"
+import { cleanEditarTurno, saveEditarTurno } from "../reducer/TurnosSlice"
 
 export const EditarTurno = () => {
   const dispatch = useDispatch();
