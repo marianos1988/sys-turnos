@@ -1,5 +1,3 @@
-// import { useContext } from 'react';
-// import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
 import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDate, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
@@ -12,7 +10,6 @@ type Props = {
 export const useFormNew = ({ initialForm, tipoForm }:Props) => {
 
   const dispatchh = useDispatch();
-  // const { handleMostrarCartelAdvertencia } = useContext<ICartelAdvertenciaContext>( CartelAdvertenciaContext)
   const [formState, setFormState] = useState(initialForm);
 
 

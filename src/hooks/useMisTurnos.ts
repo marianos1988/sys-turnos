@@ -1,6 +1,5 @@
 import { useState } from "react";
-// import { NuevoTurnoContext } from "../context/NuevoTurnoContext"
-import { INuevoTurnoContext, IPicketEdit, IPicketDate,IPicketHour } from "../types/interface";
+import { IPicketEdit, IPicketDate,IPicketHour } from "../types/interface";
 import { useSelector } from "react-redux";
 
 interface ListaTurnos {
@@ -24,7 +23,7 @@ interface ListaTurnos {
 export const useMisTurnos = () => {
 
   const { listaTurnos } = useSelector((state:ListaTurnos) => state.turnos)
-  // const { listaTurnos } = useContext<INuevoTurnoContext>();
+
   const [listaFiltrada, setListaFiltrada] = useState<any>([]);
 
 

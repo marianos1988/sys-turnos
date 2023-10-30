@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
-import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
+import React from 'react'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
 import { useFormNew } from '../hooks/useFormNew'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import { IPicketDate, IPicketDateSinNull, IPicketHour, IPicketHourSinNull, InitialForm } from '../types/interface'
+import { IPicketDateSinNull, IPicketHourSinNull, InitialForm } from '../types/interface'
 import { useDispatch } from "react-redux";
 import { setNuevoTurno } from "../reducer/TurnosSlice"
 
@@ -13,9 +12,7 @@ import { setNuevoTurno } from "../reducer/TurnosSlice"
 
 export const NuevoTurno = () => {
 
-
   const dispatch = useDispatch();
-  // const { handleSetListaTurnos } = useContext( NuevoTurnoContext);
 
   const initialForm: InitialForm["initialForm"]= {
     id: 0,
@@ -40,7 +37,6 @@ export const NuevoTurno = () => {
     e.preventDefault();
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
-      // handleSetListaTurnos(formState); // Enviar al backend
       dispatch(setNuevoTurno(formState));
       handleReloadForm();
 

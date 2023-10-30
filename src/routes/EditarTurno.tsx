@@ -5,24 +5,21 @@ import { Checkbox } from '@mui/material'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import dayjs from 'dayjs';
-import { EditarTurnoContext } from '../context/EditarTurnoContext'
 import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useFormEdit } from '../hooks/useFormEdit'
-import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
-// import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
-import { IEditarTurno, ICartelConfirmarContext, IPicket, IEditarTurnoContext, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
+import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
 import { cleanEditarTurno, saveEditarTurno } from "../reducer/TurnosSlice"
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { mostrarCartelConfirmar } from '../reducer/CartelesSlice'
 
 export const EditarTurno = () => {
   const dispatch = useDispatch();
-  // const { handleMostrarCartelConfirmar, aplicarCambios }= useContext<ICartelConfirmarContext>(CartelConfirmarContext);
+
   const { editarTurno } = useSelector((state:IEditarTurno) => state.turnos);
-  // const { turnoParaEditar } = useContext<IEditarTurnoContext>(EditarTurnoContext);
+
   const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
-  // const {handleModificarTurno } = useContext(NuevoTurnoContext)
+
   const tipoForm:InitialFormEdit["tipoForm"] = "editar";
 
   const initialForm = {
@@ -51,7 +48,6 @@ export const EditarTurno = () => {
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
       finalizarEditarContacto();
-      // handleModificarTurno(formState)
       dispatch(saveEditarTurno(formState));
       dispatch(cleanEditarTurno());
       dispatch(mostrarCartelAdvertencia("Turno modificado"));

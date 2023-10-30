@@ -4,17 +4,14 @@ import { BotonNav } from "./BotonNav"
 import { cerrarCartelConfirmar } from '../reducer/CartelesSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteEditarTurno, cleanEditarTurno } from "../reducer/TurnosSlice"
-// import { useContext } from 'react'
-// import { CartelConfirmarContext } from '../context/CartelConfirmarContext'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { ICartelAdvertenciaContext, ICarteles } from '../types/interface'
+import { ICarteles } from '../types/interface'
 
 
 export const CartelConfirmar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartelConfirmar } = useSelector((state:ICarteles) => state.carteles);
-  // const { handleConfirmarCartel, mostrarCartelConfirmar, aplicarCambios }= useContext(CartelConfirmarContext) 
   return (
     <>
     {

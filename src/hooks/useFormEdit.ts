@@ -1,7 +1,5 @@
-// import { useContext } from 'react';
-// import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { useReducer, useState } from 'react';
-import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, InitialFormEdit, OnInputChange } from '../types/interface';
+import { CheckboxAction, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { useDispatch } from 'react-redux';
 
@@ -11,7 +9,6 @@ type Props = {
 }
 export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
   const dispatchh = useDispatch();
-  // const { handleMostrarCartelAdvertencia } = useContext<ICartelAdvertenciaContext>( CartelAdvertenciaContext)
   const [formState, setFormState] = useState(initialForm);
 
 

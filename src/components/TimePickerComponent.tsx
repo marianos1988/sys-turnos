@@ -2,9 +2,6 @@ import { TimePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import React from 'react'
-import dayjs from 'dayjs';
-import { IPicket } from '../types/interface';
-//value={dayjs('2022-04-17T15:30')}
 
 type Props = {
   handleValue(newValue:any | null): void,

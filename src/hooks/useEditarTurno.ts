@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { IPicketEdit } from "../types/interface"
 
 export const useEditarTurno = () => {
 

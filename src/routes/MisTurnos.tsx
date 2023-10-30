@@ -1,14 +1,11 @@
 import React from 'react'
-import { useContext } from 'react'
 import { BotonNav } from "../components/BotonNav"
 import { useState } from 'react';
 import { useSelector } from "react-redux";
-// import { NuevoTurnoContext } from '../context/NuevoTurnoContext'
 import { DatePickerComponent } from '../components/DatePickerComponent';
 import { CardTurnos } from '../components/CardTurnos';
 import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
-// import { CartelAdvertenciaContext } from '../context/CartelAdvertenciaContext';
 import { NavLink } from 'react-router-dom';
 import { IEditarTurno, IListaTurnos, IPicketEdit } from '../types/interface';
 import { mostrarCartelAdvertencia } from '../reducer/CartelesSlice';
@@ -18,10 +15,8 @@ import { useDispatch } from 'react-redux';
 export const MisTurnos = () => {
   const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
   const dispatch = useDispatch();
-  // const { listaTurnos } = useContext( NuevoTurnoContext );
   const [ listaTurnosView, setListaTurnosView ]= useState<any>(listaTurnos)
   const { mostrarFecha, mostrarHora, handleSelectDate,listaFiltrada} = useMisTurnos()
-  // const { handleMostrarCartelAdvertencia } = useContext( CartelAdvertenciaContext )
 
 
 
