@@ -1,0 +1,90 @@
+.container-login {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 540px;
+  padding-top: 50px;
+  min-height: 93vh; 
+  background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+  border: none;
+  animation: aparecer .5s ease-in;
+  color: white;
+}
+
+.cartel-login {
+  display: flex;
+  flex-direction: row;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 45px;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(179,179,179,1) 100%);
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+}
+
+.container-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-titulo img {
+  margin-top: 20px;
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.titulo {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.block-input-login {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 20px;
+  font-family: 'Lora', serif, 'Anton', sans-serif;
+  
+   
+
+}
+
+.block-input-login input {
+  border-radius: 5px;
+  padding: 15px 15px;
+  font-size: 16px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+}
+
+.block-input-login span {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.container-boton-login {
+  transform: translate(74px,16px);
+}
+
+@media (max-width: 618px) {
+  .cartel-login {
+    margin-top: 60px;
+    flex-direction: column;
+  }
+}

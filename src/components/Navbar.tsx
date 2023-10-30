@@ -21,12 +21,16 @@ export const Navbar = () => {
           </NavLink>
         </div>
         <div className='position-button-nav'>
-          <NavLink to="/">
+          <NavLink to="/home">
             <BotonNav handleOnClick={undefined}>
               <CalendarMonthIcon className='icon-nav' />
               <p>Mis Turnos</p>
             </BotonNav>
           </NavLink>
+        </div>
+        <div className='container-user-login'>
+          <p>Usuario: </p>
+          <div>Salir</div>
         </div>
       </nav>
     </>
