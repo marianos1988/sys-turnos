@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Checkbox } from '@mui/material'
 import "../styles/NuevoTurno.css"
 import { useFormNew } from '../hooks/useFormNew'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import { IPicketDateSinNull, IPicketHourSinNull, InitialForm } from '../types/interface'
-import { useDispatch } from "react-redux";
+import { IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialForm } from '../types/interface'
+import { useDispatch, useSelector } from "react-redux";
 import { setNuevoTurno } from "../reducer/TurnosSlice"
+import { useNavigate } from 'react-router-dom'
 
 
 
 export const NuevoTurno = () => {
+  const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -46,7 +49,11 @@ export const NuevoTurno = () => {
   const handleValueDate = (value: IPicketDateSinNull) => {onDatePicker(value)};
   const handleValueTime = (value: IPicketHourSinNull) => {onTimePicker(value)};
 
-
+  useEffect(()=>{
+    if(userLogeado.logeado === false && userLogeado.user === "") {
+    navigate("/");
+    }
+  })
   return (
     <>
       <div className='container-nuevo-turno'>

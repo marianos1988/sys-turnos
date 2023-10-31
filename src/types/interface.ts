@@ -284,3 +284,12 @@ export interface ICarteles {
     }
   }
 }
+
+export interface IUserLogeado {
+  users: {
+    userLogeado: {
+      logeado:boolean,
+      user: string
+    }
+  }
+}

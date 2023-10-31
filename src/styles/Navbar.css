@@ -43,13 +43,36 @@
 }
 
 .container-user-login {
-display: flex;
-flex-direction: row;
-justify-content: right;
-right: 5%;
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    align-items: center;
+    margin-right: 2%;
 }
 
-.container-user-login
+.container-user-login p {
+    font-size: 18px;
+    color: black;
+    padding: 4px;
+}
 
+.container-user-login button {
+    font-size: 22px;
+    color: rgb(0, 17, 92);
+    margin-left: 10px;
+    border: none;
+    border-bottom: 2px solid rgb(0, 17, 92);
+    background-color: inherit;
+    cursor: pointer;
+}
 
+.text-btn {
+   display: inherit;
+}
+
+@media (max-width:675px) {
+    .text-btn {
+        display: none;
+     }
+}
 

@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "../styles/Login.css"
 import { BotonNav } from '../components/BotonNav'
+import { useLogin } from '../hooks/useLogin'
 
 type Props = {}
 
-export const Login = (props: Props) => {
+export const Login = () => {
+
+  const initialState = {
+    user: "",
+    password: ""
+  }
+  const { handleLogearSistema, handleOnChange, user} = useLogin(initialState);
+  
   return (
     <>
       <div className='container-login'>
@@ -18,15 +26,28 @@ export const Login = (props: Props) => {
         </div>
         <form className='form-login'>
           <div className='block-input-login'>
-            <span>Usuario:</span>
-            <input type="text" placeholder='Ingrese el usuario'/>
+            <span>Usuario: (peluqueria)</span>
+            <input 
+              type="text" 
+              placeholder='Ingrese el usuario' 
+              onChange={(e)=>handleOnChange(e)}
+              value={user.user}
+              name={'user'}
+            />
           </div>
           <div className='block-input-login'>
-            <span>Contraseña:</span>
-            <input type="password" placeholder='Ingrese la contraseña'/>
+            <span>Contraseña: (1234)</span>
+              <input 
+              type="password" 
+              placeholder='Ingrese la contraseña'
+              onChange={(e)=>handleOnChange(e)}
+              value={user.password}
+              name={'password'}
+
+            />
           </div>
           <div className='container-boton-login'>
-            <BotonNav children={"Ingresar"} handleOnClick={undefined} />
+            <BotonNav children={"Ingresar"} handleOnClick={handleLogearSistema} />
           </div>
         </form>
         </div>

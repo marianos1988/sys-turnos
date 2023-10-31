@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BotonNav } from "../components/BotonNav"
 import { useState } from 'react';
 import { useSelector } from "react-redux";
@@ -6,20 +6,31 @@ import { DatePickerComponent } from '../components/DatePickerComponent';
 import { CardTurnos } from '../components/CardTurnos';
 import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
-import { NavLink } from 'react-router-dom';
-import { IEditarTurno, IListaTurnos, IPicketEdit } from '../types/interface';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { IEditarTurno, IListaTurnos, IPicketEdit, IUserLogeado } from '../types/interface';
 import { mostrarCartelAdvertencia } from '../reducer/CartelesSlice';
 import { useDispatch } from 'react-redux';
 
 
 export const MisTurnos = () => {
+  const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
+  const navigate = useNavigate();
+
+
+
+
+
   const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
   const dispatch = useDispatch();
   const [ listaTurnosView, setListaTurnosView ]= useState<any>(listaTurnos)
   const { mostrarFecha, mostrarHora, handleSelectDate,listaFiltrada} = useMisTurnos()
 
 
-
+useEffect(()=>{
+    if(userLogeado.logeado === false && userLogeado.user === "") {
+    navigate("/");
+  }
+})
   return (
     <>
       <div className='container-mis-turnos'>

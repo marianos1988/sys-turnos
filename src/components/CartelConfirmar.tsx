@@ -4,7 +4,7 @@ import { BotonNav } from "./BotonNav"
 import { cerrarCartelConfirmar } from '../reducer/CartelesSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteEditarTurno, cleanEditarTurno } from "../reducer/TurnosSlice"
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ICarteles } from '../types/interface'
 
 
@@ -22,17 +22,15 @@ export const CartelConfirmar = () => {
               <div className='cartel-confirmar'>
                 <h2 className='titulo-cartel-confirmar'>{cartelConfirmar.mensaje}</h2>
                 <div className='group-botones-confirmar'>
-                  <NavLink to="/MisTurnos">
                     <BotonNav 
                       className= "boton-cartel-confirmar"
                       handleOnClick= { ()=>  {
                         dispatch(cerrarCartelConfirmar());
                         dispatch(deleteEditarTurno());
                         dispatch(cleanEditarTurno());
-                        navigate("/");
+                        navigate("/home");
                       }}
                     >Aceptar</BotonNav>
-                  </NavLink>
                   <BotonNav 
                     className= "boton-cartel-confirmar"
                     handleOnClick= { ()=>  {

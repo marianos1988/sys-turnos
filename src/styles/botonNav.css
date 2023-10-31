@@ -17,6 +17,7 @@
      7px 7px 20px 0px rgba(0,0,0,.1),
      4px 4px 5px 0px rgba(0,0,0,.1);
     outline: none;
+    animation: aparecer .5s ease-in;
   }
 
   .btn-search-mis-turnos {
@@ -38,3 +39,21 @@
     background: rgb(0,3,255);
     background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
   }
+
+  @media (max-width:675px) {
+    .btn-responsive {
+      width: 60px;
+    }
+
+  }
+
+  @keyframes aparecer {
+    
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+

@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../styles/EditarTurno.css"
 import { Checkbox } from '@mui/material'
 import { DatePickerComponent } from '../components/DatePickerComponent'
@@ -8,12 +8,17 @@ import dayjs from 'dayjs';
 import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useFormEdit } from '../hooks/useFormEdit'
-import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialFormEdit } from '../types/interface'
+import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialFormEdit } from '../types/interface'
 import { cleanEditarTurno, saveEditarTurno } from "../reducer/TurnosSlice"
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { mostrarCartelConfirmar } from '../reducer/CartelesSlice'
+import { useNavigate } from 'react-router-dom'
 
 export const EditarTurno = () => {
+  const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
+  const navigate = useNavigate();
+
+
   const dispatch = useDispatch();
 
   const { editarTurno } = useSelector((state:IEditarTurno) => state.turnos);
@@ -65,7 +70,11 @@ export const EditarTurno = () => {
     dispatch(mostrarCartelConfirmar("¿Quieres eliminar el turno?"));
 
   }
-
+  useEffect(()=>{
+      if(userLogeado.logeado === false && userLogeado.user === "") {
+      navigate("/");
+    }
+  })
   return (
 
     <>

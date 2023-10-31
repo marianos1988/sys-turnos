@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { CheckboxAction, ICartelAdvertenciaContext, IEditarTurno, IPicketDate, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
+import { CheckboxAction, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { useDispatch } from 'react-redux';
 
