@@ -16,7 +16,7 @@ export const App = () => {
       <CartelConfirmar></CartelConfirmar>
       <Routes>
         <Route path='/' element={ <Login></Login>}></Route>
-        <Route path="/home" element= { <MisTurnos></MisTurnos> }></Route>
+        <Route path="/MisTurnos" element= { <MisTurnos></MisTurnos> }></Route>
         <Route path='/NuevoTurno' element= { <NuevoTurno></NuevoTurno> }></Route>
         <Route path="/*" element= { <Navigate to="/" /> }></Route>
         <Route path='/EditarTurno' element= { <EditarTurno></EditarTurno> }></Route>

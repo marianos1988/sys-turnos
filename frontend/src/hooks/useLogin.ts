@@ -42,7 +42,7 @@ export const useLogin = (initialState:Props) => {
       if(userLista.user == nomMinuscula && userLista.password === user.password) {
         dispatch(setUserLogeado(nomMinuscula));
         logeado = true;
-        navigate("/home")
+        navigate("/MisTurnos");
       } 
     })
     if(!logeado) {

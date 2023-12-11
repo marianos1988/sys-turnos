@@ -39,7 +39,6 @@ const initialState:InitialState = {
 
 export const TurnosSlice = createSlice({
 
-
 	name: "turnos",
 	initialState: initialState,
 	reducers: {

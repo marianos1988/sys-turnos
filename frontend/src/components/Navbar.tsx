@@ -34,7 +34,7 @@ export const Navbar = () => {
         <div className='position-button-nav'>
           {
             (userLogeado.logeado) && (
-              <NavLink to="/home">
+              <NavLink to="/MisTurnos">
                 <BotonNav newClass='btn-responsive' handleOnClick={undefined}>
                   <CalendarMonthIcon className='icon-nav' />
                   <p className='text-btn'>Mis Turnos</p>

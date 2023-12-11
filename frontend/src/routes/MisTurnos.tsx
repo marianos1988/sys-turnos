@@ -17,9 +17,6 @@ export const MisTurnos = () => {
   const navigate = useNavigate();
 
 
-
-
-
   const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
   const dispatch = useDispatch();
   const [ listaTurnosView, setListaTurnosView ]= useState<any>(listaTurnos)
