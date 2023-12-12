@@ -51,9 +51,9 @@ export const useLogin = (initialState:Props) => {
 
       const JSONUsuario = await fetch("http://localhost:3000/login",objetoHeaderLogin);
       const usuario = await JSONUsuario.json();
-      console.log(usuario)
+      console.log(usuario);
     } catch (error) {
-      
+      console.log(error)
     }
 
     // listaLogin.forEach( userLista => {
