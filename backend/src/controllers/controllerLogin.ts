@@ -1,15 +1,17 @@
 import utils from "./utils";
 import pool from "../bd/bdConfig";
+import crypto from "crypto";
 
 const login = async (req: any,res: any) => {
 
   const user = utils.validarLogin(req.body);
 
+
   if(user === "Datos Incorrectos") {
     res.send(user)
   } else {
-
-    const query = `SELECT * FROM userslogin WHERE user= "${user.user}" AND password="${user.password}"`;
+    const hash = crypto.createHash("sha256").update(user.password).digest("hex");
+    const query = `SELECT * FROM userslogin WHERE user= "${user.user}" AND password="${hash}"`;
     pool.query(query,(err,resu)=>{
       if(err)
         throw err;

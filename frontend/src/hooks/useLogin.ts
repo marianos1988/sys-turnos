@@ -26,15 +26,12 @@ export const useLogin = (initialState:Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { listaLogin } = useSelector((state:Users) => state.users);
-
   const [user, setUser] = useState(initialState);
   
 
   const handleLogearSistema =  async (e: { preventDefault: () => void; }) =>{
     e.preventDefault();
     const nomMinuscula = user.user?.toLocaleLowerCase();
-    let logeado = false;
 
     try {
       let objetoHeaderLogin = {
@@ -52,22 +49,16 @@ export const useLogin = (initialState:Props) => {
       const JSONUsuario = await fetch("http://localhost:3000/login",objetoHeaderLogin);
       const usuario = await JSONUsuario.json();
       console.log(usuario);
+
+      if(usuario === `Usuario o contraseña incorrecta`) {
+        dispatch(mostrarCartelAdvertencia(usuario))
+      } else {
+        dispatch(setUserLogeado(nomMinuscula));
+        navigate("/MisTurnos");
+      }
     } catch (error) {
       console.log(error)
     }
-
-    // listaLogin.forEach( userLista => {
-      
-    //   if(userLista.user == nomMinuscula && userLista.password === user.password) {
-    //     dispatch(setUserLogeado(nomMinuscula));
-    //     logeado = true;
-    //     navigate("/MisTurnos");
-    //   } 
-    // })
-    // if(!logeado) {
-    //   dispatch(mostrarCartelAdvertencia("Usuario o clave incorrecto"))
-    // }
-
 
   }
 
