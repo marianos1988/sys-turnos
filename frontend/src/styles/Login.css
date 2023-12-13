@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-width: 540px;
-  padding-top: 50px;
+  padding-top: 30px;
   min-height: 93vh; 
   background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
   border: none;
@@ -82,9 +82,19 @@
   transform: translate(74px,16px);
 }
 
+.container-spinner {
+  position: relative;
+  transform: translate(-3px,224px);
+}
+
 @media (max-width: 618px) {
   .cartel-login {
     margin-top: 60px;
     flex-direction: column;
+  }
+
+  .container-spinner {
+    position: relative;
+    transform: translate(131px,30px);
   }
 }

@@ -2,6 +2,9 @@ import React from 'react'
 import "../styles/Login.css"
 import { BotonNav } from '../components/BotonNav'
 import { useLogin } from '../hooks/useLogin'
+import { Spinner } from '../components/Spinner'
+import { useSelector } from "react-redux";
+import { SpinnerSlice } from '../types/interface'
 
 type Props = {}
 
@@ -12,7 +15,8 @@ export const Login = () => {
     password: ""
   }
   const { handleLogearSistema, handleOnChange, user} = useLogin(initialState);
-  
+  const { stateSpinner } = useSelector((state:SpinnerSlice) => state.spinner);
+
   return (
     <>
       <div className='container-login'>
@@ -50,6 +54,9 @@ export const Login = () => {
             <BotonNav children={"Ingresar"} handleOnClick={handleLogearSistema} />
           </div>
         </form>
+        <div className='container-spinner'>
+            <Spinner active={stateSpinner}></Spinner>
+          </div>
         </div>
       </div>
     </>

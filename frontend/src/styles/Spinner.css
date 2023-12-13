@@ -1,0 +1,8 @@
+.spinner-active {
+    display: inherit;
+}
+
+.spinner-inactive {
+    display:none;
+    
+}

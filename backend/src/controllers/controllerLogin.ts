@@ -19,7 +19,6 @@ const login = async (req: any,res: any) => {
         res.json("Usuario o contraseña incorrecta")
       } else {
         res.json(resu)
-        // res.send(user);
       }
 
     })

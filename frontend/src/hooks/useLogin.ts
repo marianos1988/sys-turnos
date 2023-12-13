@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { setUserLogeado } from '../reducer/UserLogin';
+import { setUserLogeado } from '../reducer/UserLoginSlice';
 import { mostrarCartelAdvertencia } from '../reducer/CartelesSlice';
+import { activeSpinner, inactiveSpinner } from '../reducer/SpinnerSlice';
 
 type Props = {
   user:string | undefined,
@@ -34,6 +35,8 @@ export const useLogin = (initialState:Props) => {
     const nomMinuscula = user.user?.toLocaleLowerCase();
 
     try {
+
+      dispatch(activeSpinner());
       let objetoHeaderLogin = {
                 
         method : "POST",
@@ -48,7 +51,10 @@ export const useLogin = (initialState:Props) => {
 
       const JSONUsuario = await fetch("http://localhost:3000/login",objetoHeaderLogin);
       const usuario = await JSONUsuario.json();
-      console.log(usuario);
+
+      dispatch(inactiveSpinner());
+
+     
 
       if(usuario === `Usuario o contraseña incorrecta`) {
         dispatch(mostrarCartelAdvertencia(usuario))

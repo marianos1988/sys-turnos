@@ -6,7 +6,7 @@ import  CreateIcon from '@mui/icons-material/Create';
 import { NavLink } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux';
 import { IUserLogeado } from '../types/interface';
-import { unsetUserLogeado } from '../reducer/UserLogin';
+import { unsetUserLogeado } from '../reducer/UserLoginSlice';
 
 
 export const Navbar = () => {
@@ -33,13 +33,14 @@ export const Navbar = () => {
         </div>
         <div className='position-button-nav'>
           {
-            (userLogeado.logeado) && (
-              <NavLink to="/MisTurnos">
-                <BotonNav newClass='btn-responsive' handleOnClick={undefined}>
-                  <CalendarMonthIcon className='icon-nav' />
-                  <p className='text-btn'>Mis Turnos</p>
-                </BotonNav>
-              </NavLink>
+            (userLogeado.logeado) 
+              && (
+                <NavLink to="/MisTurnos">
+                  <BotonNav newClass='btn-responsive' handleOnClick={undefined}>
+                    <CalendarMonthIcon className='icon-nav' />
+                    <p className='text-btn'>Mis Turnos</p>
+                  </BotonNav>
+                </NavLink>
             )
           }
         </div>
