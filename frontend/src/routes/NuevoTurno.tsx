@@ -7,6 +7,7 @@ import { TimePickerComponent } from '../components/TimePickerComponent'
 import { IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialForm } from '../types/interface'
 import { useDispatch, useSelector } from "react-redux";
 import { setNuevoTurno } from "../reducer/TurnosSlice"
+
 import { useNavigate } from 'react-router-dom'
 
 
@@ -36,12 +37,31 @@ export const NuevoTurno = () => {
 
   const { nombreCliente, telefono, fecha, hora, corte, peinado, alisado, tintura, observacion } = formState;
 
-  const guardarTurno = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
+  const guardarTurno = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     e.preventDefault();
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
-      dispatch(setNuevoTurno(formState));
-      handleReloadForm();
+      // dispatch(setNuevoTurno(formState));
+      try {
+        let objetoHeaderNewTurno = {
+                
+          method : "POST",
+          body : JSON.stringify(
+            formState
+          ),
+          headers : {
+              "Content-type" : "application/json"
+          }
+        }
+        const JSONNewTurno = await fetch(`http://localhost:3000/NuevoTurno`,objetoHeaderNewTurno);
+        const newTurno = await JSONNewTurno.json();
+        console.log(newTurno);
+        
+        handleReloadForm();
+      } catch (error) {
+        console.log(error)
+      }
+
 
     }
   }

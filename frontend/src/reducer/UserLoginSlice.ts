@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type Users = {
-  listaLogin: {
-    user:string,
-    password: string
-  }[],
+
   userLogeado: {
     logeado: boolean,
     user: string
@@ -12,24 +9,6 @@ type Users = {
 }
 
 const initialState:Users = {
-  listaLogin: [
-    {
-      user: "mariano",
-      password: "1234"
-    },
-    {
-      user: "cutme",
-      password: "1234"
-    },
-    {
-      user: "fernando",
-      password: "4321"
-    },
-    {
-      user: "peluqueria",
-      password: "1234"
-    }
-  ],
   userLogeado: {
     logeado: false,
     user: ""

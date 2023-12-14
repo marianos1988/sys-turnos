@@ -1,9 +1,11 @@
 import express from "express";
-import routerLogin from "./routes/routeLogin";
+import routerLogin from "./routes/routerLogin";
+import routerNuevoTurno from "./routes/routerNuevoTurno";
 
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+
 
 const app = express();
 const PORT = 3000;
@@ -14,8 +16,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //Routes
-
 app.use("/Login",routerLogin);
+app.use("/NuevoTurno",routerNuevoTurno);
 
 
 

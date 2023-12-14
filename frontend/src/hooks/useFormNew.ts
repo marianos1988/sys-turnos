@@ -125,6 +125,10 @@ export const useFormNew = ({ initialForm, tipoForm }:Props) => {
       dispatchh(mostrarCartelAdvertencia("Debes elegir un tipo de trabajo"));
       return false;
     }
+    else if(!(form.observacion === undefined) && form.observacion?.length > 35) {
+      dispatchh(mostrarCartelAdvertencia("La observacion es muy larga"));
+      return false;
+    }
     else {
       if(tipoForm === "crear") {
         dispatchh(mostrarCartelAdvertencia("Turno registrado"));
