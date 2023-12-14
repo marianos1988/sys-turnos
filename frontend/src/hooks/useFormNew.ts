@@ -153,7 +153,7 @@ export const useFormNew = ({ initialForm, tipoForm }:Props) => {
         } 
     }
     return validar;   
-}
+  }
 
 const handleCancelarEditarTurno = (turno:InitialForm["initialForm"]) => {
 

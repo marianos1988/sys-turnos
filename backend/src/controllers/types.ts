@@ -26,3 +26,15 @@ export type NuevoTurno = {
     observacion: string
 }
 
+export type NuevoTurnoParaValidar = {
+    nombreCliente: string,
+    telefono: string,
+    fecha: string,
+    hora: string,
+    corte: boolean,
+    peinado: boolean,
+    alisado: boolean,
+    tintura: boolean,
+    observacion: string
+}
+

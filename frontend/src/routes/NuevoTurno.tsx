@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNuevoTurno } from "../reducer/TurnosSlice"
 
 import { useNavigate } from 'react-router-dom'
+import { mostrarCartelAdvertencia } from '../reducer/CartelesSlice'
 
 
 
@@ -55,7 +56,9 @@ export const NuevoTurno = () => {
         }
         const JSONNewTurno = await fetch(`http://localhost:3000/NuevoTurno`,objetoHeaderNewTurno);
         const newTurno = await JSONNewTurno.json();
-        console.log(newTurno);
+        if(newTurno === "Turno registrado") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
         
         handleReloadForm();
       } catch (error) {

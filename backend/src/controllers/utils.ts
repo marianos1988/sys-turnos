@@ -1,4 +1,4 @@
-import { Fecha, Hora, NuevoTurno, userLogin } from "./types";
+import { Fecha, Hora, NuevoTurno, NuevoTurnoParaValidar, userLogin } from "./types";
 
 const isString = (string:string):boolean => {
   return typeof string === "string";
@@ -34,6 +34,25 @@ const isFecha = (fecha:Fecha): boolean => {
   }
 }
 
+const agregarCeroAlNum = (num: number):string | number => {
+  if(num < 10) {
+    return `0${num}`
+  }
+  return num;
+}
+
+function validarSoloNumeros(numero: any) {
+  // Valida si se cargo un numero True = No son numeros, False = Son numeros
+  let verificaNumero = numero;
+  let validar = false;
+  for(let digito in verificaNumero){
+      if(!(verificaNumero[digito] >= 0) && !(verificaNumero[digito] <= 9)) {
+          validar = true;
+          return validar;
+      } 
+  }
+  return validar;   
+}
 
 const parseLogin = (userLogin: any):userLogin | "Datos Incorrectos" => {
     if(isString(userLogin.user) && isString(userLogin.password)) {
@@ -79,11 +98,47 @@ const parseNuevoTurno = (nuevoTurno: any):NuevoTurno | "Datos incorrectos" | und
   } catch (error) {
     console.log (error)
   }
-  
+}
+
+const validarDatosNuevoTurno = (form:NuevoTurnoParaValidar) => {
+
+  if(form.nombreCliente.length > 25) {
+    return "Nombre demasiado largo";
+   
+  }
+  else if(form.nombreCliente.length < 4) {
+     return "Nombre demasiado corto";
+
+  }
+  else if(validarSoloNumeros(form.telefono)) {
+    return "El telefono son solo numeros";
+    
+  }
+  else if(form.fecha === "") {
+    return "Ingrese una fecha";
+   
+  }
+  else if(form.hora === "") {
+    return "Ingrese una hora";
+
+  }
+  else if(!(form.corte === true) && !(form.peinado === true) && !(form.alisado === true) && !(form.tintura === true)) {
+    return "Debes elegir un tipo de trabajo";
+    
+  }
+  else if(!(form.observacion === undefined) && form.observacion?.length > 35) {
+    return "La observacion es muy larga";
+    
+  }
+  else {
+    return "Turno registrado";
+  }
 
 }
 
 export default {
   parseLogin,
-  parseNuevoTurno
+  parseNuevoTurno,
+  validarDatosNuevoTurno,
+  agregarCeroAlNum
 }
