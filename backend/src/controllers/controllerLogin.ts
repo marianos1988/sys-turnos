@@ -3,8 +3,8 @@ import pool from "../bd/bdConfig";
 import crypto from "crypto";
 
 const login = async (req: any,res: any) => {
-
-  const user = utilsLogin.parseLogin(req.body);
+  const data = await req.body;
+  const user =  utilsLogin.parseLogin(data);
 
   if(user === "Datos Incorrectos") {
     res.json(user);

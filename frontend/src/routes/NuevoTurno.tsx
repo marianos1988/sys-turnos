@@ -57,10 +57,34 @@ export const NuevoTurno = () => {
         const JSONNewTurno = await fetch(`http://localhost:3000/NuevoTurno`,objetoHeaderNewTurno);
         const newTurno = await JSONNewTurno.json();
         if(newTurno === "Turno registrado") {
+          handleReloadForm();
           dispatch(mostrarCartelAdvertencia(newTurno));
         }
-        
-        handleReloadForm();
+        else if(newTurno === "Datos incorrectos") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "Nombre demasiado largo") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "Nombre demasiado corto") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "El telefono son solo numeros") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "Ingrese una fecha") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "Ingrese una hora") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "Debes elegir un tipo de trabajo") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+        else if(newTurno === "La observacion es muy larga") {
+          dispatch(mostrarCartelAdvertencia(newTurno));
+        }
+
       } catch (error) {
         console.log(error)
       }
