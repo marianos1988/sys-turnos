@@ -296,6 +296,9 @@ export interface IUserLogeado {
 
 export type SpinnerSlice = {
   spinner: {
-    stateSpinner: boolean
+    stateSpinner: {
+      stateLogin : boolean,
+      stateNuevoTurno: boolean,
+    }
   }
 }

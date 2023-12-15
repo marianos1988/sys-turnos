@@ -36,7 +36,7 @@ export const useLogin = (initialState:Props) => {
 
     try {
 
-      dispatch(activeSpinner());
+      dispatch(activeSpinner("login"));
       let objetoHeaderLogin = {
                 
         method : "POST",
@@ -52,7 +52,7 @@ export const useLogin = (initialState:Props) => {
       const JSONUsuario = await fetch("http://localhost:3000/login",objetoHeaderLogin);
       const usuario = await JSONUsuario.json();
 
-      dispatch(inactiveSpinner());
+      dispatch(inactiveSpinner("login"));
 
      
 

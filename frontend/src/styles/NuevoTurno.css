@@ -135,6 +135,11 @@
     top: 2px;
   }
 
+  .container-spinner-nuevo-turno {
+
+    transform: translate(192px,-44px);
+  }
+
 @keyframes aparecer {
     
     0% {

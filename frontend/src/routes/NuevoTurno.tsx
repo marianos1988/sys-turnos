@@ -4,17 +4,20 @@ import "../styles/NuevoTurno.css"
 import { useFormNew } from '../hooks/useFormNew'
 import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
-import { IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialForm } from '../types/interface'
+import { IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialForm, SpinnerSlice } from '../types/interface'
 import { useDispatch, useSelector } from "react-redux";
 import { setNuevoTurno } from "../reducer/TurnosSlice"
+import { activeSpinner, inactiveSpinner } from '../reducer/SpinnerSlice';
 
 import { useNavigate } from 'react-router-dom'
 import { mostrarCartelAdvertencia } from '../reducer/CartelesSlice'
+import { Spinner } from '../components/Spinner'
 
 
 
 export const NuevoTurno = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
+  const { stateSpinner } = useSelector((state:SpinnerSlice) => state.spinner);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -44,6 +47,7 @@ export const NuevoTurno = () => {
     if(datosValidados) {
       // dispatch(setNuevoTurno(formState));
       try {
+        dispatch(activeSpinner("nuevoTurno"));
         let objetoHeaderNewTurno = {
                 
           method : "POST",
@@ -56,6 +60,7 @@ export const NuevoTurno = () => {
         }
         const JSONNewTurno = await fetch(`http://localhost:3000/NuevoTurno`,objetoHeaderNewTurno);
         const newTurno = await JSONNewTurno.json();
+        dispatch(inactiveSpinner("nuevoTurno"));
         if(newTurno === "Turno registrado") {
           handleReloadForm();
           dispatch(mostrarCartelAdvertencia(newTurno));
@@ -88,7 +93,6 @@ export const NuevoTurno = () => {
       } catch (error) {
         console.log(error)
       }
-
 
     }
   }
@@ -204,6 +208,9 @@ export const NuevoTurno = () => {
               type='submit'
               onClick={guardarTurno }
             >Crear Turno</button>
+            <div className='container-spinner-nuevo-turno'>
+              <Spinner active={stateSpinner.stateNuevoTurno}></Spinner>
+            </div>
           </div>
         </form>
       </div>

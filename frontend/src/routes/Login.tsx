@@ -55,8 +55,8 @@ export const Login = () => {
             <BotonNav children={"Ingresar"} handleOnClick={handleLogearSistema} />
           </div>
         </form>
-        <div className='container-spinner'>
-            <Spinner active={stateSpinner}></Spinner>
+        <div className='container-spinner-login'>
+            <Spinner active={stateSpinner.stateLogin}></Spinner>
           </div>
         </div>
       </div>

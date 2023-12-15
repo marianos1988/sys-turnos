@@ -82,7 +82,7 @@
   transform: translate(74px,16px);
 }
 
-.container-spinner {
+.container-spinner-login {
   position: relative;
   transform: translate(-3px,224px);
 }
@@ -93,7 +93,7 @@
     flex-direction: column;
   }
 
-  .container-spinner {
+  .container-spinner-login {
     position: relative;
     transform: translate(131px,30px);
   }
