@@ -6,7 +6,6 @@ import { DatePickerComponent } from '../components/DatePickerComponent'
 import { TimePickerComponent } from '../components/TimePickerComponent'
 import { IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialForm, SpinnerSlice } from '../types/interface'
 import { useDispatch, useSelector } from "react-redux";
-import { setNuevoTurno } from "../reducer/TurnosSlice"
 import { activeSpinner, inactiveSpinner } from '../reducer/SpinnerSlice';
 
 import { useNavigate } from 'react-router-dom'
@@ -23,7 +22,6 @@ export const NuevoTurno = () => {
   const dispatch = useDispatch();
 
   const initialForm: InitialForm["initialForm"]= {
-    id: 0,
     nombreCliente: "",
     telefono: "",
     fecha: "",

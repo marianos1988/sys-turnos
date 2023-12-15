@@ -79,9 +79,10 @@ export const useFormNew = ({ initialForm, tipoForm }:Props) => {
 
     const newFecha = {
       $D: fecha.$D,
-      $M:fecha.$M,
+      $M:fecha.$M+1,
       $y:fecha.$y
     }
+
     setFormState({
       ...formState,
       fecha: newFecha
@@ -159,7 +160,6 @@ const handleCancelarEditarTurno = (turno:InitialForm["initialForm"]) => {
 
   setFormState(
     { 
-      id:"",
       nombreCliente: turno.nombreCliente,
       telefono: turno.telefono,
       fecha: turno.fecha,
@@ -177,7 +177,6 @@ const handleReloadForm = () => {
 
   setFormState(
     { 
-      id:"",
       nombreCliente: "",
       telefono: "",
       fecha: null,
@@ -193,7 +192,6 @@ const handleReloadForm = () => {
   setTimeout(()=>{
     setFormState(
       { 
-        id:"",
         nombreCliente: "",
         telefono: "",
         fecha: "",

@@ -22,11 +22,18 @@ interface ListaTurnos {
 
 export const useMisTurnos = () => {
 
-  const { listaTurnos } = useSelector((state:ListaTurnos) => state.turnos)
+  // const { listaTurnos } = useSelector((state:ListaTurnos) => state.turnos)
 
   const [listaFiltrada, setListaFiltrada] = useState<any>([]);
 
+  const getAllListaTurnos = async () => {
+    const JSONListaTurnos = await fetch("http://localhost:3000/MisTurnos");
+    const listaTurnos = await JSONListaTurnos.json();
 
+    console.log(listaTurnos);
+
+  }
+  
   const agregarCero = (num: number):string | number => {
     if(num < 10) {
       return `0${num}`
@@ -53,11 +60,11 @@ export const useMisTurnos = () => {
     const mes = fecha.$M;
     const anio = fecha.$y;
     let lista:any[]=[];
-    listaTurnos.forEach((turno: { fecha: any; }) => {
-      if((dia == turno.fecha.$D) && (mes == turno.fecha.$M) && (anio == turno.fecha.$y)){
-        lista.push(turno);
-      }
-    })
+    // listaTurnos.forEach((turno: { fecha: any; }) => {
+    //   if((dia == turno.fecha.$D) && (mes == turno.fecha.$M) && (anio == turno.fecha.$y)){
+    //     lista.push(turno);
+    //   }
+    // })
     setListaFiltrada(lista);
   }
 
@@ -65,6 +72,7 @@ export const useMisTurnos = () => {
     mostrarFecha,
     mostrarHora,
     handleSelectDate,
+    getAllListaTurnos,
     listaFiltrada,
 
   }

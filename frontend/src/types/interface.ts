@@ -2,7 +2,6 @@
 
 export interface InitialForm {
   initialForm: {
-    id?: any,
     telefono?: string,
     nombreCliente: string,
     fecha?: IPicketDate,

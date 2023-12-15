@@ -17,16 +17,18 @@ export const MisTurnos = () => {
   const navigate = useNavigate();
 
 
-  const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
+  // const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
   const dispatch = useDispatch();
-  const [ listaTurnosView, setListaTurnosView ]= useState<any>(listaTurnos)
-  const { mostrarFecha, mostrarHora, handleSelectDate,listaFiltrada} = useMisTurnos()
+  const [ listaTurnosView, setListaTurnosView ]= useState<any>([]) // aca va los turnos de la BD
+  const { mostrarFecha, mostrarHora, handleSelectDate, listaFiltrada, getAllListaTurnos} = useMisTurnos()
 
 
 useEffect(()=>{
     if(userLogeado.logeado === false && userLogeado.user === "") {
-    navigate("/");
-  }
+      navigate("/");
+    }
+    getAllListaTurnos();
+
 })
   return (
     <>

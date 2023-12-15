@@ -26,7 +26,7 @@ export type NuevoTurno = {
     observacion: string
 }
 
-export type NuevoTurnoParaValidar = {
+export interface NuevoTurnoParaValidar {
     nombreCliente: string,
     telefono: string,
     fecha: string,
@@ -36,5 +36,11 @@ export type NuevoTurnoParaValidar = {
     alisado: boolean,
     tintura: boolean,
     observacion: string
+}
+
+export interface ListaTurnos extends NuevoTurnoParaValidar {
+    id: number,
+    fecha: string,
+    hora: string
 }
 
