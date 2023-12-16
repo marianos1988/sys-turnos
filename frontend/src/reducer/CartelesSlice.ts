@@ -28,6 +28,7 @@ export const CartelAdvertenciaSlice = createSlice({
   initialState: initialState,
   reducers: {
     mostrarCartelAdvertencia: (state,action) => {
+
       state.cartelAdvertencia.mostrar= true;
       state.cartelAdvertencia.mensaje= action.payload;
     },

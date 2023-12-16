@@ -9,6 +9,8 @@ import { ICarteles } from "../types/interface"
 
 
 export const CartelAdvertencia = () => {
+
+
   const dispatch = useDispatch();
   const { cartelAdvertencia } = useSelector((state:ICarteles) => state.carteles);
   return (  
