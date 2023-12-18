@@ -42,21 +42,6 @@ export const TurnosSlice = createSlice({
 	name: "turnos",
 	initialState: initialState,
 	reducers: {
-		setNuevoTurno: (state:InitialState, action)=>{
-      state.idTurnos += 1;
-      state.listaTurnos = [...state.listaTurnos, {
-        id: state.idTurnos,
-        nombreCliente: action.payload.nombreCliente,
-        telefono: action.payload.telefono,
-        fecha: action.payload.fecha,
-        hora: action.payload.hora,
-        corte: action.payload.corte,
-        peinado: action.payload.peinado,
-        alisado: action.payload.alisado,
-        tintura: action.payload.tintura,
-        observacion: action.payload.observacion
-      }]
-		},
     setEditarTurno: (state, action) => {
 
       state.editarTurno = {
@@ -116,6 +101,6 @@ export const TurnosSlice = createSlice({
 	}
 });
   
-  export const { setNuevoTurno, saveEditarTurno, setEditarTurno, cleanEditarTurno, deleteEditarTurno } = TurnosSlice.actions;
+  export const {  saveEditarTurno, setEditarTurno, cleanEditarTurno, deleteEditarTurno } = TurnosSlice.actions;
   
   export default TurnosSlice.reducer;

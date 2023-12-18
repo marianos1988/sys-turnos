@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { IPicketEdit, IPicketDate,IPicketHour } from "../types/interface";
-import { useSelector } from "react-redux";
+import { IPicketDate,IPicketHour } from "../types/interface";
+
+
+
 
 interface ListaTurnos {
   turnos: {
@@ -22,36 +24,16 @@ interface ListaTurnos {
 
 export const useMisTurnos = () => {
 
-
-
   const [listaFiltrada, setListaFiltrada] = useState<any>([]);
 
   const getAllListaTurnos = async () => {
     const JSONListaTurnos = await fetch("http://localhost:3000/MisTurnos");
     const newListaTurnos = await JSONListaTurnos.json();
-
-    return newListaTurnos;
-
-  }
-  
-  const agregarCero = (num: number):string | number => {
-    if(num < 10) {
-      return `0${num}`
+    // // dispatch(setAllListaTurnos(newListaTurnos));
+    if(newListaTurnos.lenght !== 0) {
+     return newListaTurnos; 
     }
-    return num;
-  }
 
-  const mostrarFecha = (fecha:IPicketEdit) => {
-    const { $D, $M, $y } = fecha
-    const fechaFinal = `${agregarCero($D)}-${agregarCero($M+1)}-${$y}`;
-    return fechaFinal;
-    
-  }
-
-  const mostrarHora = (hora: IPicketEdit) => {
-    const {$H, $m} = hora;
-    const horaFinal = `${agregarCero($H)}:${agregarCero($m)}hs`;
-    return horaFinal;
   }
 
   const handleSelectDate = (fecha: { $D: number; $M: number; $y: number; }) => {
@@ -65,12 +47,10 @@ export const useMisTurnos = () => {
     //     lista.push(turno);
     //   }
     // })
-    setListaFiltrada(lista);
+    // setListaFiltrada(lista);
   }
 
   return {
-    mostrarFecha,
-    mostrarHora,
     handleSelectDate,
     getAllListaTurnos,
     listaFiltrada

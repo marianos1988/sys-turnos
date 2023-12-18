@@ -1,5 +1,6 @@
 import pool from "../bd/bdConfig";
 import { ListaTurnos } from "./types";
+import utils from "./utils";
 
 const getAllListaTurnos = async (req: any, res: any)=> {
 
@@ -10,17 +11,16 @@ const getAllListaTurnos = async (req: any, res: any)=> {
   pool.query(query,(err, resu)=> {
     if(err)
       throw err;
-    if(resu.length < 1) {
-      res.json("");
-    }
-    const listaTurnos:ListaTurnos[] = [];
+
+    let listaTurnos:ListaTurnos[] = [];
     resu.forEach((element:any) => {
-      const turno:ListaTurnos = {
+
+      const turno:any = {
         id: element.id,
         nombreCliente: element.nombre_cliente,
         telefono: element.telefono,
-        fecha: element.fecha_y_hora,
-        hora: element.fecha_y_hora,
+        fecha: utils.mostrarFecha(element.fecha_y_hora),
+        hora: utils.mostrarHora(element.fecha_y_hora),
         corte: element.corte,
         peinado: element.peinado,
         alisado: element.alisado,
@@ -28,9 +28,10 @@ const getAllListaTurnos = async (req: any, res: any)=> {
         observacion: element.observacion
       }
       listaTurnos.push(turno);
-    });
-    res.json(listaTurnos);
 
+    });
+
+    res.json(listaTurnos);
     
   })
 }

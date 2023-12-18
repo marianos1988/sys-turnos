@@ -136,9 +136,29 @@ const validarDatosNuevoTurno = (form:NuevoTurnoParaValidar) => {
 
 }
 
+const mostrarHora = (hora:Date) => {
+  const getHora = new Date(hora)
+  return `${agregarCero(getHora.getHours())}:${agregarCero(getHora.getMinutes())}Hs`;
+}
+
+const mostrarFecha = (fecha:Date) => {
+  const getFecha = new Date(fecha)
+  return `${agregarCero(getFecha.getDate())}-${agregarCero(getFecha.getMonth()+1)}-${getFecha.getFullYear()}`;
+}
+
+const agregarCero = (num: number):string | number => {
+  if(num < 10) {
+    return `0${num}`
+  }
+  return num;
+}
+
 export default {
   parseLogin,
   parseNuevoTurno,
   validarDatosNuevoTurno,
-  agregarCeroAlNum
+  agregarCeroAlNum,
+  mostrarHora,
+  mostrarFecha,
+
 }

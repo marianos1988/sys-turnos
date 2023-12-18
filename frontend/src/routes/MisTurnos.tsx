@@ -16,11 +16,10 @@ export const MisTurnos = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
   const navigate = useNavigate();
 
-
   // const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
   const dispatch = useDispatch();
  
-  const { mostrarFecha, mostrarHora, handleSelectDate, listaFiltrada, getAllListaTurnos} = useMisTurnos()
+  const { handleSelectDate, listaFiltrada, getAllListaTurnos} = useMisTurnos()
 
   const [ listaTurnosView, setListaTurnosView ]= useState<any>([]) // aca va los turnos de la BD
 
@@ -29,11 +28,9 @@ useEffect(()=>{
     if(userLogeado.logeado === false && userLogeado.user === "") {
       navigate("/");
     }
-    const lista = getAllListaTurnos();
-    lista.then(ele => {
-      setListaTurnosView(ele);
-      console.log(ele)
-    })
+
+    const list = getAllListaTurnos();
+    list.then(list => setListaTurnosView(list))
 
 },[])
   return (
@@ -60,15 +57,15 @@ useEffect(()=>{
         </form>
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>
-          { 
+          {  
             listaTurnosView.map((turno:IEditarTurno["viewTurnos"]) => (
               <NavLink to="/EditarTurno" key={turno.id}>
                 <CardTurnos
                   id={turno.id}
                   nombreCliente={turno.nombreCliente}
                   telefono={turno.telefono}
-                  fecha={mostrarFecha(turno.fecha)}
-                  hora={mostrarHora(turno.hora)}
+                  fecha={turno.fecha}
+                  hora={turno.hora}
                   observacion={turno.observacion}
                   corte={turno.corte}
                   peinado={turno.peinado}
