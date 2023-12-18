@@ -22,15 +22,15 @@ interface ListaTurnos {
 
 export const useMisTurnos = () => {
 
-  // const { listaTurnos } = useSelector((state:ListaTurnos) => state.turnos)
+
 
   const [listaFiltrada, setListaFiltrada] = useState<any>([]);
 
   const getAllListaTurnos = async () => {
     const JSONListaTurnos = await fetch("http://localhost:3000/MisTurnos");
-    const listaTurnos = await JSONListaTurnos.json();
+    const newListaTurnos = await JSONListaTurnos.json();
 
-    console.log(listaTurnos);
+    return newListaTurnos;
 
   }
   
@@ -73,7 +73,6 @@ export const useMisTurnos = () => {
     mostrarHora,
     handleSelectDate,
     getAllListaTurnos,
-    listaFiltrada,
-
+    listaFiltrada
   }
 }
