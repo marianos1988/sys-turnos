@@ -8,7 +8,6 @@ import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IEditarTurno, IListaTurnos, IPicketEdit, IUserLogeado } from '../types/interface';
-import { mostrarCartelAdvertencia } from '../reducer/CartelesSlice';
 import { useDispatch } from 'react-redux';
 
 
@@ -17,7 +16,7 @@ export const MisTurnos = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
-  const { handleSelectDate, fechaFiltrada, getAllListaTurnos} = useMisTurnos()
+  const { handleSelectDate, fechaFiltrada, getAllListaTurnos, searchDateFilter} = useMisTurnos()
 
   const [ listaTurnosView, setListaTurnosView ]= useState<any>([]) // aca va los turnos de la BD
 
@@ -44,8 +43,12 @@ useEffect(()=>{
           <BotonNav
             handleOnClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
-              setListaTurnosView([]);
-              console.log(fechaFiltrada)
+
+              const fechaListaTurnos = searchDateFilter(fechaFiltrada);
+              fechaListaTurnos.then((lista:any)=>{
+               setListaTurnosView(lista);
+              })
+              
             } }
             newClass={"btn-search-mis-turnos"}>Buscar</BotonNav>        
         </form>

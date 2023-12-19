@@ -158,6 +158,21 @@ const transformBoolean = (value:number):boolean | undefined =>{
   else if(value === 1) return true;
 }
 
+const parseSearchDate = (fecha:any,mes:any,anio:any):string => {
+  if(!(parseInt(fecha) > 0) && !(parseInt(fecha) < 32)) {
+    return `La fecha es incorrecta`;
+  }
+  else if(!(parseInt(mes) > 0) && !(parseInt(mes) < 13)) {
+    return `El mes es incorrecto`;
+  }
+  else if(!(parseInt(anio) > 1900) && !(parseInt(anio) < 3000)  && !(anio.length === 4)) {
+    return `El año es incorrecto`;
+  }
+  else {
+    return `${anio}-${mes}-${fecha}`;
+  }
+}
+
 export default {
   parseLogin,
   parseNuevoTurno,
@@ -165,6 +180,7 @@ export default {
   agregarCeroAlNum,
   mostrarHora,
   mostrarFecha,
-  transformBoolean
+  transformBoolean,
+  parseSearchDate
 
 }
