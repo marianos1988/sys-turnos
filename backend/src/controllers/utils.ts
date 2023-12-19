@@ -153,6 +153,11 @@ const agregarCero = (num: number):string | number => {
   return num;
 }
 
+const transformBoolean = (value:number):boolean | undefined =>{
+  if(value === 0) return false;
+  else if(value === 1) return true;
+}
+
 export default {
   parseLogin,
   parseNuevoTurno,
@@ -160,5 +165,6 @@ export default {
   agregarCeroAlNum,
   mostrarHora,
   mostrarFecha,
+  transformBoolean
 
 }

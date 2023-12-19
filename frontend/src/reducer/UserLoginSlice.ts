@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 type Users = {
 
   userLogeado: {
@@ -16,6 +17,8 @@ const initialState:Users = {
 }
 
 
+
+
 export const UsersLogin = createSlice({
 
   name: "users",
@@ -28,7 +31,6 @@ export const UsersLogin = createSlice({
     unsetUserLogeado: (state )=>{
       state.userLogeado.user = "";
       state.userLogeado.logeado = false;
-
     }
   }
 });

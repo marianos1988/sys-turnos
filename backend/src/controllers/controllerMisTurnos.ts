@@ -21,10 +21,10 @@ const getAllListaTurnos = async (req: any, res: any)=> {
         telefono: element.telefono,
         fecha: utils.mostrarFecha(element.fecha_y_hora),
         hora: utils.mostrarHora(element.fecha_y_hora),
-        corte: element.corte,
-        peinado: element.peinado,
-        alisado: element.alisado,
-        tintura: element.tintura,
+        corte: utils.transformBoolean(element.corte),
+        peinado: utils.transformBoolean(element.peinado),
+        alisado: utils.transformBoolean(element.alisado),
+        tintura: utils.transformBoolean(element.tintura),
         observacion: element.observacion
       }
       listaTurnos.push(turno);

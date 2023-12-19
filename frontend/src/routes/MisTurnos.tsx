@@ -15,11 +15,9 @@ import { useDispatch } from 'react-redux';
 export const MisTurnos = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
   const navigate = useNavigate();
-
-  // const { listaTurnos } = useSelector((state:IListaTurnos) => state.turnos);
   const dispatch = useDispatch();
  
-  const { handleSelectDate, listaFiltrada, getAllListaTurnos} = useMisTurnos()
+  const { handleSelectDate, fechaFiltrada, getAllListaTurnos} = useMisTurnos()
 
   const [ listaTurnosView, setListaTurnosView ]= useState<any>([]) // aca va los turnos de la BD
 
@@ -28,7 +26,6 @@ useEffect(()=>{
     if(userLogeado.logeado === false && userLogeado.user === "") {
       navigate("/");
     }
-
     const list = getAllListaTurnos();
     list.then(list => setListaTurnosView(list))
 
@@ -48,10 +45,7 @@ useEffect(()=>{
             handleOnClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
               setListaTurnosView([]);
-              if (listaFiltrada < 1) {
-                dispatch(mostrarCartelAdvertencia("No existen turnos"));
-              }
-              setListaTurnosView(listaFiltrada);
+              console.log(fechaFiltrada)
             } }
             newClass={"btn-search-mis-turnos"}>Buscar</BotonNav>        
         </form>

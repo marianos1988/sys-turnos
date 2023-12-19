@@ -10,8 +10,8 @@ type Props = {
   id: number,
   nombreCliente: string,
   telefono: string,
-  fecha:React.ReactNode
-  hora:React.ReactNode
+  fecha:string,
+  hora:string
   corte: boolean,
   alisado: boolean,
   peinado: boolean,
@@ -28,9 +28,7 @@ const dispatch = useDispatch();
   const handleOnClick =  (turno:IEditarTurno["turnoParaEditar"]) => { 
  
     dispatch(setEditarTurno(turno))
-
   }
-
 
   return (
     <>
@@ -48,11 +46,11 @@ const dispatch = useDispatch();
                 <div className='checkbox-mis-turnos'>
                   <h4>Corte: </h4>
                   <Checkbox
-                  color="primary"
-                  className='checkbox-tipo-trabajo'
-                  name='corte'
-                  value="Corte"
-                  checked={corte}
+                    color="primary"
+                    className='checkbox-tipo-trabajo'
+                    name='corte'
+                    value={corte}
+                    checked={corte}
                   />
                 </div>
                 <div className='checkbox-mis-turnos'>
@@ -61,7 +59,7 @@ const dispatch = useDispatch();
                     color="primary"
                     className='checkbox-tipo-trabajo'
                     name='peinado'
-                    value="Peinado"
+                    value={peinado}
                     checked={peinado}
                   />
                 </div>
@@ -71,7 +69,7 @@ const dispatch = useDispatch();
                     color="primary"
                     className='checkbox-tipo-trabajo'
                     name='alisado'
-                    value="Alisado"
+                    value={alisado}
                     checked={alisado}
                   />
                 </div>
@@ -81,7 +79,7 @@ const dispatch = useDispatch();
                     color="primary"
                     className='checkbox-tipo-trabajo'
                     name='tintura'
-                    value="Tintura"
+                    value={tintura}
                     checked={tintura}
                   />
                 </div>

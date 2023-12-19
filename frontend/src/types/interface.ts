@@ -111,8 +111,8 @@ export interface IEditarTurno {
       id?: number, 
       nombreCliente: string,
       telefono:string, 
-      fecha: IPicketDateSinNull,
-      hora: IPicketHourSinNull,
+      fecha: string,
+      hora: string,
       corte: boolean; 
       alisado: boolean; 
       peinado: boolean; 
@@ -124,8 +124,8 @@ export interface IEditarTurno {
     id?: number, 
     nombreCliente: string,
     telefono:string, 
-    fecha: IPicketDateSinNull,
-    hora: IPicketHourSinNull,
+    fecha: string,
+    hora: string,
     corte: boolean; 
     alisado: boolean; 
     peinado: boolean; 

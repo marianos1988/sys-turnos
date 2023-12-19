@@ -3,7 +3,7 @@ import "../styles/navbar.css"
 import { BotonNav } from './BotonNav'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import  CreateIcon from '@mui/icons-material/Create';
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux';
 import { IUserLogeado } from '../types/interface';
 import { unsetUserLogeado } from '../reducer/UserLoginSlice';
@@ -12,6 +12,7 @@ import { unsetUserLogeado } from '../reducer/UserLoginSlice';
 export const Navbar = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -46,9 +47,13 @@ export const Navbar = () => {
         </div>
         <div className='container-user-login'>
           <p>{ (userLogeado.logeado) ? `Usuario: ${userLogeado.user[0].toUpperCase()}${userLogeado.user.slice(1,100)}` : "Iniciar Sesion" }</p>
-          <button
-            onClick={()=>{dispatch(unsetUserLogeado())}}
-          >Salir</button>
+            <button
+                onClick={()=>{
+                  dispatch(unsetUserLogeado())
+                  navigate("/");
+                }}
+              >Salir
+            </button>
         </div>
       </nav>
     </>
