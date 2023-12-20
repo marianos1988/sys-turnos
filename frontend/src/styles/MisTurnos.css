@@ -6,7 +6,7 @@
     flex-direction: column;
     width: 100%;
     animation: aparecer .5s ease-in;
-    background: rgb(0,3,255);
+    background: rgb(122, 123, 170);
     background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
 }
 .container-input-date {
@@ -24,7 +24,8 @@
 } 
 
 .container-input-date {
-    
+    background: rgb(75, 78, 255);
+    background: linear-gradient(0deg, rgb(167, 168, 255) 0%, rgb(0, 128, 255) 100%);
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -40,6 +41,10 @@
 .container-input-date h2 {
 
     margin-right: 20px;
+}
+
+.container-input-date .container-spinner-search-misturnos {
+    margin-left: 5px;;
 }
 
 .container-cards-turnos {

@@ -67,7 +67,7 @@ const getSearchDate = async (req:any, res:any)=> {
         });
         res.json(listaTurnos);
       } else {
-        res.json(`No hay turnos`);
+        res.json(`No existen turnos`);
       }
     })
   }

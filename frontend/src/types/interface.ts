@@ -225,14 +225,15 @@ export type IPicketDateSinNull = {
 }
 
 export type IPicketHour = {
-  $H: number | null,
-  $m: number | null
+  $H: number | string | null,
+  $m: number | string | null
 } | null | "" | undefined
 
 export type IPicketHourSinNull = {
   $m: number,
   $H: number
 }
+
 export interface IPicketEdit {
   $D: number,
   $H: number,
@@ -296,6 +297,7 @@ export interface IUserLogeado {
 export type SpinnerSlice = {
   spinner: {
     stateSpinner: {
+      stateSearchTurno: boolean
       stateLogin : boolean,
       stateNuevoTurno: boolean,
     }

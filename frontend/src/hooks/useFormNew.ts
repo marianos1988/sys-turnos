@@ -63,9 +63,9 @@ export const useFormNew = ({ initialForm, tipoForm }:Props) => {
   }
 
 
-  const onTimePicker = (hora:IPicketHourSinNull) => {
+  const onTimePicker = (hora: { $H: any; $m: any; }) => {
 
-    const newHora = {
+    const newHora:any = {
       $H: hora.$H,
       $m: hora.$m
     }
@@ -75,9 +75,9 @@ export const useFormNew = ({ initialForm, tipoForm }:Props) => {
     });
   }
 
-  const onDatePicker = (fecha:IPicketDateSinNull) => {
+  const onDatePicker = (fecha: { $D: any; $M: number; $y: any; }) => {
 
-    const newFecha = {
+    const newFecha:any = {
       $D: fecha.$D,
       $M:fecha.$M+1,
       $y:fecha.$y

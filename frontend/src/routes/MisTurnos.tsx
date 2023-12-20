@@ -7,14 +7,16 @@ import { CardTurnos } from '../components/CardTurnos';
 import "../styles/MisTurnos.css";
 import { useMisTurnos } from '../hooks/useMisTurnos';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { IEditarTurno, IListaTurnos, IPicketEdit, IUserLogeado } from '../types/interface';
+import { IEditarTurno, IListaTurnos, IPicketEdit, IUserLogeado, SpinnerSlice } from '../types/interface';
 import { useDispatch } from 'react-redux';
-
+import { Spinner } from '../components/Spinner';
+import { activeSpinner, inactiveSpinner } from "../reducer/SpinnerSlice"
 
 export const MisTurnos = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { stateSpinner } = useSelector((state:SpinnerSlice) => state.spinner);
  
   const { handleSelectDate, fechaFiltrada, getAllListaTurnos, searchDateFilter} = useMisTurnos()
 
@@ -25,9 +27,10 @@ useEffect(()=>{
     if(userLogeado.logeado === false && userLogeado.user === "") {
       navigate("/");
     }
+    dispatch(activeSpinner("searchTurnos"));
     const list = getAllListaTurnos();
     list.then(list => setListaTurnosView(list))
-
+    dispatch(inactiveSpinner("searchTurnos"));
 },[])
   return (
     <>
@@ -43,14 +46,18 @@ useEffect(()=>{
           <BotonNav
             handleOnClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
-
+              dispatch(activeSpinner("searchTurnos"));
               const fechaListaTurnos = searchDateFilter(fechaFiltrada);
               fechaListaTurnos.then((lista:any)=>{
                setListaTurnosView(lista);
-              })
+               dispatch(inactiveSpinner("searchTurnos"));
+              });
               
             } }
-            newClass={"btn-search-mis-turnos"}>Buscar</BotonNav>        
+            newClass={"btn-search-mis-turnos"}>Buscar</BotonNav>
+            <div className='container-spinner-search-misturnos'>
+              <Spinner active={stateSpinner.stateSearchTurno}></Spinner>   
+            </div>
         </form>
         <h2 className="titulo-lista-turnos">Lista de turnos: </h2>
         <div className='container-cards-turnos'>

@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   stateSpinner: {
     stateLogin: false,
-    stateNuevoTurno: false
+    stateNuevoTurno: false,
+    stateSearchTurno: false,
   }
 } 
 
@@ -17,6 +18,8 @@ export const SpinnerSlice = createSlice({
             break;
           case "nuevoTurno": state.stateSpinner.stateNuevoTurno = true;
             break;
+          case "searchTurnos": state.stateSpinner.stateSearchTurno = true;
+            break;
         }
 
 
@@ -26,6 +29,9 @@ export const SpinnerSlice = createSlice({
           case "login" : state.stateSpinner.stateLogin = false;
             break;
           case "nuevoTurno": state.stateSpinner.stateNuevoTurno = false;
+            break;
+            case "searchTurnos": state.stateSpinner.stateSearchTurno = false;
+            break;
         }
       }
     }
