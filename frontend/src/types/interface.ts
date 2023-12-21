@@ -132,6 +132,18 @@ export interface IEditarTurno {
     tintura: boolean; 
     observacion: string;
   },
+  initialStateEditarTurno: {
+    id?: number, 
+    nombreCliente: string,
+    telefono:string, 
+    fecha: IPicketDateSinNull,
+    hora: IPicketHourSinNull,
+    corte: boolean; 
+    alisado: boolean; 
+    peinado: boolean; 
+    tintura: boolean; 
+    observacion: string;
+  },
   turnoParaEditar: {
     id: number,
     nombreCliente: string,

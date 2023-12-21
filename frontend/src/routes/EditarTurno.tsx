@@ -17,13 +17,11 @@ import { useNavigate } from 'react-router-dom'
 export const EditarTurno = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
   const navigate = useNavigate();
-
-
   const dispatch = useDispatch();
 
   const { editarTurno } = useSelector((state:IEditarTurno) => state.turnos);
 
-  const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar } = useEditarTurno();
+  const  { iniciarEditarContacto, finalizarEditarContacto, datosAEditar, parseo$mHoraEdit, parseo$HHoraEdit, parseo$DFechaEdit, parseo$MFechaEdit, parseo$yFechaEdit } = useEditarTurno();
 
   const tipoForm:InitialFormEdit["tipoForm"] = "editar";
 
@@ -31,8 +29,15 @@ export const EditarTurno = () => {
 
     nombreCliente: editarTurno.nombreCliente,
     telefono: editarTurno.telefono,
-    fecha: editarTurno.fecha,
-    hora: editarTurno.hora,
+    fecha: {
+      $D: parseo$DFechaEdit(editarTurno.fecha),
+      $M: parseo$MFechaEdit(editarTurno.fecha),
+      $y: parseo$yFechaEdit(editarTurno.fecha)
+    },
+    hora: {
+      $m: parseo$mHoraEdit(editarTurno.hora),
+      $H: parseo$HHoraEdit(editarTurno.hora)
+    },
     corte: editarTurno.corte,
     peinado: editarTurno.peinado,
     alisado: editarTurno.alisado,
@@ -40,11 +45,8 @@ export const EditarTurno = () => {
     observacion: editarTurno.observacion
   }
 
-
-
   const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useFormEdit({initialForm,tipoForm});
 
-  
 
   const handleValueDate = (value:IPicketDateSinNull) => {onDatePicker(value)};
   const handleValueTime = (value:IPicketHourSinNull) => {onTimePicker(value)};

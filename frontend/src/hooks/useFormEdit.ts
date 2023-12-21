@@ -4,13 +4,12 @@ import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { useDispatch } from 'react-redux';
 
 type Props = {
-  initialForm:IEditarTurno["editarTurno"]
+  initialForm:IEditarTurno["initialStateEditarTurno"]
   tipoForm: InitialForm["tipoForm"]
 }
 export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
   const dispatchh = useDispatch();
   const [formState, setFormState] = useState(initialForm);
-
 
   const reducerCheckbox = (state:InitialForm["initialForm"], action:CheckboxAction) => {
 
@@ -64,7 +63,7 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
 
   const onTimePicker = (hora:IPicketHourSinNull) => {
 
-    const newHora = {
+    const newHora:any = {
       $H: hora.$H,
       $m: hora.$m
     }
@@ -76,7 +75,7 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
 
   const onDatePicker = (fecha:IPicketDateSinNull) => {
 
-    const newFecha = {
+    const newFecha:any = {
       $D: fecha.$D,
       $M:fecha.$M,
       $y:fecha.$y
@@ -151,7 +150,7 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
     return validar;   
 }
 
-const handleCancelarEditarTurno = (turno:IEditarTurno["editarTurno"]) => {
+const handleCancelarEditarTurno = (turno:IEditarTurno["initialStateEditarTurno"]) => {
 
   setFormState(
     { 

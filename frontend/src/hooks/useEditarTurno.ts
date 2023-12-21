@@ -37,9 +37,39 @@ export const useEditarTurno = () => {
     }
   }
 
+  const parseo$mHoraEdit = (hora:string): number=>{
+    const new$m = hora.slice(3,5);
+    return parseInt(new$m);
+  }
+
+  const parseo$HHoraEdit = (hora:string): number => {
+    const new$H = hora.slice(0,2)
+    return parseInt(new$H);
+  }
+
+  const parseo$DFechaEdit = (fecha:string): number => {
+    const new$D = fecha.slice(0,2)
+    return parseInt(new$D);
+  }
+
+  const parseo$MFechaEdit = (fecha:string): number => {
+    const new$M = fecha.slice(3,5);
+    return parseInt(new$M);
+  }
+
+  const parseo$yFechaEdit = (fecha:string): number => {
+    const new$y = fecha.slice(6,10);
+    return parseInt(new$y);
+  }
+
   return {
     iniciarEditarContacto,
     finalizarEditarContacto,
-    datosAEditar
+    datosAEditar,
+    parseo$mHoraEdit,
+    parseo$HHoraEdit,
+    parseo$DFechaEdit,
+    parseo$MFechaEdit,
+    parseo$yFechaEdit
   }
 }
