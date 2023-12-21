@@ -67,7 +67,7 @@ useEffect(()=>{
         <div className='container-cards-turnos'>
           {  
             listaTurnosView.map((turno:IEditarTurno["viewTurnos"]) => (
-              <NavLink to="/EditarTurno" key={turno.id}>
+              <NavLink to={`/EditarTurno/id=${turno.id}`} key={turno.id}>
                 <CardTurnos
                   id={turno.id}
                   nombreCliente={turno.nombreCliente}
