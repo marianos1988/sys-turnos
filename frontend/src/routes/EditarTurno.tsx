@@ -63,7 +63,7 @@ export const EditarTurno = () => {
   }
 
   const cancelarTurnoEditado = () => {
-    handleCancelarEditarTurno(editarTurno);
+    handleCancelarEditarTurno(initialForm);
     finalizarEditarContacto();
   }
 
