@@ -7,6 +7,7 @@ import { EditarTurno } from './routes/EditarTurno'
 import { Login } from "./routes/Login"
 import { CartelAdvertencia } from './components/CartelAdvertencia'
 import { CartelConfirmar } from './components/CartelConfirmar'
+import { SpinnerInDisplay } from './components/SpinnerInDisplay'
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
       <Navbar></Navbar>
       <CartelAdvertencia></CartelAdvertencia>
       <CartelConfirmar></CartelConfirmar>
+      <SpinnerInDisplay></SpinnerInDisplay>
       <Routes>
         <Route path='/' element={ <Login></Login>}></Route>
         <Route path="/MisTurnos" element= { <MisTurnos></MisTurnos> }></Route>

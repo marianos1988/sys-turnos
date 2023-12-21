@@ -5,6 +5,7 @@ const initialState = {
     stateLogin: false,
     stateNuevoTurno: false,
     stateSearchTurno: false,
+    stateSpinnerInDisplay: false 
   }
 } 
 
@@ -20,9 +21,8 @@ export const SpinnerSlice = createSlice({
             break;
           case "searchTurnos": state.stateSpinner.stateSearchTurno = true;
             break;
+          case "spinnerInDisplay": state.stateSpinner.stateSpinnerInDisplay = true;
         }
-
-
       },
       inactiveSpinner: (state,action) => {
         switch(action.payload) {
@@ -30,8 +30,10 @@ export const SpinnerSlice = createSlice({
             break;
           case "nuevoTurno": state.stateSpinner.stateNuevoTurno = false;
             break;
-            case "searchTurnos": state.stateSpinner.stateSearchTurno = false;
+          case "searchTurnos": state.stateSpinner.stateSearchTurno = false;
             break;
+          case "spinnerInDisplay": state.stateSpinner.stateSpinnerInDisplay = false;
+          break;
         }
       }
     }
