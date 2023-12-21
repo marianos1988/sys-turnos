@@ -54,16 +54,19 @@ export const useLogin = (initialState:Props) => {
 
       dispatch(inactiveSpinner("login"));
 
-     
-
       if(usuario === `Usuario o contraseña incorrecta`) {
         dispatch(mostrarCartelAdvertencia(usuario))
-      } else {
+      }
+      else if(usuario === "Error al conectar a la Base de datos") {
+        dispatch(mostrarCartelAdvertencia("Error al conectar a la Base de datos"));
+      }
+      else {
         dispatch(setUserLogeado(nomMinuscula));
         navigate("/MisTurnos");
       }
     } catch (error) {
-      console.log(error)
+      dispatch(mostrarCartelAdvertencia("Error al conectar con el servidor"));
+      console.log(error);
     }
 
   }

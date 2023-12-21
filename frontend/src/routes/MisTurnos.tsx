@@ -29,7 +29,9 @@ useEffect(()=>{
     }
     dispatch(activeSpinner("searchTurnos"));
     const list = getAllListaTurnos();
-    list.then(list => setListaTurnosView(list))
+    list.then(list => {
+      setListaTurnosView(list)
+    })
     dispatch(inactiveSpinner("searchTurnos"));
 },[])
   return (
@@ -49,7 +51,9 @@ useEffect(()=>{
               dispatch(activeSpinner("searchTurnos"));
               const fechaListaTurnos = searchDateFilter(fechaFiltrada);
               fechaListaTurnos.then((lista:any)=>{
-               setListaTurnosView(lista);
+                if(lista !== undefined) {
+                  setListaTurnosView(lista);
+                }
                dispatch(inactiveSpinner("searchTurnos"));
               });
               
