@@ -71,27 +71,6 @@ export const TurnosSlice = createSlice({
         observacion: ""
       }
     },
-    saveEditarTurno: (state,action) => {
-      let nuevalista = state.listaTurnos;
-
-
-      nuevalista.map(turno => {
-        if(turno.id === state.editarTurno.id) {
-          turno.nombreCliente = action.payload.nombreCliente;
-          turno.telefono = action.payload.telefono;
-          turno.fecha = action.payload.fecha;
-          turno.hora = action.payload.hora;
-          turno.corte = action.payload.corte;
-          turno.peinado = action.payload.peinado;
-          turno.alisado = action.payload.alisado;
-          turno.tintura = action.payload.tintura;
-          turno.observacion = action.payload.observacion;
-        }
-      })
-
-      state.listaTurnos = nuevalista;
-
-    },
     deleteEditarTurno: (state) => {
       let nuevalista = state.listaTurnos;
       let nuevalistaFiltrada = nuevalista.filter(turno => turno.id !== state.editarTurno.id);
@@ -101,6 +80,6 @@ export const TurnosSlice = createSlice({
 	}
 });
   
-  export const {  saveEditarTurno, setEditarTurno, cleanEditarTurno, deleteEditarTurno } = TurnosSlice.actions;
+  export const { setEditarTurno, cleanEditarTurno, deleteEditarTurno } = TurnosSlice.actions;
   
   export default TurnosSlice.reducer;

@@ -6,7 +6,7 @@ const addNuevoTurno = async (req:any, res:any) => {
   const data = await req.body;
 
   const validarDatos = utils.validarDatosNuevoTurno(data);
-  console.log(validarDatos)
+ 
   if(validarDatos === "Turno registrado") {
     const newTurno:any = utils.parseNuevoTurno(data);
     if(newTurno === "Datos incorrectos") {

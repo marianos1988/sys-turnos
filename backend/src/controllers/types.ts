@@ -25,7 +25,31 @@ export type NuevoTurno = {
     tintura: boolean,
     observacion: string
 }
+export interface EditarTurno {
+        id: number,
+        nombreCliente: string,
+        telefono: string,
+        fecha: Fecha,
+        hora: Hora,
+        corte: boolean,
+        peinado: boolean,
+        alisado: boolean,
+        tintura: boolean,
+        observacion: string
+}
 
+export interface EditarTurnoSinValidar {
+    id: number,
+    nombreCliente: string,
+    telefono: string,
+    fecha: Fecha | "",
+    hora: Hora | "",
+    corte: boolean,
+    peinado: boolean,
+    alisado: boolean,
+    tintura: boolean,
+    observacion: string
+}
 export interface NuevoTurnoParaValidar {
     nombreCliente: string,
     telefono: string,

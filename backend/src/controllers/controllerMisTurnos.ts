@@ -43,7 +43,8 @@ const getAllListaTurnos = async (req: any, res: any)=> {
 
 }
 
-const getSearchDate = async (req:any, res:any)=> {
+const getSearchDate = (req:any, res:any)=> {
+
   const data = utils.parseSearchDate(req.params.date,req.params.month,req.params.year);
 
   if(data === `La fecha es incorrecta` || data === `El mes es incorrecto` || data === `El año es incorrecto`) {

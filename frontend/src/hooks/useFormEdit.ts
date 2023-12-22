@@ -150,6 +150,43 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
     return validar;   
 }
 
+const saveEditarTurno = async (turno:IEditarTurno["initialStateEditarTurno"]) => {
+
+  console.log(turno)
+  try {
+    let objetoHeaderEditTurno = {
+                
+      method : "POST",
+      body : JSON.stringify(
+        turno
+      ),
+      headers : {
+          "Content-type" : "application/json"
+      }
+    }
+    const JSONTurnoEditado = await fetch(`http://localhost:3000/EditarTurno/id=${turno.id}`,objetoHeaderEditTurno);
+    const turnoEditado = await JSONTurnoEditado.json();
+    
+    if(
+        turnoEditado === `No es valido el ID para editar` ||
+        turnoEditado === `Datos incorrectos` ||
+        turnoEditado === `Nombre demasiado largo` ||
+        turnoEditado === "Nombre demasiado corto" ||
+        turnoEditado === "El telefono son solo numeros" ||
+        turnoEditado === "Ingrese una fecha" ||
+        turnoEditado === "Ingrese una hora" ||
+        turnoEditado === "Debes elegir un tipo de trabajo" ||
+        turnoEditado === "La observacion es muy larga" ||
+        turnoEditado === `No se puede conectar a la base de datos` ||
+        turnoEditado === "Turno Modificado"     
+        ) {
+          dispatch(mostrarCartelAdvertencia(turnoEditado));
+        }
+  } catch (error) {
+    
+  }
+}
+
 const handleCancelarEditarTurno = (turno:IEditarTurno["initialStateEditarTurno"]) => {
 
   setFormState(
@@ -179,7 +216,8 @@ return {
     agregarPeinado,
     agregarTintura,
     validarDatos,
-    handleCancelarEditarTurno
+    handleCancelarEditarTurno,
+    saveEditarTurno
 
   }
 }

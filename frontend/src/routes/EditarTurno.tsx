@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useFormEdit } from '../hooks/useFormEdit'
 import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialFormEdit } from '../types/interface'
-import { cleanEditarTurno, saveEditarTurno } from "../reducer/TurnosSlice"
+import { cleanEditarTurno } from "../reducer/TurnosSlice"
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { mostrarCartelConfirmar } from '../reducer/CartelesSlice'
 import { useNavigate } from 'react-router-dom'
@@ -26,7 +26,7 @@ export const EditarTurno = () => {
   const tipoForm:InitialFormEdit["tipoForm"] = "editar";
 
   const initialForm = {
-
+    id:editarTurno.id,
     nombreCliente: editarTurno.nombreCliente,
     telefono: editarTurno.telefono,
     fecha: {
@@ -45,7 +45,7 @@ export const EditarTurno = () => {
     observacion: editarTurno.observacion
   }
 
-  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno } = useFormEdit({initialForm,tipoForm});
+  const { onInputChange, formState, onDatePicker, onTimePicker, agregarCorte, agregarPeinado, agregarAlisado, agregarTintura, validarDatos, handleCancelarEditarTurno, saveEditarTurno } = useFormEdit({initialForm,tipoForm});
 
 
   const handleValueDate = (value:IPicketDateSinNull) => {onDatePicker(value)};
@@ -55,9 +55,9 @@ export const EditarTurno = () => {
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
       finalizarEditarContacto();
-      dispatch(saveEditarTurno(formState));
+      saveEditarTurno(formState)
       dispatch(cleanEditarTurno());
-      dispatch(mostrarCartelAdvertencia("Turno modificado"));
+
 
     }
   }

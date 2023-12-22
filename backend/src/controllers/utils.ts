@@ -1,4 +1,5 @@
-import { Fecha, Hora, NuevoTurno, NuevoTurnoParaValidar, userLogin } from "./types";
+import pool from "../bd/bdConfig";
+import { EditarTurno, EditarTurnoSinValidar, Fecha, Hora, NuevoTurno, NuevoTurnoParaValidar, userLogin } from "./types";
 
 const isString = (string:string):boolean => {
   return typeof string === "string";
@@ -173,6 +174,97 @@ const parseSearchDate = (fecha:any,mes:any,anio:any):string => {
   }
 }
 
+const verificarIDEditarTurno = (idURL:number,idTurno:number):boolean => {
+  if(idURL === idTurno) return true;
+  else return false;
+}
+
+const parseEditarTurno = (turno:any):EditarTurno | "Datos incorrectos"  => {
+  
+  if(!isString(turno.nombreCliente)) {
+    return "Datos incorrectos";
+  }
+  else if(!isString(turno.telefono)) {
+    return "Datos incorrectos";
+  }
+  else if (!isFecha(turno.fecha)) {
+    return "Datos incorrectos";
+  }
+  else if(!isHora(turno.hora)) {
+    return "Datos incorrectos";
+  }
+  else if(!isBoolean(turno.corte)) {
+    return "Datos incorrectos";
+  }
+  else if(!isBoolean(turno.alisado)) {
+    return "Datos incorrectos";
+  }
+  else if(!isBoolean(turno.peinado)) {
+    return "Datos incorrectos";
+  }
+  else if(!isBoolean(turno.tintura)) {
+    return "Datos incorrectos";
+  }
+  else {
+    return turno;
+  }
+}
+
+const validarDatosEditarTurno = (form:EditarTurnoSinValidar) => {
+
+  if(form.nombreCliente.length > 25) {
+    return "Nombre demasiado largo";
+   
+  }
+  else if(form.nombreCliente.length < 4) {
+     return "Nombre demasiado corto";
+
+  }
+  else if(validarSoloNumeros(form.telefono)) {
+    return "El telefono son solo numeros";
+    
+  }
+  else if(form.fecha === "") {
+    return "Ingrese una fecha";
+   
+  }
+  else if(form.hora === "") {
+    return "Ingrese una hora";
+
+  }
+  else if(!(form.corte === true) && !(form.peinado === true) && !(form.alisado === true) && !(form.tintura === true)) {
+    return "Debes elegir un tipo de trabajo";
+    
+  }
+  else if(!(form.observacion === undefined) && form.observacion?.length > 35) {
+    return "La observacion es muy larga";
+    
+  }
+  else {
+    return true;
+  }
+
+}
+
+const saveEditarTurno = (turno:EditarTurno) => {
+
+  try {
+    const agregarFechaYHoraPAraDB = `${turno.fecha.$y}-${agregarCeroAlNum(turno.fecha.$M)}-${agregarCeroAlNum(turno.fecha.$D)} ${agregarCeroAlNum(turno.hora.$H)}:${agregarCeroAlNum(turno.hora.$m)}:00`;
+
+    const query = `UPDATE turnos SET nombre_cliente="${turno.nombreCliente}", telefono="${turno.telefono}", fecha_y_hora="${agregarFechaYHoraPAraDB}", corte=${turno.corte}, peinado=${turno.peinado}, alisado=${turno.alisado}, tintura=${turno.tintura}, observacion="${turno.observacion}" WHERE id=${turno.id}`;
+
+    pool.query(query,(err,resu)=>{
+      if(err)
+        throw err;
+      return "Turno Modificado";
+    })
+  } catch(error) {
+    console.log(error)
+    return `No se puede conectar a la base de datos`;
+  }
+
+}
+
 export default {
   parseLogin,
   parseNuevoTurno,
@@ -181,6 +273,10 @@ export default {
   mostrarHora,
   mostrarFecha,
   transformBoolean,
-  parseSearchDate
+  parseSearchDate,
+  verificarIDEditarTurno,
+  parseEditarTurno,
+  saveEditarTurno,
+  validarDatosEditarTurno
 
 }
