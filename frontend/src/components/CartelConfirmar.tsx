@@ -28,7 +28,7 @@ export const CartelConfirmar = () => {
                         dispatch(cerrarCartelConfirmar());
                         dispatch(deleteEditarTurno());
                         dispatch(cleanEditarTurno());
-                        navigate("/home");
+                        navigate("/MisTurnos");
                       }}
                     >Aceptar</BotonNav>
                   <BotonNav 

@@ -2,6 +2,8 @@ import { useReducer, useState } from 'react';
 import { CheckboxAction, IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, InitialForm, OnInputChange } from '../types/interface';
 import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { useDispatch } from 'react-redux';
+import { cleanEditarTurno } from "../reducer/TurnosSlice"
+import { useEditarTurno } from './useEditarTurno';
 
 type Props = {
   initialForm:IEditarTurno["initialStateEditarTurno"]
@@ -10,6 +12,7 @@ type Props = {
 export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
   const dispatchh = useDispatch();
   const [formState, setFormState] = useState(initialForm);
+  const { finalizarEditarContacto } = useEditarTurno();
 
   const reducerCheckbox = (state:InitialForm["initialForm"], action:CheckboxAction) => {
 
@@ -112,23 +115,23 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
       return false;
     }
     else if(form.fecha === "") {
-      dispatch(mostrarCartelAdvertencia("Ingrese una fecha"));
+      dispatchh(mostrarCartelAdvertencia("Ingrese una fecha"));
       return false;
     }
     else if(form.hora === "") {
-      dispatch(mostrarCartelAdvertencia("Ingrese una hora"));
+      dispatchh(mostrarCartelAdvertencia("Ingrese una hora"));
       return false;
     }
-    else if(!(form.corte === true) && !(form.peinado === true) && !(form.alisado === true) && !(form.tintura === true)) {
-      dispatch(mostrarCartelAdvertencia("Debes elegir un tipo de trabajo"));
+    else if(form.corte == false && form.peinado == false && form.alisado == false && form.tintura == false) {
+      dispatchh(mostrarCartelAdvertencia("Debes elegir un tipo de trabajo"));
       return false;
     }
     else {
       if(tipoForm === "crear") {
-        dispatch(mostrarCartelAdvertencia("Turno registrado"));
+        dispatchh(mostrarCartelAdvertencia("Turno registrado"));
       }
       else if(tipoForm === "editar") {
-        dispatch(mostrarCartelAdvertencia("Turno modificado"));
+        dispatchh(mostrarCartelAdvertencia("Turno modificado"));
       }
 
       return true;
@@ -152,7 +155,6 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
 
 const saveEditarTurno = async (turno:IEditarTurno["initialStateEditarTurno"]) => {
 
-  console.log(turno)
   try {
     let objetoHeaderEditTurno = {
                 
@@ -166,6 +168,7 @@ const saveEditarTurno = async (turno:IEditarTurno["initialStateEditarTurno"]) =>
     }
     const JSONTurnoEditado = await fetch(`http://localhost:3000/EditarTurno/id=${turno.id}`,objetoHeaderEditTurno);
     const turnoEditado = await JSONTurnoEditado.json();
+    console.log(turnoEditado)
     
     if(
         turnoEditado === `No es valido el ID para editar` ||
@@ -177,11 +180,17 @@ const saveEditarTurno = async (turno:IEditarTurno["initialStateEditarTurno"]) =>
         turnoEditado === "Ingrese una hora" ||
         turnoEditado === "Debes elegir un tipo de trabajo" ||
         turnoEditado === "La observacion es muy larga" ||
-        turnoEditado === `No se puede conectar a la base de datos` ||
-        turnoEditado === "Turno Modificado"     
-        ) {
-          dispatch(mostrarCartelAdvertencia(turnoEditado));
+        turnoEditado === `No se puede conectar a la base de datos`
+      ) {
+          dispatchh(mostrarCartelAdvertencia(turnoEditado));
         }
+      else if(turnoEditado === `Turno modificado`) {
+
+        finalizarEditarContacto();
+        dispatchh(cleanEditarTurno());
+        dispatchh(mostrarCartelAdvertencia(turnoEditado));
+      }
+
   } catch (error) {
     
   }

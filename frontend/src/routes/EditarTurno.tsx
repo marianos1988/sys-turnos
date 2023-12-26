@@ -9,8 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useFormEdit } from '../hooks/useFormEdit'
 import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialFormEdit } from '../types/interface'
-import { cleanEditarTurno } from "../reducer/TurnosSlice"
-import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { mostrarCartelConfirmar } from '../reducer/CartelesSlice'
 import { useNavigate } from 'react-router-dom'
 
@@ -54,11 +52,7 @@ export const EditarTurno = () => {
   const guardarTurnoEditado = () => {
     const datosValidados = validarDatos(formState);
     if(datosValidados) {
-      finalizarEditarContacto();
-      saveEditarTurno(formState)
-      dispatch(cleanEditarTurno());
-
-
+      saveEditarTurno(formState);
     }
   }
 

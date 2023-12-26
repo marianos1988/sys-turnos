@@ -1,4 +1,4 @@
-import pool from "../bd/bdConfig";
+
 import utils from "./utils";
 
 const editarTurno = async (req:any,res:any) => {
@@ -9,9 +9,10 @@ const editarTurno = async (req:any,res:any) => {
     const dataParse = utils.parseEditarTurno(data);
     if(dataParse !== "Datos incorrectos") {
       const datosValidados = utils.validarDatosEditarTurno(data);
-      if(datosValidados === true) {
-          const turnoReg = utils.saveEditarTurno(dataParse);
-          res.json(turnoReg);
+      if(datosValidados === "ok") {
+          utils.saveEditarTurno(dataParse);
+          res.json(`Turno modificado`);
+
       } else {
         res.json(datosValidados);
       }

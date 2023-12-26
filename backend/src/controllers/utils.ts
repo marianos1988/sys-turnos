@@ -233,15 +233,14 @@ const validarDatosEditarTurno = (form:EditarTurnoSinValidar) => {
 
   }
   else if(!(form.corte === true) && !(form.peinado === true) && !(form.alisado === true) && !(form.tintura === true)) {
-    return "Debes elegir un tipo de trabajo";
     
+    return "Debes elegir un tipo de trabajo";
   }
   else if(!(form.observacion === undefined) && form.observacion?.length > 35) {
-    return "La observacion es muy larga";
-    
+    return "La observacion es muy larga"; 
   }
   else {
-    return true;
+    return "ok";
   }
 
 }
@@ -253,11 +252,12 @@ const saveEditarTurno = (turno:EditarTurno) => {
 
     const query = `UPDATE turnos SET nombre_cliente="${turno.nombreCliente}", telefono="${turno.telefono}", fecha_y_hora="${agregarFechaYHoraPAraDB}", corte=${turno.corte}, peinado=${turno.peinado}, alisado=${turno.alisado}, tintura=${turno.tintura}, observacion="${turno.observacion}" WHERE id=${turno.id}`;
 
-    pool.query(query,(err,resu)=>{
+    pool.query(query,(err,_resu)=>{
       if(err)
         throw err;
-      return "Turno Modificado";
+
     })
+
   } catch(error) {
     console.log(error)
     return `No se puede conectar a la base de datos`;
