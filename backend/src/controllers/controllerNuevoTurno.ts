@@ -15,7 +15,7 @@ const addNuevoTurno = async (req:any, res:any) => {
       
       const fechaYHoraParaBD = `${newTurno?.fecha.$y}-${utils.agregarCeroAlNum(newTurno?.fecha.$M)}-${utils.agregarCeroAlNum(newTurno?.fecha.$D)} ${utils.agregarCeroAlNum(newTurno.hora.$H)}:${utils.agregarCeroAlNum(newTurno.hora.$m)}:00`; 
 
-      const query = `INSERT INTO turnos (nombre_cliente, telefono, fecha_y_hora, corte, peinado, alisado, tintura, observacion) VALUES ("${newTurno.nombreCliente}", "${newTurno.telefono}", "${fechaYHoraParaBD}", ${newTurno.corte}, ${newTurno.peinado}, ${newTurno.alisado}, ${newTurno.tintura}, "${newTurno.observacion}")`;
+      const query = `INSERT INTO turnos (nombre_cliente, telefono, fecha_y_hora, corte, peinado, alisado, tintura, observacion, eliminado, fecha_eliminado) VALUES ("${newTurno.nombreCliente}", "${newTurno.telefono}", "${fechaYHoraParaBD}", ${newTurno.corte}, ${newTurno.peinado}, ${newTurno.alisado}, ${newTurno.tintura}, "${newTurno.observacion}", false, NULL)`;
 
 
       pool.query(query,(err, resu) =>{

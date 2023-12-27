@@ -26,6 +26,12 @@ const editarTurno = async (req:any,res:any) => {
     
 }
 
+const eliminarTurno = async (req:any,res:any) => {
+const id = await req.params.id;
+console.log(id)
+}
+
 export default {
-    editarTurno
+    editarTurno,
+    eliminarTurno
 }

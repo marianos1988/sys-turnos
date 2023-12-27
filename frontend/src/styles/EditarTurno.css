@@ -97,6 +97,10 @@
     color: #000;  
 }
 
+.container-spinner-editar-turno {
+    transform: translate(7px,5px);
+}
+
 .custom-btn-cargar {
     display: flex;
     align-items: center;

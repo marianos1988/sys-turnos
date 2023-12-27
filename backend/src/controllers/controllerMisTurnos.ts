@@ -7,7 +7,7 @@ const getAllListaTurnos = async (req: any, res: any)=> {
   try {
     const fechaHoy = new Date();
     const fechaHoyEdit = `${fechaHoy.getFullYear()}-${fechaHoy.getMonth()+1}-${fechaHoy.getDate()}`;
-    const query = `SELECT * FROM turnos WHERE fecha_y_hora >= "${fechaHoyEdit}" ORDER BY fecha_y_hora ASC`;
+    const query = `SELECT * FROM turnos WHERE fecha_y_hora >= "${fechaHoyEdit}" AND eliminado= false ORDER BY fecha_y_hora ASC`;
 
     pool.query(query,(err, resu)=> {
       if(err)
@@ -52,7 +52,7 @@ const getSearchDate = (req:any, res:any)=> {
   }
   else {
     try {
-      const query = `SELECT * FROM turnos WHERE fecha_y_hora LIKE "%${data}%"`;
+      const query = `SELECT * FROM turnos WHERE eliminado= false AND fecha_y_hora LIKE "%${data}%" ORDER BY fecha_y_hora ASC`;
       pool.query(query,(err,resu)=>{
         if(err)
           throw err;

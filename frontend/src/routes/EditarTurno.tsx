@@ -8,12 +8,14 @@ import dayjs from 'dayjs';
 import { useSelector, useDispatch } from "react-redux";
 import { useEditarTurno } from '../hooks/useEditarTurno'
 import { useFormEdit } from '../hooks/useFormEdit'
-import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialFormEdit } from '../types/interface'
+import { IEditarTurno, IPicketDateSinNull, IPicketHourSinNull, IUserLogeado, InitialFormEdit, SpinnerSlice } from '../types/interface'
 import { mostrarCartelConfirmar } from '../reducer/CartelesSlice'
 import { useNavigate } from 'react-router-dom'
+import { Spinner } from '../components/Spinner'
 
 export const EditarTurno = () => {
   const { userLogeado } = useSelector((state:IUserLogeado) => state.users);
+  const { stateSpinner } = useSelector((state:SpinnerSlice)=> state.spinner)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -210,6 +212,9 @@ export const EditarTurno = () => {
                   : (datosAEditar.boton2 === "Eliminar") && eliminarTurno()
               }}
             >{datosAEditar.boton2}</button>
+            <div className='container-spinner-editar-turno'>
+              <Spinner active={stateSpinner.stateEditarTurno}></Spinner>
+            </div>
           </div>
         </form>
       </div>

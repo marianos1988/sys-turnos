@@ -312,7 +312,8 @@ export type SpinnerSlice = {
       stateSearchTurno: boolean,
       stateLogin : boolean,
       stateNuevoTurno: boolean,
-      stateSpinnerInDisplay: boolean
+      stateSpinnerInDisplay: boolean,
+      stateEditarTurno: boolean
     }
   }
 }

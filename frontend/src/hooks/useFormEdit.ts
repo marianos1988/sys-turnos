@@ -4,6 +4,7 @@ import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice"
 import { useDispatch } from 'react-redux';
 import { cleanEditarTurno } from "../reducer/TurnosSlice"
 import { useEditarTurno } from './useEditarTurno';
+import { activeSpinner, inactiveSpinner } from "../reducer/SpinnerSlice"
 
 type Props = {
   initialForm:IEditarTurno["initialStateEditarTurno"]
@@ -166,9 +167,10 @@ const saveEditarTurno = async (turno:IEditarTurno["initialStateEditarTurno"]) =>
           "Content-type" : "application/json"
       }
     }
+    dispatchh(activeSpinner("editarTurno"));
     const JSONTurnoEditado = await fetch(`http://localhost:3000/EditarTurno/id=${turno.id}`,objetoHeaderEditTurno);
     const turnoEditado = await JSONTurnoEditado.json();
-    console.log(turnoEditado)
+    dispatchh(inactiveSpinner("editarTurno"));
     
     if(
         turnoEditado === `No es valido el ID para editar` ||
