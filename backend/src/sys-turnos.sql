@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2023 a las 18:05:22
+-- Tiempo de generación: 27-12-2023 a las 21:28:11
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.30
 
@@ -36,25 +36,21 @@ CREATE TABLE `turnos` (
   `peinado` tinyint(1) DEFAULT NULL,
   `alisado` tinyint(1) DEFAULT NULL,
   `tintura` tinyint(1) DEFAULT NULL,
-  `observacion` varchar(35) DEFAULT NULL
+  `observacion` varchar(35) DEFAULT NULL,
+  `eliminado` tinyint(1) NOT NULL,
+  `fecha_eliminado` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `turnos`
 --
 
-INSERT INTO `turnos` (`id`, `nombre_cliente`, `telefono`, `fecha_y_hora`, `corte`, `peinado`, `alisado`, `tintura`, `observacion`) VALUES
-(2, 'Juan Manuel', '12345678', '2023-11-15 00:00:00', 1, 1, 0, 0, 'asdasd'),
-(3, 'juan', '12345567', '2023-11-14 00:00:00', 1, 0, 0, 0, ''),
-(4, 'pepito', '', '2023-11-14 00:00:00', 0, 1, 0, 0, ''),
-(5, 'Mariano', '123456789', '2023-11-15 00:00:00', 1, 1, 0, 0, 'ajaja'),
-(6, 'asdsadas', '12345678', '2023-11-15 00:00:00', 1, 1, 0, 0, ''),
-(7, 'pepito', '123456782', '2023-11-17 00:00:00', 1, 0, 0, 0, ''),
-(8, 'pepito', '12345678', '2023-12-20 00:00:00', 1, 1, 0, 0, 'asdasd'),
-(9, 'Carlos', '1234567', '2023-12-22 15:35:00', 1, 1, 0, 0, 'ASDDD'),
-(10, 'Carlitos', '1234567', '2024-01-07 03:05:00', 1, 1, 0, 0, 'ASDDD'),
-(11, 'Juan Manuel', '23456', '2023-12-30 16:00:00', 1, 0, 0, 0, ''),
-(12, 'sdfsdf', '12345678', '2023-12-20 15:15:00', 1, 0, 0, 1, 'Sarasa');
+INSERT INTO `turnos` (`id`, `nombre_cliente`, `telefono`, `fecha_y_hora`, `corte`, `peinado`, `alisado`, `tintura`, `observacion`, `eliminado`, `fecha_eliminado`) VALUES
+(19, 'juan', '12345678', '2023-12-26 11:01:00', 1, 1, 1, 0, 'aa', 0, NULL),
+(20, 'Juan Manuel', '12345677', '2023-12-27 23:00:00', 1, 1, 0, 0, '', 0, NULL),
+(21, 'Juan Manuel', '23456', '2023-12-24 19:00:00', 1, 1, 0, 0, 'asdasd', 0, NULL),
+(22, 'Tomas', '1234', '2023-12-23 16:00:00', 1, 1, 0, 0, 'Ya abono por Transferencia', 0, NULL),
+(23, 'Oscar', '23456', '2023-12-28 17:20:00', 0, 0, 0, 1, 'asd', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -99,7 +95,7 @@ ALTER TABLE `userslogin`
 -- AUTO_INCREMENT de la tabla `turnos`
 --
 ALTER TABLE `turnos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `userslogin`
