@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useState } from "react";
+
 
 export const useEditarTurno = () => {
+
 
   const initialEdicion = {
     boton1: "Editar",
@@ -62,6 +64,18 @@ export const useEditarTurno = () => {
     return parseInt(new$y);
   }
 
+  const deleteEditarTurno = async (id:string) => {
+
+    try {
+      const JSONIDDelete = await fetch(`http://localhost:3000/EditarTurno/id=${id}`);
+      const IDDelete = await JSONIDDelete.json();
+
+
+    } catch (error) {
+      
+    }
+  }
+
   return {
     iniciarEditarContacto,
     finalizarEditarContacto,
@@ -70,6 +84,7 @@ export const useEditarTurno = () => {
     parseo$HHoraEdit,
     parseo$DFechaEdit,
     parseo$MFechaEdit,
-    parseo$yFechaEdit
+    parseo$yFechaEdit,
+    deleteEditarTurno
   }
 }

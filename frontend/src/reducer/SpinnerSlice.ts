@@ -6,7 +6,7 @@ const initialState = {
     stateNuevoTurno: false,
     stateSearchTurno: false,
     stateSpinnerInDisplay: false,
-    stateEditarTurno: true
+    stateEditarTurno: false
   }
 } 
 

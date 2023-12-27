@@ -3,15 +3,18 @@ import "../styles/CartelConfirmar.css"
 import { BotonNav } from "./BotonNav"
 import { cerrarCartelConfirmar } from '../reducer/CartelesSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteEditarTurno, cleanEditarTurno } from "../reducer/TurnosSlice"
+import { cleanEditarTurno } from "../reducer/TurnosSlice"
 import { useNavigate } from 'react-router-dom'
-import { ICarteles } from '../types/interface'
+import { ICarteles, IEditarTurno } from '../types/interface'
+import { useEditarTurno } from '../hooks/useEditarTurno'
 
 
 export const CartelConfirmar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartelConfirmar } = useSelector((state:ICarteles) => state.carteles);
+  const { editarTurno } = useSelector((state:any) => state.turnos)
+  const { deleteEditarTurno } = useEditarTurno();
   return (
     <>
     {
@@ -26,7 +29,7 @@ export const CartelConfirmar = () => {
                       className= "boton-cartel-confirmar"
                       handleOnClick= { ()=>  {
                         dispatch(cerrarCartelConfirmar());
-                        dispatch(deleteEditarTurno());
+                        deleteEditarTurno(editarTurno.id);
                         dispatch(cleanEditarTurno());
                         navigate("/MisTurnos");
                       }}

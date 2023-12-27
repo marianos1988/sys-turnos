@@ -262,12 +262,12 @@ const saveEditarTurno = (turno:EditarTurno) => {
     console.log(error)
     return `No se puede conectar a la base de datos`;
   }
-
 }
 
 export default {
   parseLogin,
   parseNuevoTurno,
+  isNumber,
   validarDatosNuevoTurno,
   agregarCeroAlNum,
   mostrarHora,

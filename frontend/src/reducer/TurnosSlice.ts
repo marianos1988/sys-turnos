@@ -71,15 +71,9 @@ export const TurnosSlice = createSlice({
         observacion: ""
       }
     },
-    deleteEditarTurno: (state) => {
-      let nuevalista = state.listaTurnos;
-      let nuevalistaFiltrada = nuevalista.filter(turno => turno.id !== state.editarTurno.id);
-      state.listaTurnos = nuevalistaFiltrada;
-
-    }
 	}
 });
   
-  export const { setEditarTurno, cleanEditarTurno, deleteEditarTurno } = TurnosSlice.actions;
+  export const { setEditarTurno, cleanEditarTurno } = TurnosSlice.actions;
   
   export default TurnosSlice.reducer;

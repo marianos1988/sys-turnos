@@ -1,5 +1,5 @@
-
 import utils from "./utils";
+import pool from "../bd/bdConfig";
 
 const editarTurno = async (req:any,res:any) => {
   const id = req.params.id;
@@ -27,8 +27,29 @@ const editarTurno = async (req:any,res:any) => {
 }
 
 const eliminarTurno = async (req:any,res:any) => {
-const id = await req.params.id;
-console.log(id)
+
+const dataID = await req.params.id;
+const number = parseInt(dataID);
+const validar = utils.isNumber(number);
+
+if(validar === true) {
+  const fechaHoy = new Date();
+  const fechaDB = `${fechaHoy.getFullYear()}-${fechaHoy.getMonth()+1}-${fechaHoy.getDate()}`
+  const query = `UPDATE turnos SET eliminado= true, fecha_eliminado="${fechaDB}" WHERE id=${dataID}`;
+  
+  pool.query(query,(err,resu)=>{
+    try {
+      if(err)
+        throw err;
+      res.json(`Turno eliminado`);
+    } catch (error) {
+      console.log(error)
+    }
+
+  })
+} else {
+  res.json(`El numero ID es incorrecto`);
+}
 }
 
 export default {

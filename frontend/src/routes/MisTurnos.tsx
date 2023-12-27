@@ -20,7 +20,7 @@ export const MisTurnos = () => {
  
   const { handleSelectDate, fechaFiltrada, getAllListaTurnos, searchDateFilter} = useMisTurnos()
 
-  const [ listaTurnosView, setListaTurnosView ]= useState<any>([]) // aca va los turnos de la BD
+  const [ listaTurnosView, setListaTurnosView ]= useState<any>([]);
 
 
 useEffect(()=>{
