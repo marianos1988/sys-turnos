@@ -1,8 +1,14 @@
-import { useState } from "react";
-
+import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { activeSpinner, inactiveSpinner} from "../reducer/SpinnerSlice"
+import { mostrarCartelAdvertencia } from "../reducer/CartelesSlice";
+import { cleanEditarTurno } from "../reducer/TurnosSlice"
+import { useNavigate } from 'react-router-dom'
 
 export const useEditarTurno = () => {
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialEdicion = {
     boton1: "Editar",
@@ -67,10 +73,20 @@ export const useEditarTurno = () => {
   const deleteEditarTurno = async (id:string) => {
 
     try {
+      dispatch(activeSpinner("editarTurno"));
       const JSONIDDelete = await fetch(`http://localhost:3000/EditarTurno/id=${id}`);
       const IDDelete = await JSONIDDelete.json();
+      dispatch(inactiveSpinner("editarTurno"));
+      if(IDDelete === `Turno eliminado`) {
+        dispatch(mostrarCartelAdvertencia(IDDelete));
+        dispatch(cleanEditarTurno());
+        navigate("/MisTurnos");
 
-
+      }
+      else if(IDDelete === `El numero ID es incorrecto`) {
+        dispatch(mostrarCartelAdvertencia(IDDelete));
+      }
+      
     } catch (error) {
       
     }
