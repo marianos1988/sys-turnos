@@ -80,7 +80,7 @@ export const useFormEdit = ({ initialForm, tipoForm }:Props) => {
 
     const newFecha:any = {
       $D: fecha.$D,
-      $M:fecha.$M,
+      $M:fecha.$M+1,
       $y:fecha.$y
     }
     setFormState({
