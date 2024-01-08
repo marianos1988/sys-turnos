@@ -46,6 +46,7 @@ const getAllListaTurnos = async (req: any, res: any)=> {
 const getSearchDate = (req:any, res:any)=> {
 
   const data = utils.parseSearchDate(req.params.date,req.params.month,req.params.year);
+  console.log(data);
 
   if(data === `La fecha es incorrecta` || data === `El mes es incorrecto` || data === `El año es incorrecto`) {
     res.json(data);
@@ -72,6 +73,7 @@ const getSearchDate = (req:any, res:any)=> {
               tintura: utils.transformBoolean(element.tintura),
               observacion: element.observacion
             }
+            console.log("listaturnos: "+listaTurnos)
             listaTurnos.push(turno);
           });
           res.json(listaTurnos);

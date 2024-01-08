@@ -170,7 +170,7 @@ const parseSearchDate = (fecha:any,mes:any,anio:any):string => {
     return `El año es incorrecto`;
   }
   else {
-    return `${anio}-${mes}-${fecha}`;
+    return `${anio}-${agregarCero(mes)}-${agregarCero(fecha)}`;
   }
 }
 
